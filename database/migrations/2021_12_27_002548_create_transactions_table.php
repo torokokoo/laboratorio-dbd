@@ -16,12 +16,12 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->unsignedBigInteger('user')->nullable();
-            $table->foreign('user')->references('id')->on('users');
-            $table->unsignedBigInteger('game')->nullable();
-            $table->foreign('game')->references('id')->on('games');
-            $table->unsignedBigInteger('currency')->nullable();
-            $table->foreign('currency')->references('id')->on('currencies');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('game_id')->nullable();
+            $table->foreign('game_id')->references('id')->on('games');
+            $table->unsignedBigInteger('currency_id')->nullable();
+            $table->foreign('currency_id')->references('id')->on('currencies');
             $table->timestamps();
         });
     }

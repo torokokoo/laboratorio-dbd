@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccessesTable extends Migration
+class CreateRolesTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAccessesTable extends Migration
    */
   public function up()
   {
-    Schema::create('accesses', function (Blueprint $table) {
+    Schema::create('roles', function (Blueprint $table) {
       $table->id();
       $table->string('name', 100);
       $table->timestamps();
@@ -27,6 +27,6 @@ class CreateAccessesTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('accesses');
+    Schema::dropIfExists('roles');
   }
 }

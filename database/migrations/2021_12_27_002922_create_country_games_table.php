@@ -15,10 +15,10 @@ class CreateCountryGamesTable extends Migration
     {
         Schema::create('country_games', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('country')->nullable();
-            $table->foreign('country')->references('id')->on('countries');
-            $table->unsignedBigInteger('game')->nullable();
-            $table->foreign('game')->references('id')->on('games');
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->unsignedBigInteger('game_id')->nullable();
+            $table->foreign('game_id')->references('id')->on('games');
             $table->timestamps();
         });
     }

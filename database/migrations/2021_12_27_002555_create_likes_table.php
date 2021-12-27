@@ -16,10 +16,10 @@ class CreateLikesTable extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->boolean('like');
-            $table->unsignedBigInteger('user')->nullable();
-            $table->foreign('user')->references('id')->on('users');
-            $table->unsignedBigInteger('game')->nullable();
-            $table->foreign('game')->references('id')->on('games');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('game_id')->nullable();
+            $table->foreign('game_id')->references('id')->on('games');
             $table->timestamps();
         });
     }
