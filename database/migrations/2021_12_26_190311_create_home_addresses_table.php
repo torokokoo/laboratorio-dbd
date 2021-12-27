@@ -17,8 +17,8 @@ class CreateHomeAddressesTable extends Migration
       $table->id();
       $table->string('address', 200);  # References the complete Address, example: 2120 Grove Street
       $table->integer('postalCode');
-      $table->unsignedBigInteger('id_comuna')->nullable();
-      $table->foreign('id_comuna')->references('id')->on('comunas');
+      $table->unsignedBigInteger('comuna')->nullable();
+      $table->foreign('comuna')->references('id')->on('comunas');
       $table->timestamps();
     });
   }

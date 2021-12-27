@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
       $table->string('password');
       $table->date('birthday');
       $table->float('balance', 8, 2);
-      $table->unsignedBigInteger('id_home_addresses')->nullable();
-      $table->foreign('id_home_addresses')->references('id')->on('home_addresses');
+      $table->unsignedBigInteger('home_addresses')->nullable();
+      $table->foreign('home_addresses')->references('id')->on('home_addresses');
       $table->timestamps();
     });
   }
