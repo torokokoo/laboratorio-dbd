@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WishList extends Model
+class Wish_ListGame extends Model
 {
     use HasFactory;
 }

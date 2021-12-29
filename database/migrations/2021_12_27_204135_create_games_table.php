@@ -22,8 +22,6 @@ class CreateGamesTable extends Migration
       $table->string('classification', 50);
       $table->string('valoration', 50);
       $table->float('storage', 4, 2);
-      $table->unsignedBigInteger('gender_id')->nullable();
-      $table->foreign('gender_id')->references('id')->on('genders');
       $table->unsignedBigInteger('age_restriction_id')->nullable();
       $table->foreign('age_restriction_id')->references('id')->on('age_restrictions');
       $table->unsignedBigInteger('url_id')->nullable();
