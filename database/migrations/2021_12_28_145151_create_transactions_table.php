@@ -20,8 +20,6 @@ class CreateTransactionsTable extends Migration
       $table->foreign('user_id')->references('id')->on('users');
       $table->unsignedBigInteger('game_id')->nullable();
       $table->foreign('game_id')->references('id')->on('games');
-      $table->unsignedBigInteger('currency_id')->nullable();
-      $table->foreign('currency_id')->references('id')->on('currencies');
       $table->timestamps();
     });
   }
