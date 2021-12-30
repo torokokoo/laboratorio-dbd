@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
-    use HasFactory;
+  public function game()
+  {
+    return $this->belongsTo('App\Models\Game');
+  }
+  use HasFactory;
 }

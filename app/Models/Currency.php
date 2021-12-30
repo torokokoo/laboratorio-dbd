@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Currency extends Model
 {
-    use HasFactory;
+  public function transactionCurrency()
+  {
+    return $this->hasMany('App\Models\TransactionCurrency');
+  }
+  use HasFactory;
 }

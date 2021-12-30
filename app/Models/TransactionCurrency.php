@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransactionCurrency extends Model
 {
-    use HasFactory;
+  public function transaction()
+  {
+    return $this->belongsTo('App\Models\Transaction');
+  }
+  public function currency()
+  {
+    return $this->belongsTo('App\Models\Currency');
+  }
+  use HasFactory;
 }
