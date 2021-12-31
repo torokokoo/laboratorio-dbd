@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
     \App\Models\Currency::factory(10)->create();
     \App\Models\Comment::factory(10)->create();
     \App\Models\Demo::factory(10)->create();
-    \App\Models\Like::factory(10)->create();
+    \App\Models\AgeRestriction::factory(10)->create();
+    \App\Models\Gender::factory(10)->create();
+    \App\Models\Url::factory(10)->create();
+    \App\Models\Game::factory(10)->create();
   }
 }

@@ -14,7 +14,7 @@ class MessageFactory extends Factory
   public function definition()
   {
     return [
-      'age_restriction' => $this->faker->numberBetween($min = 0, $max = 90)
+      
     ];
   }
 }

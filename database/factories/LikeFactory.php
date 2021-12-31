@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Like;
+use App\Models\User;
+use App\Models\Game;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LikeFactory extends Factory
@@ -14,12 +17,9 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->name,
-            'email'=>$this->faker->safeEmail,
-            'password'=>$this->faker->password,
-            'birthday'=>$this->faker->date(($format = 'Y-m-d', $max = 'now'),
-            'balance'=>$this->faker->numberBetween($min = 0,$max = 100000000),
-
+            'like' => $this->faker->boolean($chanceOfGettingTrue = 50),
+            'user_id' => User::all()->random()->id,
+            'game_id' => Game::all()->random()->id
         ];
     }
 }

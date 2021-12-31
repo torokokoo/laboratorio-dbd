@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Game;
+use App\Models\Url;
+use App\Models\Demo;
+use App\Models\AgeRestriction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GameFactory extends Factory
@@ -17,11 +21,13 @@ class GameFactory extends Factory
             'name' => $this->faker->name,
             'description' => $this->faker->realText($maxNbChars = 1000, $indexSize = 2),
             'price' => $this->faker->randomFloat($nbMaxDecimals = 4, $min = 0, $max = NULL),
-            'sales' => $this->faker->numberBetween($min = 0, $max = NULL),
-            'clasification' => $this->faker->realText($maxNbChars = 50, $indexSize = 2),
+            'sales' => $this->faker->numberBetween($min = 0, $max = 999999),
+            'classification' => $this->faker->realText($maxNbChars = 50, $indexSize = 2),
             'valoration' => $this->faker->realText($maxNbChars = 50, $indexSize = 2),
             'storage' => $this->faker->randomFloat($nbMaxDecimals = 4, $min = 0, $max = NULL),
-            
+            'age_restriction_id' => AgeRestriction::all()->random()->id,
+            'url_id' => Url::all()->random()->id,
+            'demo_id' => Demo::all()->random()->id
         ];
     }
 }
