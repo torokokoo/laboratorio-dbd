@@ -11,8 +11,9 @@ class Library extends Model
   {
     return $this->hasMany('App\Models\Game');
   }
-  public function user(){
-    return $this->belongsTo(User::class)
+  public function user()
+  {
+    return $this->belongsTo(User::class);
   }
   use HasFactory;
 }

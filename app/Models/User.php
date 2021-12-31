@@ -7,48 +7,56 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use HasFactory;
-    public function message(){
-        return $this->hasMany(Message::class);
-    }
+  use HasFactory;
+  public function message()
+  {
+    return $this->hasMany(Message::class);
+  }
 
-    public function homeAddress()
-    {
-        return $this->belongsTo('App\Models\HomeAddress');
+  public function homeAddress()
+  {
+    return $this->belongsTo('App\Models\HomeAddress');
+  }
+  public function messagetwo()
+  {
+    return $this->hasMany(Message::class);
+  }
 
-    }
-    public function messagetwo(){
-        return $this->hasMany(Message::class);
-    }
+  public function userfollower()
+  {
+    return $this->hasMany(UserFollower::class);
+  }
+  public function userfollowertwo()
+  {
+    return $this->hasMany(UserFollower::class);
+  }
 
-    public function userfollower(){
-        return $this->hasMany(UserFollower::class);
-    }
-    public function userfollowertwo(){
-        return $this->hasMany(UserFollower::class);
-    }
-    
-    public function userrole(){
-        return $this->hasMany(UserRole::class);
-    }
-    public function library(){
-        return $this->hasOne(Library::class);
-    }
+  public function userrole()
+  {
+    return $this->hasMany(UserRole::class);
+  }
+  public function library()
+  {
+    return $this->hasOne(Library::class);
+  }
 
-    public function like(){
-        return $this->hasOne(Like::class);
-    }
+  public function like()
+  {
+    return $this->hasOne(Like::class);
+  }
 
-    public function wishlist(){
-        return $this->hasMany(WishList::class);
-    }
+  public function wishlist()
+  {
+    return $this->hasMany(WishList::class);
+  }
 
-    public function comment(){
-        return $this->hasMany(comment::class);
-    }
-    
-    public function transaction(){
-        return $this->hasMany(Transaction::class);
-    }
+  public function comment()
+  {
+    return $this->hasMany(Comment::class);
+  }
 
+  public function transaction()
+  {
+    return $this->hasMany(Transaction::class);
+  }
 }
