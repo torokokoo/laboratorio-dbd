@@ -10,7 +10,7 @@ class Country extends Model
     use HasFactory;
 
     public function countryGame(){
-        return $this->hasMany('App\Models\Country');
+        return $this->hasMany('App\Models\CountryGame');
     }
 
     public function region(){

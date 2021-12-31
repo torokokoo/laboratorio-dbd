@@ -8,13 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     use HasFactory;
-    public function class(){
+    public function message(){
+        return $this->hasMany(Message::class);
+    }
+
+    public function homeAddress()
+    {
+        return $this->belongsTo('App\Models\HomeAddress');
+
+    }
+    public function messagetwo(){
         return $this->hasMany(Message::class);
     }
 
     public function userfollower(){
-        return $this->belongsTo(UserFollower::class);
+        return $this->hasMany(UserFollower::class);
     }
+    public function userfollowertwo(){
+        return $this->hasMany(UserFollower::class);
+    }
+    
     public function userrole(){
         return $this->hasMany(UserRole::class);
     }

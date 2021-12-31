@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Message;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MessageFactory extends Factory
 {
@@ -16,7 +17,7 @@ class MessageFactory extends Factory
   {
     return [
       'user1_id' => User::all()->random()->id,
-      'user2_id' => User::all()->random()->id,
+      'user2_id' => User::all()->random()->id
     ];
   }
 }

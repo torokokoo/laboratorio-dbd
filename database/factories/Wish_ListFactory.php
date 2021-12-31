@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Wish_List;
 use App\Models\User;
 
 class Wish_ListFactory extends Factory
@@ -16,7 +17,7 @@ class Wish_ListFactory extends Factory
   {
     return [
       'privacy' => $this->faker->name,
-      'user_id' => User::all()->random()->id,
+      'user_id' => User::all()->random()->id
     ];
   }
 }

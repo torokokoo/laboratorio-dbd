@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\Game;
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,7 +18,9 @@ class CommentFactory extends Factory
   {
     return [
       'date' => $this->faker->dateTime($max = 'now', $timezone = null),
-      'content' => $this->faker->realText($maxNbChars = 200, $indexSize = 2)
+      'content' => $this->faker->realText($maxNbChars = 200, $indexSize = 2),
+      'user_id' => User::all()->random()->id,
+      'game_id' => Game::all()->random()->id
     ];
   }
 }

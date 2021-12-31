@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
   use HasFactory;
+
+  public function user_role()
+  {
+    return $this->hasMany('App\Models\User_role');
+  }
+  
   public function rolePermission()
   {
     return $this->hasMany('App\Models\RolePermission');

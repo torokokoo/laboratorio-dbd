@@ -13,4 +13,5 @@ class Wish_ListGame extends Model
     {
         return $this->belongsTo('App\Models\Game');
     }
+
 }
