@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+
+    public function countryGame(){
+        return $this->hasMany('App\Models\Country');
+    }
+
+    public function region(){
+        return $this->hasMany('App\Models\Region');
+    }
 }

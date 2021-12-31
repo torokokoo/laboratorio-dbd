@@ -22,5 +22,9 @@ class DatabaseSeeder extends Seeder
     \App\Models\Role::factory(10)->create();
     \App\Models\Permission::factory(10)->create();
     \App\Models\Game::factory(10)->create();
+    \App\Models\Country::factory(10)->create();
+    \App\Models\Region::factory(10)->create();
+    \App\Models\Comuna§::factory(10)->create();
+    \App\Models\HomeAddress::factory(10)->create();
   }
 }
