@@ -1,10 +1,11 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Game;
+use App\Models\Wish_list;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class GenderFactory extends Factory
+class Wish_ListGameFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +15,7 @@ class GenderFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->name,
+            //
         ];
     }
 }

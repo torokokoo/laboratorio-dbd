@@ -9,7 +9,7 @@ class Library extends Model
 {
   public function game()
   {
-    return $this->belongsTo('App\Models\Game');
+    return $this->hasMany('App\Models\Game');
   }
   public function user(){
     return $this->belongsTo(User::class)

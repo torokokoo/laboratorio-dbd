@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AgeRestriction extends Model
 {
     use HasFactory;
+
+    public function game()
+    {
+        return $this->hasMany('App\Models\Game');
+    }
 }

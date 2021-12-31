@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Url extends Model
 {
     use HasFactory;
+
+    public function game()
+    {
+        return $this->hasOne('App\Models\Game');
+    }
 }

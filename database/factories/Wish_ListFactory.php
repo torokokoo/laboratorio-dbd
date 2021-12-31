@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UrlFactory extends Factory
+class Wish_ListFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class UrlFactory extends Factory
     public function definition()
     {
         return [
-            'link'=>$this->faker->url,
+            'name'=>$this->faker->name,
         ];
     }
 }
