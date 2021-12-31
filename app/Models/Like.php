@@ -12,4 +12,8 @@ class Like extends Model
     return $this->belongsTo('App\Models\Game');
   }
   use HasFactory;
+
+  public function user(){
+    return $this->belongsTo(User::class)
+  }
 }

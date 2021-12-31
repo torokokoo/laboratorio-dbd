@@ -14,7 +14,7 @@ class UrlFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'link'=>$this->faker->url,
         ];
     }
 }

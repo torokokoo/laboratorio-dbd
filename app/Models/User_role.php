@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class User_role extends Model
 {
     use HasFactory;
+
+    public function user(){
+        return $this->belongsTo(UserRole::class)
+    }
 }
