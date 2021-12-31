@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 
-class Wish_ListFactory extends Factory
+class RoleFactory extends Factory
 {
   /**
    * Define the model's default state.
@@ -15,8 +14,7 @@ class Wish_ListFactory extends Factory
   public function definition()
   {
     return [
-      'privacy' => $this->faker->name,
-      'user_id' => User::all()->random()->id,
+      'name' => $this->faker->randomElement($array = array('Developer', 'Admin', 'Client'))
     ];
   }
 }

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
     \App\Models\AgeRestriction::factory(10)->create();
     \App\Models\Gender::factory(10)->create();
     \App\Models\Url::factory(10)->create();
+    \App\Models\Role::factory(10)->create();
+    \App\Models\Permission::factory(10)->create();
     \App\Models\Game::factory(10)->create();
   }
 }
