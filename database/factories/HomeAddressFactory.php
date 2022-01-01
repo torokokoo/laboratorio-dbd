@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\HomeAddress;
+use App\Models\Comuna;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HomeAddressFactory extends Factory
@@ -15,7 +17,8 @@ class HomeAddressFactory extends Factory
     {
         return [
             'address' => $this->faker->streetName(),
-            'number' => $this->faker->buildingNumber()
+            'postalCode' => $this->faker->buildingNumber(),
+            'comuna_id' => Comuna::all()->random()->id
         ];
     }
 }

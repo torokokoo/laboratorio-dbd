@@ -15,7 +15,6 @@ class CreateGameGendersTable extends Migration
     {
         Schema::create('game_genders', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100);
             $table->unsignedBigInteger('gender_id')->nullable();
             $table->foreign('gender_id')->references('id')->on('genders');
             $table->unsignedBigInteger('game_id')->nullable();

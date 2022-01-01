@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Comuna;
-use App\Models\Region;
+use App\Models\GameGender;
+use App\Models\Game;
+use App\Models\Gender;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ComunaFactory extends Factory
+class GameGenderFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,8 +17,8 @@ class ComunaFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->city(),
-            'region_id' => Region::all()->random()->id
+            'gender_id' => Gender::all()->random()->id,
+            'game_id' => Game::all()->random()->id
         ];
     }
 }

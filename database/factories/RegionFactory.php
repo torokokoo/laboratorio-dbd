@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Region;
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RegionFactory extends Factory
@@ -14,7 +16,8 @@ class RegionFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->state()
+            'name' => $this->faker->state(),
+            'country_id' => Country::all()->random()->id
         ];
     }
 }

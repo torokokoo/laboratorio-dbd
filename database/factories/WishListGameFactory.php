@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Wish_ListGame;
+use App\Models\WishListGame;
 use App\Models\Game;
-use App\Models\Wish_list;
+use App\Models\WishList;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class Wish_ListGameFactory extends Factory
+class WishListGameFactory extends Factory
 {
   /**
    * Define the model's default state.
@@ -18,7 +18,7 @@ class Wish_ListGameFactory extends Factory
   {
     return [
       'game_id' => Game::all()->random()->id,
-      'wishlist_id' => Wish_list::all()->random()->id
+      'wishlist_id' => WishList::all()->random()->id
     ];
   }
 }

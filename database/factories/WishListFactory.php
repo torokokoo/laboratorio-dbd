@@ -3,10 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Wish_List;
+use App\Models\WishList;
 use App\Models\User;
 
-class Wish_ListFactory extends Factory
+class WishListFactory extends Factory
 {
   /**
    * Define the model's default state.

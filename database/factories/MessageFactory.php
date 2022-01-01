@@ -16,6 +16,7 @@ class MessageFactory extends Factory
   public function definition()
   {
     return [
+      'content' => $this->faker->realText($maxNbChars = 1000, $indexSize = 2),
       'user1_id' => User::all()->random()->id,
       'user2_id' => User::all()->random()->id
     ];
