@@ -36,6 +36,11 @@ Route::get('/transactions/{id}', 'TransactionController@show');
 Route::post('/transaction/create', 'TransactionController@store');
 Route::put('/transaction/update/{id}', 'TransactionController@update');
 
+Route::get('/transaction_currencies', 'TransactionCurrencyController@index');
+Route::get('/transactions_currencies/{id}', 'TransactionCurrencyController@show');
+Route::post('/transaction_currency/create', 'TransactionCurrencyController@store');
+Route::put('/transaction_currency/update/{id}', 'TransactionCurrencyController@update');
+
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricions/{id}', 'AgeRestrictionController@show');
 Route::post('/age_restricion/create', 'AgeRestrictionController@store');
