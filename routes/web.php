@@ -45,3 +45,43 @@ Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricions/{id}', 'AgeRestrictionController@show');
 Route::post('/age_restricion/create', 'AgeRestrictionController@store');
 Route::put('/age_restricion/update/{id}', 'AgeRestrictionController@update');
+
+Route::get('/comunas', 'ComunaController@index');
+Route::get('/comunas/{id}', 'ComunaController@show');
+Route::post('/comunas/create', 'ComunaController@store');
+Route::put('/comunas/update/{id}', 'ComunaController@update');
+
+Route::get('/countries', 'CountryController@index');
+Route::get('/countries/{id}', 'CountryController@show');
+Route::post('/countries/create', 'CountryController@store');
+Route::put('/countries/update/{id}', 'CountryController@update');
+
+Route::get('/country_games', 'CountryGameController@index');
+Route::get('/country_games/{id}', 'CountryGameController@show');
+Route::post('/country_games/create', 'CountryGameController@store');
+Route::put('/country_games/update/{id}', 'CountryGameController@update');
+
+Route::get('/home_addresses', 'HomeAddressController@index');
+Route::get('/home_addresses/{id}', 'HomeAddressController@show');
+Route::post('/home_addresses/create', 'HomeAddressController@store');
+Route::put('/home_addresses/update/{id}', 'HomeAddressController@update');
+
+Route::get('/regions', 'RegionController@index');
+Route::get('/regions/{id}', 'RegionController@show');
+Route::post('/regions/create', 'RegionController@store');
+Route::put('/regions/update/{id}', 'RegionController@update');
+
+Route::get('/users', 'UserController@index');
+Route::get('/users/{id}', 'UserController@show');
+Route::post('/users/create', 'UserController@store');
+Route::put('/users/update/{id}', 'UserController@update');
+
+Route::get('/user_followers', 'UserFollowerController@index');
+Route::get('/user_followers/{id}', 'UserFollowerController@show');
+Route::post('/user_followers/create', 'UserFollowerController@store');
+Route::put('/user_followers/update/{id}', 'UserFollowerController@update');
+
+Route::get('/wishlist_games', 'WishListGameController@index');
+Route::get('/wishlist_games/{id}', 'WishListGameController@show');
+Route::post('/wishlist_games/create', 'WishListGameController@store');
+Route::put('/wishlist_games/update/{id}', 'WishListGameController@update');
