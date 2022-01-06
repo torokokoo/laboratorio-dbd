@@ -77,7 +77,10 @@ class GenderController extends Controller
   {
     $gender = Gender::find($id);
     if (empty($gender)) {
-      return response()->json([]);
+      $gender = Gender::find($id);
+      if (empty($gender) or $gender->delete == true) {
+        return response("404 Not Found", 404);
+      }
     }
     return response($gender, 200);
   }
@@ -118,8 +121,8 @@ class GenderController extends Controller
       return response($validator->errors());
     }
     $gender = Gender::find($id);
-    if (empty($gender)) {
-      return response()->json([]);
+    if (empty($gender) or $gender->delete == true) {
+      return response("404 Not Found", 404);
     }
 
     $gender->name = $request->name;
@@ -141,6 +144,18 @@ class GenderController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $gender = Gender::find($id);
+    if (empty($gender) or $gender->delete == true) {
+      return response("404 Not Found", 404);
+    }
+    $gender->delete = true;
+    $gender->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado el genero',
+        'id' => $gender->id
+      ],
+      200
+    );
   }
 }

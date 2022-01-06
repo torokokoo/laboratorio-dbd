@@ -45,15 +45,14 @@ class TransactionCurrencyController extends Controller
   {
     $validator = Validator::make(
       $request->all(),
+
       [
-        'transaction_id' => 'required',
-        'currency_id' => 'required'
+        'transaction_id' => 'required|exists:transactions,id',
+        'currency_id' => 'required|exists:currencies,id'
       ],
       [
-
-        'transaction_id.required' => 'Debes ingresar un usuario',
-        'currency_id.required' => 'Debes ingresar un juego',
-
+        'transaction_id.exists' => 'El ID transaccion no existe',
+        'currency_id.exists' => 'El ID moneda no existe',
       ]
     );
     if ($validator->fails()) {
@@ -64,7 +63,7 @@ class TransactionCurrencyController extends Controller
     $newTransactionCurrencies->currency_id = $request->currency_id;
     $newTransactionCurrencies->save();
     return response()->json([
-      'respuesta' => 'Se ha creado una nueva transaccion',
+      'respuesta' => 'Se ha creado una nueva transaccion-moneda',
       'id' => $newTransactionCurrencies->id
     ], 201);
   }
@@ -78,8 +77,8 @@ class TransactionCurrencyController extends Controller
   public function show($id)
   {
     $TransactionCurrency = TransactionCurrency::find($id);
-    if (empty($TransactionCurrency)) {
-      return response()->json([]);
+    if (empty($transactionCurrency) or $transactionCurrency->delete == true) {
+      return response("404 Not Found", 404);
     }
     return response($TransactionCurrency, 200);
   }
@@ -107,13 +106,12 @@ class TransactionCurrencyController extends Controller
     $validator = Validator::make(
       $request->all(),
       [
-        'transaction_id' => 'required',
-        'currency_id' => 'required'
+        'transaction_id' => 'required|exists:transactions,id',
+        'currency_id' => 'required|exists:currencies,id'
       ],
       [
-
-        'transaction_id.required' => 'Debes ingresar un usuario',
-        'currency_id.required' => 'Debes ingresar un juego',
+        'transaction_id.exists' => 'El ID transaccion no existe',
+        'currency_id.exists' => 'El ID moneda no existe',
 
       ]
     );
@@ -121,8 +119,8 @@ class TransactionCurrencyController extends Controller
       return response($validator->errors());
     }
     $transactionCurrency = TransactionCurrency::find($id);
-    if (empty($transactionCurrency)) {
-      return response()->json([]);
+    if (empty($transactionCurrency) or $transactionCurrency->delete == true) {
+      return response("404 Not Found", 404);
     }
 
     $transactionCurrency->transaction_id = $request->transaction_id;
@@ -130,7 +128,7 @@ class TransactionCurrencyController extends Controller
     $transactionCurrency->save();
     return response()->json(
       [
-        'respuesta' => 'Se ha modificado  la transaccion',
+        'respuesta' => 'Se ha modificado  la transaccion-moneda',
         'id' => $transactionCurrency->id
       ],
       200
@@ -145,6 +143,18 @@ class TransactionCurrencyController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $transactionCurrency = TransactionCurrency::find($id);
+    if (empty($transactionCurrency) or $transactionCurrency->delete == true) {
+      return response("404 Not Found", 404);
+    }
+    $transactionCurrency->delete = true;
+    $transactionCurrency->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado la transaccion',
+        'id' => $transactionCurrency->id
+      ],
+      200
+    );
   }
 }

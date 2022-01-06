@@ -17,6 +17,7 @@ class CreateCurrenciesTable extends Migration
       $table->id();
       $table->string('name', 100);
       $table->float('USdollarExchange', 8, 2);
+      $table->boolean('delete')->default(false);
       $table->timestamps();
     });
   }

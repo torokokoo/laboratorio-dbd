@@ -16,6 +16,7 @@ class CreateAgeRestrictionsTable extends Migration
     Schema::create('age_restrictions', function (Blueprint $table) {
       $table->id();
       $table->string('age_restriction', 100);
+      $table->boolean('delete')->default(false);
       $table->timestamps();
     });
   }

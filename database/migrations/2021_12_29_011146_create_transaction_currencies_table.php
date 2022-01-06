@@ -15,10 +15,10 @@ class CreateTransactionCurrenciesTable extends Migration
   {
     Schema::create('transaction_currencies', function (Blueprint $table) {
       $table->id();
+      $table->boolean('delete')->default(false);
       $table->unsignedBigInteger('currency_id')->nullable();
       $table->foreign('currency_id')->references('id')->on('currencies');
       $table->unsignedBigInteger('transaction_id')->nullable();
-      $table->foreign('transaction_id')->references('id')->on('transactions');
       $table->timestamps();
     });
   }

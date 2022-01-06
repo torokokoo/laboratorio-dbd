@@ -75,8 +75,8 @@ class AgeRestrictionController extends Controller
   public function show($id)
   {
     $AgeRestricion = AgeRestriction::find($id);
-    if (empty($AgeRestricion)) {
-      return response()->json([]);
+    if (empty($ageRestricion) or $ageRestricion->delete == true) {
+      return response("404 Not Found", 404);
     }
     return response($AgeRestricion, 200);
   }
@@ -117,8 +117,8 @@ class AgeRestrictionController extends Controller
       return response($validator->errors());
     }
     $ageRestricion = AgeRestriction::find($id);
-    if (empty($ageRestricion)) {
-      return response()->json([]);
+    if (empty($ageRestricion) or $ageRestricion->delete == true) {
+      return response("404 Not Found", 404);
     }
 
     $ageRestricion->link = $request->link;
@@ -140,6 +140,18 @@ class AgeRestrictionController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $ageRestricion = AgeRestriction::find($id);
+    if (empty($ageRestricion) or $ageRestricion->delete == true) {
+      return response("404 Not Found", 404);
+    }
+    $ageRestricion->delete = true;
+    $ageRestricion->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado la currency',
+        'id' => $ageRestricion->id
+      ],
+      200
+    );
   }
 }

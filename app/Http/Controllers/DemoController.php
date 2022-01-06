@@ -77,8 +77,8 @@ class DemoController extends Controller
   public function show($id)
   {
     $demo = Demo::find($id);
-    if (empty($demo)) {
-      return response()->json([]);
+    if (empty($demo) or $demo->delete == true) {
+      return response("404 Not Found", 404);
     }
     return response($demo, 200);
   }
@@ -119,8 +119,8 @@ class DemoController extends Controller
       return response($validator->errors());
     }
     $demo = Demo::find($id);
-    if (empty($demo)) {
-      return response()->json([]);
+    if (empty($demo) or $demo->delete == true) {
+      return response("404 Not Found", 404);
     }
 
     $demo->link = $request->link;
@@ -142,6 +142,18 @@ class DemoController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $demo = Demo::find($id);
+    if (empty($demo) or $demo->delete == true) {
+      return response("404 Not Found", 404);
+    }
+    $demo->delete = true;
+    $demo->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado la demo',
+        'id' => $demo->id
+      ],
+      200
+    );
   }
 }

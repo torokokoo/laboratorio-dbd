@@ -16,7 +16,7 @@ class CurrencyController extends Controller
    */
   public function index()
   {
-    
+
     $currencies = Currency::all();
     if ($currencies->isEmpty()) {
       return response()->json([
@@ -78,8 +78,8 @@ class CurrencyController extends Controller
   public function show($id)
   {
     $currency = Currency::find($id);
-    if (empty($currency)) {
-      return response()->json([]);
+    if (empty($currency) or $currency->delete == true) {
+      return response("404 Not Found", 404);
     }
     return response($currency, 200);
   }
@@ -121,8 +121,8 @@ class CurrencyController extends Controller
       return response($validator->errors());
     }
     $currency = Currency::find($id);
-    if (empty($currency)) {
-      return response()->json([]);
+    if (empty($currency) or $currency->delete == true) {
+      return response("404 Not Found", 404);
     }
 
     $currency->name = $request->name;
@@ -145,6 +145,18 @@ class CurrencyController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $currency = Currency::find($id);
+    if (empty($currency) or $currency->delete == true) {
+      return response("404 Not Found", 404);
+    }
+    $currency->delete = true;
+    $currency->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado la currency',
+        'id' => $currency->id
+      ],
+      200
+    );
   }
 }

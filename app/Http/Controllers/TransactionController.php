@@ -46,14 +46,12 @@ class TransactionController extends Controller
     $validator = Validator::make(
       $request->all(),
       [
-        'user_id' => 'required',
-        'game_id' => 'required'
+        'user_id' => 'required|exists:users,id',
+        'game_id' => 'required|exists:games,id'
       ],
       [
-
-        'user_id.required' => 'Debes ingresar un usuario',
-        'gamer_id.required' => 'Debes ingresar un juego',
-
+        'user_id.exists' => 'El ID usuario no existe',
+        'gamer_id.exists' => 'El ID juego no existe',
       ]
     );
     if ($validator->fails()) {
@@ -107,13 +105,12 @@ class TransactionController extends Controller
     $validator = Validator::make(
       $request->all(),
       [
-        'user_id' => 'required',
-        'game_id' => 'required'
+        'user_id' => 'required|exists:users,id',
+        'game_id' => 'required|exists:games,id'
       ],
       [
-
-        'user_id.required' => 'Debes ingresar un usuario',
-        'gamer_id.required' => 'Debes ingresar un juego',
+        'user_id.exists' => 'El ID usuario no existe',
+        'gamer_id.exists' => 'El ID juego no existe',
 
       ]
     );
@@ -121,8 +118,8 @@ class TransactionController extends Controller
       return response($validator->errors());
     }
     $transaction = Transaction::find($id);
-    if (empty($transaction)) {
-      return response()->json([]);
+    if (empty($transaction) or $transaction->delete == true) {
+      return response("404 Not Found", 404);
     }
 
     $transaction->user_id = $request->user_id;
@@ -145,6 +142,18 @@ class TransactionController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $transaction = Transaction::find($id);
+    if (empty($transaction) or $transaction->delete == true) {
+      return response("404 Not Found", 404);
+    }
+    $transaction->delete = true;
+    $transaction->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado la transaccion',
+        'id' => $transaction->id
+      ],
+      200
+    );
   }
 }
