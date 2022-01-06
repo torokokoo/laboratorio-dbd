@@ -151,7 +151,7 @@ class TransactionCurrencyController extends Controller
     $transactionCurrency->save();
     return response()->json(
       [
-        'respuesta' => 'Se borrado la transaccion',
+        'respuesta' => 'Se borrado la transaccion-moneda',
         'id' => $transactionCurrency->id
       ],
       200

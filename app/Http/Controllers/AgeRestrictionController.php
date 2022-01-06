@@ -148,7 +148,7 @@ class AgeRestrictionController extends Controller
     $ageRestricion->save();
     return response()->json(
       [
-        'respuesta' => 'Se borrado la currency',
+        'respuesta' => 'Se borrado la restricion de edad',
         'id' => $ageRestricion->id
       ],
       200

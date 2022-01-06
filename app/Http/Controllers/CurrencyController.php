@@ -153,7 +153,7 @@ class CurrencyController extends Controller
     $currency->save();
     return response()->json(
       [
-        'respuesta' => 'Se borrado la currency',
+        'respuesta' => 'Se borrado la moneda',
         'id' => $currency->id
       ],
       200
