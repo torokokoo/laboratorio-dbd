@@ -76,6 +76,7 @@ class UserController extends Controller
     $newUser->email = $request->email;
     $newUser->password = $request->password;
     $newUser->birthday = $request->birthday;
+    $newUser->balance = 0; 
     $newUser->home_address_id = $request->home_address_id;
     $newUser->save();
     return response()->json([
@@ -162,6 +163,7 @@ class UserController extends Controller
     $user->email = $request->email;
     $user->password = $request->password;
     $user->birthday = $request->birthday;
+    $user->balance = 0; 
     $user->home_address_id = $request->home_address_id;
     $user->save();
 

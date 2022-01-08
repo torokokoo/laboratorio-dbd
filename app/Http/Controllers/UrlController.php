@@ -119,7 +119,7 @@ class UrlController extends Controller
       return response()->json(
         [
           'respuesta' => 'Se ha modificado el url',
-          'id' => $->$url->id
+          'id' => $url->id
         ],
         200
       );

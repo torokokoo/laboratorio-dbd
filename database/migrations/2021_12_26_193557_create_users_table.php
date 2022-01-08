@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
       $table->string('email')->unique();
       $table->string('password');
       $table->date('birthday');
-      $table->float('balance', 8, 2);
+      $table->float('balance', 8, 2)->default(0);
       $table->unsignedBigInteger('home_address_id')->nullable();
       $table->foreign('home_address_id')->references('id')->on('home_addresses');
       $table->timestamps();

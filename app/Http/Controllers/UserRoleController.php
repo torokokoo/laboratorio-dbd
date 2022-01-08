@@ -44,8 +44,8 @@ class UserRoleController extends Controller
             $request->all(),
             [
               
-              'user_id' => 'required|exists:user,id',
-              'role_id' => 'required|exists:role,id',
+              'user_id' => 'required|exists:users,id',
+              'role_id' => 'required|exists:roles,id',
               
             ],
         

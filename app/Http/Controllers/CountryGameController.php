@@ -113,14 +113,14 @@ class CountryGameController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'country_id' => 'required|integer',
-                'game_id' => 'required|integer'
+                'country_id' => 'required|exists:countries,id',
+                'game_id' => 'required|exists:games,id'
             ],
             [
                 'country_id.required' => 'Debes ingresar un id de country',
-                'country_id.integer' => 'El id de country debe ser un entero',
+                'country_id.exists' => 'El ID del pais no existe',
                 'game_id.required' => 'Debes ingresar un id de game',
-                'game_id.integer' => 'El id de game debe ser un entero',
+                'game_id.exists' => 'El ID de game no existe',
             ]
         );
 

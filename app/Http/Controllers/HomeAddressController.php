@@ -118,11 +118,16 @@ class HomeAddressController extends Controller
       $request->all(),
       [
         'name' => 'required|min:2|max:100',
+        'comuna_id' => 'required|exists:comunas,id',
+        'number' => 'required|integer',
       ],
       [
         'name.required' => 'Debes ingresar un nombre',
         'name.min' => 'El nombre debe tener un largo minimo de 2',
         'name.max' => 'El nombre excede el numero de caracteres',
+        'comuna_id.exists' => 'El ID comuna no existe',
+        'number.required' => 'Debes ingresar un number',
+        'number.integer' => 'El numero de casa debe ser un int',
       ]
     );
 

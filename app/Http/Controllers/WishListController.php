@@ -46,11 +46,11 @@ class WishListController extends Controller
             $request->all(),
             [
                 'privacy' => 'required|min:2|max:50',
-                'user_id' => 'required|exists:url,id'
+                'user_id' => 'required|exists:users,id'
             ],
             [
                 'privacy.required' => 'Debes ingresar una privacidad valida',
-                'user_id.required' => 'El ID del usuario no es valido',
+                'user_id.exists' => 'El ID del usuario no es valido',
             ]
         );
         
@@ -107,11 +107,11 @@ class WishListController extends Controller
             $request->all(),
             [
                 'privacy' => 'required|min:2|max:50',
-                'user_id' => 'required|exists:url,id'
+                'user_id' => 'required|exists:users,id'
             ],
             [
                 'privacy.required' => 'Debes ingresar una privacidad valida',
-                'user_id.required' => 'El ID del usuario no es valido',
+                'user_id.exists' => 'El ID del usuario no es valido',
             ]
             );
         

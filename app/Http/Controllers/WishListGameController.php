@@ -46,14 +46,14 @@ class WishListGameController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'wishlist_id' => 'required|integer',
-                'game_id' => 'required|integer',
+                'wishlist_id' => 'required|exists:wishlist,id',
+                'game_id' => 'required|exists:games,id',
             ],
             [
                 'wishlist_id.required' => 'Debes ingresar un id1',
-                'wishlist_id.integer' => 'Debes ingresar un id1 valido',
+                'wishlist_id.exists' => 'Debes ingresar un wishlist valido',
                 'game_id.required' => 'Debes ingresar un id2',
-                'game_id.integer' => 'Debes ingresar un id2 valido',
+                'game_id.exists' => 'Debes ingresar un game valido',
             ]
         );
         
