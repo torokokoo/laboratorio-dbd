@@ -175,4 +175,16 @@ class CommentController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $comment = Comment::find($id);
+    if (empty($comment)) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $comment->delete();
+    return response()->json([
+      'mensaje' => 'El comentario ha sido eliminada',
+      'id' => $comment->id,
+    ], 200);
+  }
 }

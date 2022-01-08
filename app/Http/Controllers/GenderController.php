@@ -158,4 +158,16 @@ class GenderController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $gender = Gender::find($id);
+    if (empty($gender)) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $gender->delete();
+    return response()->json([
+      'mensaje' => 'El juego ha sido eliminado',
+      'id' => $gender->id,
+    ], 200);
+  }
 }

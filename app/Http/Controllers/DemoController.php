@@ -156,4 +156,16 @@ class DemoController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $demo = Demo::find($id);
+    if (empty($demo)) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $demo->delete();
+    return response()->json([
+      'mensaje' => 'La demo ha sido eliminada',
+      'id' => $demo->id,
+    ], 200);
+  }
 }

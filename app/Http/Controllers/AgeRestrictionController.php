@@ -154,4 +154,16 @@ class AgeRestrictionController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $ageRestricion = AgeRestriction::find($id);
+    if (empty($ageRestricion)) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $ageRestricion->delete();
+    return response()->json([
+      'mensaje' => 'La restriccion de edad ha sido eliminada',
+      'id' => $ageRestricion->id,
+    ], 200);
+  }
 }

@@ -159,4 +159,16 @@ class CurrencyController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $currency = Currency::find($id);
+    if (empty($currency)) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $currency->delete();
+    return response()->json([
+      'mensaje' => 'La moneda ha sido eliminada',
+      'id' => $currency->id,
+    ], 200);
+  }
 }

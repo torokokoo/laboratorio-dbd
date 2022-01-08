@@ -163,4 +163,16 @@ class TransactionController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $transaction = Transaction::find($id);
+    if (empty($transaction)) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $transaction->delete();
+    return response()->json([
+      'mensaje' => 'La transaccion ha sido eliminada',
+      'id' => $transaction->id,
+    ], 200);
+  }
 }
