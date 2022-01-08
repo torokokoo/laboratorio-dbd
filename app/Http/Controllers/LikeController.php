@@ -46,8 +46,8 @@ class LikeController extends Controller
             $request->all(),
             [
                 'like' => 'required|min:2|max:50',
-                'user_id' => 'required|exists:url,id',
-                'game_id' => 'required|exists:demo,id'
+                'user_id' => 'required|exists:urls,id',
+                'game_id' => 'required|exists:demos,id'
 
             ],
             [
@@ -111,8 +111,8 @@ class LikeController extends Controller
             $request->all(),
             [
                 'like' => 'required|min:2|max:50',
-                'user_id' => 'required|exists:url,id',
-                'game_id' => 'required|exists:demo,id'
+                'user_id' => 'required|exists:urls,id',
+                'game_id' => 'required|exists:demos,id'
 
             ],
             [

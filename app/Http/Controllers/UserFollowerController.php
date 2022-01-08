@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserFollower;
 use Illuminate\Support\Facades\Validator;
@@ -46,14 +47,14 @@ class UserFollowerController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'user_id_1' => 'required|exists:users,id',
-                'user_id_2' => 'required|exists:users,id',
+                'user_id_1' => 'required|integer',
+                'user_id_2' => 'required|integer',
             ],
             [
                 'user_id_1.required' => 'Debes ingresar un id1',
-                'user_id_1.exists' => 'Debes ingresar un id1 valido',
+                'user_id_1.integer' => 'Debes ingresar un id1 valido',
                 'user_id_2.required' => 'Debes ingresar un id2',
-                'user_id_2.exists' => 'Debes ingresar un id2 valido',
+                'user_id_2.integer' => 'Debes ingresar un id2 valido',
             ]
         );
         
@@ -113,14 +114,14 @@ class UserFollowerController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'user_id_1' => 'required|exists:users,id',
-                'user_id_2' => 'required|exists:users,id',
+                'user_id_1' => 'required|integer',
+                'user_id_2' => 'required|integer',
             ],
             [
                 'user_id_1.required' => 'Debes ingresar un id1',
-                'user_id_1.exists' => 'Debes ingresar un id1 valido',
+                'user_id_1.integer' => 'Debes ingresar un id1 valido',
                 'user_id_2.required' => 'Debes ingresar un id2',
-                'user_id_2.exists' => 'Debes ingresar un id2 valido',
+                'user_id_2.integer' => 'Debes ingresar un id2 valido',
             ]
         );
 

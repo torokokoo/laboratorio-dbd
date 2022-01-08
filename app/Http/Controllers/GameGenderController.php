@@ -46,8 +46,8 @@ class GameGenderController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'game_id' => 'required|exists:game,id',
-                'gender_id' => 'required|exists:gender,id'
+                'game_id' => 'required|exists:games,id',
+                'gender_id' => 'required|exists:genders,id'
 
             ],
             [
@@ -108,8 +108,8 @@ class GameGenderController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'game_id' => 'required|exists:game,id',
-                'gender_id' => 'required|exists:gender,id'
+                'game_id' => 'required|exists:games,id',
+                'gender_id' => 'required|exists:genders,id'
 
             ],
             [

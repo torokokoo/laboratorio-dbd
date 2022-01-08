@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CountryGame;
 use Illuminate\Support\Facades\Validator;
@@ -46,8 +46,8 @@ class CountryGameController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'country_id' => 'required|integer',
-                'game_id' => 'required|integer'
+                'country_id' => 'required|exists:countries,id',
+                'game_id' => 'required|exists:games,id'
             ],
             [
                 'country_id.required' => 'Debes ingresar un id de country',

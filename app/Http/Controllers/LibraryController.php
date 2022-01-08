@@ -45,8 +45,8 @@ class LibraryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'user_id' => 'required|exists:user,id',
-                'game_id' => 'required|exists:game,id'
+                'user_id' => 'required|exists:users,id',
+                'game_id' => 'required|exists:games,id'
 
             ],
             [
@@ -107,8 +107,8 @@ class LibraryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'user_id' => 'required|exists:user,id',
-                'game_id' => 'required|exists:game,id'
+                'user_id' => 'required|exists:users,id',
+                'game_id' => 'required|exists:games,id'
 
             ],
             [

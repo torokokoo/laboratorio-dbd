@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Region;
 use Illuminate\Support\Facades\Validator;
@@ -114,7 +115,7 @@ class RegionController extends Controller
       $request->all(),
       [
         'name' => 'required|min:2|max:100',
-        'country_id' => 'required|integer'
+        'country_id' => 'required|exists:countries,id',
       ],
       [
         'name.required' => 'Debes ingresar un nombre',

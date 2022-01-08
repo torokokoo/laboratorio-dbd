@@ -49,9 +49,9 @@ class GameController extends Controller
                 'description' => 'required|min:2|max:1000',
                 'price' => 'required',
                 'storage' => 'required',
-                'age_restriction_id' => 'required|exists:age_restriction,id',
-                'url_id' => 'required|exists:url,id',
-                'demo_id' => 'required|exists:demo,id'
+                'age_restriction_id' => 'required|exists:age_restrictions,id',
+                'url_id' => 'required|exists:urls,id',
+                'demo_id' => 'required|exists:demos,id'
 
             ],
             [
@@ -73,15 +73,15 @@ class GameController extends Controller
             return response($validator->errors());
         }
 
-        $newUser = new Game();
-        $newUser->name = $request->name;
-        $newUser->description = $request->description;
-        $newUser->price = $request->price;
-        $newUser->storage= $request->storage;
-        $newUser->age_restriction_id = $request->age_restriction_id;
-        $newUser->url_id = $request->url_id;
-        $newUser->demo_id = $request->demo_id;
-        $newUser->save();
+        $newGame = new Game();
+        $newGame->name = $request->name;
+        $newGame->description = $request->description;
+        $newGame->price = $request->price;
+        $newGame->storage= $request->storage;
+        $newGame->age_restriction_id = $request->age_restriction_id;
+        $newGame->url_id = $request->url_id;
+        $newGame->demo_id = $request->demo_id;
+        $newGame->save();
         return response()->json([
             'respuesta' => 'Se ha creado un nuevo juego',
             'id' => $newGame->id
@@ -130,9 +130,9 @@ class GameController extends Controller
                 'description' => 'required|min:2|max:1000',
                 'price' => 'required',
                 'storage' => 'required',
-                'age_restriction_id' => 'required|exists:age_restriction,id',
-                'url_id' => 'required|exists:url,id',
-                'demo_id' => 'required|exists:demo'
+                'age_restriction_id' => 'required|exists:age_restrictions,id',
+                'url_id' => 'required|exists:urls,id',
+                'demo_id' => 'required|exists:demos,id'
 
             ],
             [

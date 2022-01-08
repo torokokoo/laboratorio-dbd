@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WishListGame;
 use Illuminate\Support\Facades\Validator;
@@ -46,14 +47,14 @@ class WishListGameController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'wishlist_id' => 'required|exists:wishlist,id',
-                'game_id' => 'required|exists:games,id',
+                'wishlist_id' => 'required|integer',
+                'game_id' => 'required|integer',
             ],
             [
                 'wishlist_id.required' => 'Debes ingresar un id1',
-                'wishlist_id.exists' => 'Debes ingresar un wishlist valido',
+                'wishlist_id.integer' => 'Debes ingresar un id1 valido',
                 'game_id.required' => 'Debes ingresar un id2',
-                'game_id.exists' => 'Debes ingresar un game valido',
+                'game_id.integer' => 'Debes ingresar un id2 valido',
             ]
         );
         

@@ -45,8 +45,8 @@ class RolePermissionController extends Controller
             $request->all(),
             [
               
-              'permission_id' => 'required|exists:permission,id',
-              'role_id' => 'required|exists:role,id',
+              'permission_id' => 'required|exists:permissions,id',
+              'role_id' => 'required|exists:roles,id',
               
             ],
         
@@ -103,8 +103,8 @@ class RolePermissionController extends Controller
       $validator = Validator::make(
         $request->all(),
         [
-          'permission_id' => 'required|exists:permission,id',
-          'role_id' => 'required|exists:role,id'
+          'permission_id' => 'required|exists:permissions,id',
+          'role_id' => 'required|exists:roles,id'
         ],
         [
           'permission_id.exists' => 'El ID permiso no existe',

@@ -48,8 +48,8 @@ class CommentController extends Controller
       [
         'date' => 'required|date',
         'content' => 'required|min:2|max:200',
-        'user_id' => 'required|exists:user,id',
-        'game_id' => 'required|exists:game,id'
+        'user_id' => 'required|exists:users,id',
+        'game_id' => 'required|exists:games,id'
 
       ],
       [
@@ -118,8 +118,8 @@ class CommentController extends Controller
       [
         'date' => 'required|date',
         'content' => 'required|min:2|max:200',
-        'user_id' => 'required|exists:user,id',
-        'game_id' => 'required|exists:game,id'
+        'user_id' => 'required|exists:users,id',
+        'game_id' => 'required|exists:games,id'
 
       ],
       [
