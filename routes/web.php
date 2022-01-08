@@ -97,3 +97,62 @@ Route::get('/wishlist_games', 'WishListGameController@index');
 Route::get('/wishlist_games/{id}', 'WishListGameController@show');
 Route::post('/wishlist_game/create', 'WishListGameController@store');
 Route::put('/wishlist_game/update/{id}', 'WishListGameController@update');
+
+Route::get('/wishlists', 'WishListController@index');
+Route::get('/wishlists/{id}', 'WishListController@show');
+Route::post('/wishlist/create', 'WishListController@store');
+Route::put('/wishlist/update/{id}', 'WishListController@update');
+
+Route::get('/games', 'GameController@index');
+Route::get('/games/{id}', 'GameController@show');
+Route::post('/game/create', 'GameController@store');
+Route::put('/game/update/{id}', 'GameController@update');
+Route::delete('/game/delete/{id}', 'GameController@destroy');
+
+Route::get('/game_genders', 'GameGenderController@index');
+Route::get('/game_genders/{id}', 'GameGenderController@show');
+Route::post('/game_gender/create', 'GameGenderController@store');
+Route::put('/game_gender/update/{id}', 'GameGenderController@update');
+Route::delete('/game_gender/delete/{id}', 'GameGenderController@destroy');
+
+Route::get('/user_roles_genders', 'UserRoleController@index');
+Route::get('/user_roles/{id}', 'UserRoleController@show');
+Route::post('/user_role/create', 'UserRoleController@store');
+Route::put('/user_role/update/{id}', 'UserRoleController@update');
+Route::delete('/user_role/delete/{id}', 'UserRoleController@destroy');
+
+Route::get('/urls', 'UrlController@index');
+Route::get('/urls/{id}', 'UrlController@show');
+Route::post('/url/create', 'UrlController@store');
+Route::put('/url/update/{id}', 'UrlController@update');
+Route::delete('/url/delete/{id}', 'UrlController@destroy');
+
+Route::get('/role_permissions', 'RolePermissionController@index');
+Route::get('role_permissions/{id}', 'RolePermissionController@show');
+Route::post('/role_permission/create', 'RolePermissionController@store');
+Route::put('/role_permission/update/{id}', 'RolePermissionController@update');
+Route::delete('/role_permission/delete/{id}', 'RolePermissionController@destroy');
+
+Route::get('/roles', 'RoleController@index');
+Route::get('roles/{id}', 'RoleController@show');
+Route::post('/role/create', 'RoleController@store');
+Route::put('/role/update/{id}', 'RoleController@update');
+Route::delete('/role/delete/{id}', 'RoleController@destroy');
+
+Route::get('/messages', 'MessageController@index');
+Route::get('messages/{id}', 'MessageController@show');
+Route::post('/message/create', 'MessageController@store');
+Route::put('/message/update/{id}', 'MessageController@update');
+Route::delete('/message/delete/{id}', 'MessageController@destroy');
+
+Route::get('/likes', 'LikeController@index');
+Route::get('likes/{id}', 'LikeController@show');
+Route::post('/like/create', 'LikeController@store');
+Route::put('/like/update/{id}', 'LikeController@update');
+Route::delete('/like/delete/{id}', 'LikeController@destroy');
+
+Route::get('/libraries', 'LibraryController@index');
+Route::get('libraries/{id}', 'LibraryController@show');
+Route::post('/library/create', 'LibraryController@store');
+Route::put('/library/update/{id}', 'LibraryController@update');
+Route::delete('/library/delete/{id}', 'LibraryController@destroy');

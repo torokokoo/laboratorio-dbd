@@ -50,7 +50,7 @@ class UserController extends Controller
         'email' => 'required|email|max:50',
         'password' => 'required|min:8',
         'birthday' => 'required|date',
-        'home_address_id' => 'required|exists:homeAddresses,id',
+        'home_address_id' => 'required|exists:home_addresses,id',
       ],
       [
         'name.required' => 'Debes ingresar un nombre',
@@ -130,7 +130,7 @@ class UserController extends Controller
         'email' => 'required|email|max:50',
         'password' => 'required|min:8',
         'birthday' => 'required|date',
-        'homeAddress_id' => 'required|integer'
+        'home_address_id' => 'required|exists:home_addresses,id',
       ],
       [
         'name.required' => 'Debes ingresar un nombre',
@@ -143,8 +143,7 @@ class UserController extends Controller
         'password.min' => 'La password debe tener un largo minimo de 8',
         'birthday.required' => 'Debes ingresar una fecha de nacimiento',
         'birthday.date' => 'La fecha tiene que ser valida',
-        'home_address_id.required' => 'Debes ingresar una direccion',
-        'home_address_id.integer' => 'El id de la direccion debe ser un entero',
+        'home_address_id.exists' => 'El ID home address no existe',
       ]
     );
 
