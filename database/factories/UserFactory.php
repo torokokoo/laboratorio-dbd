@@ -21,7 +21,7 @@ class UserFactory extends Factory
       'password' => $this->faker->password,
       'birthday' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
       'balance' => $this->faker->numberBetween($min = 0, $max = 100000000),
-      'home_addresses_id' => HomeAddress::all()->random()->id
+      'home_address_id' => HomeAddress::all()->random()->id
     ];
   }
 }

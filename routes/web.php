@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
   return view('welcome');
 });
+
+Route::get('/comments', 'CommentController@index');
+Route::get('/comments/{id}', 'CommentController@show');
+Route::post('/comments/create', 'CommentController@store');
+Route::put('/comments/update/{id}', 'CommentController@update');
+Route::delete('/comments/delete/{id}', 'CommentController@destroy');
+
 Route::get('/currencies', 'CurrencyController@index');
 Route::get('/currencies/{id}', 'CurrencyController@show');
 Route::post('/currency/create', 'CurrencyController@store');

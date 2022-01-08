@@ -48,12 +48,12 @@ class TransactionController extends Controller
       [
         'user_id' => 'required|exists:users,id',
         'game_id' => 'required|exists:games,id',
-        'currency_id' =>'required|exists:currency,id',
+        'currency_id' => 'required|exists:currencies,id',
       ],
       [
         'user_id.exists' => 'El ID usuario no existe',
         'gamer_id.exists' => 'El ID juego no existe',
-        'currency_id.exists'=>'El ID moneda no existe',
+        'currency_id.exists' => 'El ID moneda no existe',
 
       ]
     );
@@ -63,6 +63,7 @@ class TransactionController extends Controller
     $newTransaction = new Transaction();
     $newTransaction->user_id = $request->user_id;
     $newTransaction->game_id = $request->game_id;
+    $newTransaction->currency_id = $request->currency_id;
     $newTransaction->save();
     return response()->json([
       'respuesta' => 'Se ha creado una nueva transaccion',
@@ -110,12 +111,12 @@ class TransactionController extends Controller
       [
         'user_id' => 'required|exists:users,id',
         'game_id' => 'required|exists:games,id',
-        'currency_id' =>'required|exists:currency,id'
+        'currency_id' => 'required|exists:currencies,id'
       ],
       [
         'user_id.exists' => 'El ID usuario no existe',
         'gamer_id.exists' => 'El ID juego no existe',
-        'currency_id.exists'=>'El ID moneda no existe',
+        'currency_id.exists' => 'El ID moneda no existe',
 
       ]
     );
@@ -129,7 +130,7 @@ class TransactionController extends Controller
 
     $transaction->user_id = $request->user_id;
     $transaction->game_id = $request->game_id;
-    $transaction->currency_id = $request ->currency_id;
+    $transaction->currency_id = $request->currency_id;
     $transaction->save();
     return response()->json(
       [
