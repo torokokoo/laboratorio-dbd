@@ -16,7 +16,7 @@ class CreateHomeAddressesTable extends Migration
     Schema::create('home_addresses', function (Blueprint $table) {
       $table->id();
       $table->string('address', 200);  # References the complete Address, example: 2120 Grove Street
-      $table->integer('postalCode');
+      $table->integer('number');
       $table->unsignedBigInteger('comuna_id')->nullable();
       $table->foreign('comuna_id')->references('id')->on('comunas');
       $table->timestamps();

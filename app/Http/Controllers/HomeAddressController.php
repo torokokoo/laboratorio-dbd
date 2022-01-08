@@ -47,11 +47,17 @@ class HomeAddressController extends Controller
             $request->all(),
             [
                 'name' => 'required|min:2|max:100',
+                'comuna_id' => 'required|integer',
+                'number' => 'required|integer'
             ],
             [
                 'name.required' => 'Debes ingresar un nombre',
                 'name.min' => 'El nombre debe tener un largo minimo de 2',
                 'name.max' => 'El nombre excede el numero de caracteres',
+                'comuna_id.required' => 'Debes ingresar una comuna',
+                'comuna_id.integer' => 'El id debe ser un int',
+                'number.required' => 'Debes ingresar un number',
+                'number.integer' => 'El numero de casa debe ser un int',
             ]
         );
         
@@ -61,6 +67,8 @@ class HomeAddressController extends Controller
 
         $newHomeAddress = new HomeAddress();
         $newHomeAddress->name = $request->name;
+        $newHomeAddress->comuna_id = $request->comuna_id;
+        $newHomeAddress->number = $request->number;
         $newHomeAddress->save();
         return response()->json([
             'respuesta' => 'Se ha creado una nueva homeAddress',
@@ -131,7 +139,8 @@ class HomeAddressController extends Controller
         }
 
         $homeAddress->name = $request->name;
-        $homeAddress->region_id = $request->region_id;
+        $homeAddress->comuna_id = $request->comuna_id;
+        $homeAddress->number = $request->number;
         $homeAddress->save();
 
         return response()->json(

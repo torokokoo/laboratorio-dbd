@@ -17,7 +17,7 @@ class HomeAddressFactory extends Factory
     {
         return [
             'address' => $this->faker->streetName(),
-            'postalCode' => $this->faker->buildingNumber(),
+            'number' => $this->faker->buildingNumber(),
             'comuna_id' => Comuna::all()->random()->id
         ];
     }
