@@ -21,7 +21,7 @@ class CreateWishListGamesTable extends Migration
 
             $table->unsignedBigInteger('wishlist_id')->nullable();
             $table->foreign('wishlist_id')->references('id')->on('wish_lists');
-
+            $table->boolean('delete')->default(false);
             $table->timestamps();
         });
     }

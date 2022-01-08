@@ -18,9 +18,6 @@ class CreateGamesTable extends Migration
       $table->string('name', 50);
       $table->string('description', 1000);
       $table->float('price', 4, 2);
-      $table->integer('sales');
-      $table->string('classification', 50);
-      $table->string('valoration', 50);
       $table->float('storage', 4, 2);
       $table->unsignedBigInteger('age_restriction_id')->nullable();
       $table->foreign('age_restriction_id')->references('id')->on('age_restrictions');
@@ -28,6 +25,7 @@ class CreateGamesTable extends Migration
       $table->foreign('url_id')->references('id')->on('urls');
       $table->unsignedBigInteger('demo_id')->nullable();
       $table->foreign('demo_id')->references('id')->on('demos');
+      $table->boolean('delete')->default(false);
       $table->timestamps();
     });
   }

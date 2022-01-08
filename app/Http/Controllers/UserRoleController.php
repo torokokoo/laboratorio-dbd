@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\UserRole;
+use Illuminate\Support\Facades\Validator;
 class UserRoleController extends Controller
 {
     /**

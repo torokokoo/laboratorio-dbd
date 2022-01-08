@@ -20,6 +20,7 @@ class CreateLikesTable extends Migration
       $table->foreign('user_id')->references('id')->on('users');
       $table->unsignedBigInteger('game_id')->nullable();
       $table->foreign('game_id')->references('id')->on('games');
+      $table->boolean('delete')->default(false);
       $table->timestamps();
     });
   }

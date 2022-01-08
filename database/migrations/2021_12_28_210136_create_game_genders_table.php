@@ -19,7 +19,7 @@ class CreateGameGendersTable extends Migration
             $table->foreign('gender_id')->references('id')->on('genders');
             $table->unsignedBigInteger('game_id')->nullable();
             $table->foreign('game_id')->references('id')->on('games');
-
+            $table->boolean('delete')->default(false);
             $table->timestamps();
         });
     }

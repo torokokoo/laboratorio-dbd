@@ -135,7 +135,7 @@ class UserController extends Controller
             ],
             [
                 'name.required' => 'Debes ingresar un nombre',
-                'name.min' => 'El nombre debe tener un largo minimo de 2',
+                'name.min' => 'El nombre debe tener un largo minimo de 2 caracteres',
                 'name.max' => 'El nombre excede el numero de caracteres',
                 'email.required' => 'Debes ingresar un email',
                 'email.email' => 'Debes ingresar un email valido',

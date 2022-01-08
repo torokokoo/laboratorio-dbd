@@ -21,7 +21,7 @@ class CreateLibrariesTable extends Migration
 
             $table->unsignedBigInteger('game_id')->nullable();
             $table->foreign('game_id')->references('id')->on('games');
-
+            $table->boolean('delete')->default(false);
             $table->timestamps();
         });
     }

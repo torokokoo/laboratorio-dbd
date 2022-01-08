@@ -19,7 +19,8 @@ class CreateMessagesTable extends Migration
             $table->unsignedBigInteger('user1_id')->nullable();
             $table->foreign('user1_id')->references('id')->on('users');
             $table->unsignedBigInteger('user2_id')->nullable();
-            $table->foreign('user2_id')->references('id')->on('users');           
+            $table->foreign('user2_id')->references('id')->on('users');
+            $table->boolean('delete')->default(false);      
             $table->timestamps();
         });
     }
