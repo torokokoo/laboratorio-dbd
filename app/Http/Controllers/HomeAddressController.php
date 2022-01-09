@@ -164,6 +164,30 @@ class HomeAddressController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $homeAddress = HomeAddress::find($id);
+        if (empty($homeAddress) or $homeAddress->delete == true) {
+          return response("404 Not Found", 404);
+        }
+        $homeAddress->delete = true;
+        $homeAddress->save();
+        return response()->json(
+          [
+            'respuesta' => 'Se borrado el homeAddress',
+            'id' => $homeAddress->id
+          ],
+          200
+       + );
+      }
+      public function hard_destroy($id)
+      {
+        $homeAddress = HomeAddress::find($id);
+        if (empty($homeAddress)) {
+          return response()->json(['respuesta' => 'El id ingresado no existe']);
+        }
+        $homeAddress->delete();
+        return response()->json([
+          'respuesta' => 'El homeAddress ha sido eliminado',
+          'id' => $homeAddress->id,
+        ], 200);
   }
 }

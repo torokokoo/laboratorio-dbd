@@ -157,6 +157,30 @@ class UserFollowerController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $userFollower = UserFollower::find($id);
+        if (empty($userFollower) or $userFollower->delete == true) {
+          return response("404 Not Found", 404);
+        }
+        $userFollower->delete = true;
+        $userFollower->save();
+        return response()->json(
+          [
+            'respuesta' => 'Se borrado el usuario-seguidor',
+            'id' => $userFollower->id
+          ],
+          200
+       + );
+      }
+  public function hard_destroy($id)
+  {
+    $userFollower = UserFollower::find($id);
+      if (empty($userFollower)) {
+        return response()->json(['respuesta' => 'El id ingresado no existe']);
+      }
+    $userFollower->delete();
+    return response()->json([
+      'respuesta' => 'El usuario-seguidor ha sido eliminado',
+      'id' => $userFollower->id,
+    ], 200);
   }
 }

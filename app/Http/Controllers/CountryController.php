@@ -150,6 +150,30 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $region = Region::find($id);
+        if (empty($region) or $region->delete == true) {
+          return response("404 Not Found", 404);
+        }
+        $region->delete = true;
+        $region->save();
+        return response()->json(
+          [
+            'respuesta' => 'Se borrado la country',
+            'id' => $region->id
+          ],Region
+          200
+       + );
+      }
+      public function hard_destroy($id)
+      {
+        $region = Region::find($id);
+        if (empty($region)) {
+          return response()->json(['mensaje' => 'El id ingresado no existe']);
+        }
+        $region->delete();
+        return response()->json([
+          'respuesta' => 'La country ha sido eliminada',
+          'id' => $region->id,
+        ], 200);
+      }
 }
