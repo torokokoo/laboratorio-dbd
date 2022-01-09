@@ -17,6 +17,10 @@ class User extends Model
   {
     return $this->belongsTo('App\Models\HomeAddress');
   }
+  public function currency()
+  {
+    return $this->belongsTo('App\Models\Currency');
+  }
   public function messagetwo()
   {
     return $this->hasMany(Message::class);
@@ -42,7 +46,7 @@ class User extends Model
 
   public function like()
   {
-    return $this->hasOne(Like::class);
+    return $this->hasMany(Like::class);
   }
 
   public function wishlist()
