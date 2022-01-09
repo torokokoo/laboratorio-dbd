@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
       $table->foreign('home_address_id')->references('id')->on('home_addresses');
       $table->unsignedBigInteger('currency_id')->nullable();
       $table->foreign('currency_id')->references('id')->on('currencies');
+      $table->boolean('delete')->default(false);
       $table->timestamps();
     });
   }

@@ -19,6 +19,7 @@ class CreateHomeAddressesTable extends Migration
       $table->integer('number');
       $table->unsignedBigInteger('comuna_id')->nullable();
       $table->foreign('comuna_id')->references('id')->on('comunas');
+      $table->boolean('delete')->default(false);
       $table->timestamps();
     });
   }

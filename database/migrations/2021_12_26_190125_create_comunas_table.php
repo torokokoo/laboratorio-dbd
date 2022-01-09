@@ -18,6 +18,7 @@ class CreateComunasTable extends Migration
       $table->string('name', 100);
       $table->unsignedBigInteger('region_id')->nullable();
       $table->foreign('region_id')->references('id')->on('regions');
+      $table->boolean('delete')->default(false);
       $table->timestamps();
     });
   }
