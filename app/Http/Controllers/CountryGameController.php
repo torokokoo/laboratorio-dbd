@@ -82,7 +82,7 @@ class CountryGameController extends Controller
   public function show($id)
   {
     $countryGame = CountryGame::where('delete', false)->get();;
-    if (empty($countryGame)) {
+    if (empty($countryGame) or $countryGame->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa relacion country-game',
       ]);
@@ -130,7 +130,7 @@ class CountryGameController extends Controller
     }
 
     $countryGame = CountryGame::find($id);
-    if (empty($countryGame)) {
+    if (empty($countryGame) or $countryGame->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa relacion country-game',
       ]);
@@ -157,6 +157,31 @@ class CountryGameController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $countryGame = CountryGame::find($id);
+    if (empty($countryGame) or $countryGame->delete) {
+      return response("404 Not Found", 404);
+    }
+    $countryGame->delete = true;
+    $countryGame->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado la country-game',
+        'id' => $countryGame->id
+      ],
+      200
+    );
+  }
+
+  public function hard_destroy($id)
+  {
+    $country = CountryGame::find($id);
+    if (empty($countryGame) or $countryGame->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $country->delete();
+    return response()->json([
+      'respuesta' => 'La country-game ha sido eliminada',
+      'id' => $country->id,
+    ], 200);
   }
 }

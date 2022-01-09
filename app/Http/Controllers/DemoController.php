@@ -119,7 +119,7 @@ class DemoController extends Controller
       return response($validator->errors());
     }
     $demo = Demo::find($id);
-    if (empty($demo) or $demo->delete == true) {
+    if (empty($demo) or $demo->delete) {
       return response("404 Not Found", 404);
     }
 
@@ -143,7 +143,7 @@ class DemoController extends Controller
   public function destroy($id)
   {
     $demo = Demo::find($id);
-    if (empty($demo) or $demo->delete == true) {
+    if (empty($demo) or $demo->delete) {
       return response("404 Not Found", 404);
     }
     $demo->delete = true;
@@ -159,7 +159,7 @@ class DemoController extends Controller
   public function hard_destroy($id)
   {
     $demo = Demo::find($id);
-    if (empty($demo)) {
+    if (empty($demo) or $demo->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $demo->delete();

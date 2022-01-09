@@ -79,7 +79,7 @@ class CountryController extends Controller
   public function show($id)
   {
     $country = Country::find($id);
-    if (empty($country)) {
+    if (empty($country) or $country->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa country',
       ]);
@@ -125,7 +125,7 @@ class CountryController extends Controller
     }
 
     $country = Country::find($id);
-    if (empty($country)) {
+    if (empty($country) or $country->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa country',
       ]);
@@ -151,30 +151,30 @@ class CountryController extends Controller
    */
   public function destroy($id)
   {
-    $region = Country::find($id);
-    if (empty($region) or $region->delete) {
+    $country = Country::find($id);
+    if (empty($country) or $country->delete) {
       return response("404 Not Found", 404);
     }
-    $region->delete = true;
-    $region->save();
+    $country->delete = true;
+    $country->save();
     return response()->json(
       [
         'respuesta' => 'Se borrado la country',
-        'id' => $region->id
+        'id' => $country->id
       ],
       200
     );
   }
   public function hard_destroy($id)
   {
-    $region = Country::find($id);
-    if (empty($region) or $region->delete) {
+    $country = Country::find($id);
+    if (empty($country) or $country->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
-    $region->delete();
+    $country->delete();
     return response()->json([
       'respuesta' => 'La country ha sido eliminada',
-      'id' => $region->id,
+      'id' => $country->id,
     ], 200);
   }
 }

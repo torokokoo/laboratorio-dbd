@@ -82,7 +82,7 @@ class LikeController extends Controller
   public function show($id)
   {
     $like = Like::find($id);
-    if (empty($like) or $like->delete == true) {
+    if (empty($like) or $like->delete) {
       return response("404 Not Found", 404);
     }
     return response($like, 200);
@@ -127,7 +127,7 @@ class LikeController extends Controller
       return response($validator->errors());
     }
     $like = Like::find($id);
-    if (empty($like) or $like->delete == true) {
+    if (empty($like) or $like->delete) {
       return response("404 Not Found", 404);
     }
     $like->like = $request->like;
@@ -152,7 +152,7 @@ class LikeController extends Controller
   public function destroy($id)
   {
     $like = Like::find($id);
-    if (empty($like) or $like->delete == true) {
+    if (empty($like) or $like->delete) {
       return response("404 Not Found", 404);
     }
     $like->delete = true;
@@ -168,12 +168,12 @@ class LikeController extends Controller
   public function hard_destroy($id)
   {
     $like = Like::find($id);
-    if (empty($like)) {
+    if (empty($like) or $like->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $like->delete();
     return response()->json([
-      'mensaje' => 'El juego ha sido eliminado',
+      'mensaje' => 'El like ha sido eliminado',
       'id' => $like->id,
     ], 200);
   }

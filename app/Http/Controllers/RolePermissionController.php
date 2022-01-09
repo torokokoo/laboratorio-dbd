@@ -75,7 +75,7 @@ class RolePermissionController extends Controller
   public function show($id)
   {
     $rolepermission = RolePermission::find($id);
-    if (empty($rolepermission)) {
+    if (empty($rolepermission) or $rolepermission->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado un rol de permiso',
       ]);
@@ -157,5 +157,17 @@ class RolePermissionController extends Controller
       ],
       200
     );
+  }
+  public function hard_destroy($id)
+  {
+    $rolepermission = RolePermission::find($id);
+    if (empty($rolepermission) or $rolepermission->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $rolepermission->delete();
+    return response()->json([
+      'mensaje' => 'El role-permiso ha sido eliminado',
+      'id' => $rolepermission->id,
+    ], 200);
   }
 }

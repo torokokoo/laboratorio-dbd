@@ -75,7 +75,7 @@ class RoleController extends Controller
   public function show($id)
   {
     $role = Role::find($id);
-    if (empty($role)) {
+    if (empty($role) or $role->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado un rol',
       ]);
@@ -156,5 +156,17 @@ class RoleController extends Controller
       ],
       200
     );
+  }
+  public function hard_destroy($id)
+  {
+    $role = Role::find($id);
+    if (empty($role) or $role->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $role->delete();
+    return response()->json([
+      'mensaje' => 'El role ha sido eliminado',
+      'id' => $role->id,
+    ], 200);
   }
 }

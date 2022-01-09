@@ -158,4 +158,17 @@ class UserRoleController extends Controller
       200
     );
   }
+  
+  public function hard_destroy($id)
+  {
+    $userrole = Userrole::find($id);
+    if (empty($userrole) or $userrole->delete) {
+      return response()->json(['respuesta' => 'El id ingresado no existe']);
+    }
+    $userrole->delete();
+    return response()->json([
+      'respuesta' => 'El usuario-rol ha sido eliminado',
+      'id' => $userrole->id,
+    ], 200);
+  }
 }

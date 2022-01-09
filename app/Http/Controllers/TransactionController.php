@@ -80,7 +80,7 @@ class TransactionController extends Controller
   public function show($id)
   {
     $Transaction = Transaction::find($id);
-    if (empty($Transaction)) {
+    if (empty($Transaction) or $Transaction->delete) {
       return response()->json([]);
     }
     return response($Transaction, 200);

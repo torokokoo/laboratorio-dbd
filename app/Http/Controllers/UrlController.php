@@ -154,4 +154,16 @@ class UrlController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $url = Url::find($id);
+    if (empty($url) or $url->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $url->delete();
+    return response()->json([
+      'mensaje' => 'La url  ha sido eliminada',
+      'id' => $url->id,
+    ], 200);
+  }
 }

@@ -168,4 +168,16 @@ class MessageController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $message = Message::find($id);
+    if (empty($message) or $message->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $message->delete();
+    return response()->json([
+      'mensaje' => 'El mensaje ha sido eliminado',
+      'id' => $message->id,
+    ], 200);
+  }
 }

@@ -172,4 +172,16 @@ class RegionController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $region = Region::find($id);
+    if (empty($region) or $region->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $region->delete();
+    return response()->json([
+      'mensaje' => 'La region ha sido eliminado',
+      'id' => $region->id,
+    ], 200);
+  }
 }

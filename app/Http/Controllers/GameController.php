@@ -98,7 +98,7 @@ class GameController extends Controller
   public function show($id)
   {
     $game = Game::find($id);
-    if (empty($game) or $game->delete == true) {
+    if (empty($game) or $game->delete) {
       return response("404 Not Found", 404);
     }
     return response($game, 200);
@@ -154,7 +154,7 @@ class GameController extends Controller
       return response($validator->errors());
     }
     $game = Game::find($id);
-    if (empty($game) or $game->delete == true) {
+    if (empty($game) or $game->delete) {
       return response("404 Not Found", 404);
     }
     $game->name = $request->name;
@@ -183,7 +183,7 @@ class GameController extends Controller
   public function destroy($id)
   {
     $game = Game::find($id);
-    if (empty($game) or $game->delete == true) {
+    if (empty($game) or $game->delete) {
       return response("404 Not Found", 404);
     }
     $game->delete = true;
@@ -199,7 +199,7 @@ class GameController extends Controller
   public function hard_destroy($id)
   {
     $game = Game::find($id);
-    if (empty($game)) {
+    if (empty($game) or $game->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $game->delete();

@@ -86,7 +86,7 @@ class HomeAddressController extends Controller
   public function show($id)
   {
     $homeAddress = HomeAddress::find($id);
-    if (empty($homeAddress)) {
+    if (empty($homeAddress) or $homeAddress->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa homeAddress',
       ]);
@@ -137,7 +137,7 @@ class HomeAddressController extends Controller
     }
 
     $homeAddress = HomeAddress::find($id);
-    if (empty($homeAddress)) {
+    if (empty($homeAddress) or $homeAddress->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa homeAddress',
       ]);
@@ -166,7 +166,7 @@ class HomeAddressController extends Controller
   public function destroy($id)
   {
     $homeAddress = HomeAddress::find($id);
-    if (empty($homeAddress) or $homeAddress->delete == true) {
+    if (empty($homeAddress) or $homeAddress->delete) {
       return response("404 Not Found", 404);
     }
     $homeAddress->delete = true;
@@ -182,7 +182,7 @@ class HomeAddressController extends Controller
   public function hard_destroy($id)
   {
     $homeAddress = HomeAddress::find($id);
-    if (empty($homeAddress)) {
+    if (empty($homeAddress) or $homeAddress->delete) {
       return response()->json(['respuesta' => 'El id ingresado no existe']);
     }
     $homeAddress->delete();

@@ -79,7 +79,7 @@ class LibraryController extends Controller
   public function show($id)
   {
     $library = Library::find($id);
-    if (empty($library) or $library->delete == true) {
+    if (empty($library) or $library->delete) {
       return response("404 Not Found", 404);
     }
     return response($library, 200);
@@ -122,7 +122,7 @@ class LibraryController extends Controller
       return response($validator->errors());
     }
     $library = Library::find($id);
-    if (empty($library) or $library->delete == true) {
+    if (empty($library) or $library->delete) {
       return response("404 Not Found", 404);
 
       $library->user_id = $request->user_id;
@@ -146,7 +146,7 @@ class LibraryController extends Controller
   public function destroy($id)
   {
     $library = Library::find($id);
-    if (empty($library) or $library->delete == true) {
+    if (empty($library) or $library->delete) {
       return response("404 Not Found", 404);
     }
     $library->delete = true;
@@ -162,7 +162,7 @@ class LibraryController extends Controller
   public function hard_destroy($id)
   {
     $library =  Library::find($id);
-    if (empty($library)) {
+    if (empty($library) or $library->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $library->delete();

@@ -78,7 +78,7 @@ class CurrencyController extends Controller
   public function show($id)
   {
     $currency = Currency::find($id);
-    if (empty($currency) or $currency->delete == true) {
+    if (empty($currency) or $currency->delete) {
       return response("404 Not Found", 404);
     }
     return response($currency, 200);
@@ -121,7 +121,7 @@ class CurrencyController extends Controller
       return response($validator->errors());
     }
     $currency = Currency::find($id);
-    if (empty($currency) or $currency->delete == true) {
+    if (empty($currency) or $currency->delete) {
       return response("404 Not Found", 404);
     }
 

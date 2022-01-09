@@ -157,4 +157,16 @@ class PermissionController extends Controller
       200
     );
   }
+  public function hard_destroy($id)
+  {
+    $permission = Permission::find($id);
+    if (empty($permission) or $permission->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $permission->delete();
+    return response()->json([
+      'mensaje' => 'El permiso ha sido eliminado',
+      'id' => $permission->id,
+    ], 200);
+  }
 }

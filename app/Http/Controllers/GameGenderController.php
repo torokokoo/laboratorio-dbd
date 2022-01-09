@@ -79,7 +79,7 @@ class GameGenderController extends Controller
   public function show($id)
   {
     $gamegender = GameGender::find($id);
-    if (empty($gamegender) or $gamegender->delete == true) {
+    if (empty($gamegender) or $gamegender->delete) {
       return response("404 Not Found", 404);
     }
     return response($gamegender, 200);
@@ -122,7 +122,7 @@ class GameGenderController extends Controller
       return response($validator->errors());
     }
     $gamegender = GameGender::find($id);
-    if (empty($gamegender) or $gamegender->delete == true) {
+    if (empty($gamegender) or $gamegender->delete) {
       return response("404 Not Found", 404);
 
       $gamegender->game_id = $request->game_id;
@@ -146,7 +146,7 @@ class GameGenderController extends Controller
   public function destroy($id)
   {
     $gamegender = GameGender::find($id);
-    if (empty($gamegender) or $gamegender->delete == true) {
+    if (empty($gamegender) or $gamegender->delete) {
       return response("404 Not Found", 404);
     }
     $gamegender->delete = true;
@@ -161,14 +161,14 @@ class GameGenderController extends Controller
   }
   public function hard_destroy($id)
   {
-    $game = GameGender::find($id);
-    if (empty($game)) {
+    $gamegender = GameGender::find($id);
+    if (empty($game) or $gamegender->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
-    $game->delete();
+    $gamegender->delete();
     return response()->json([
-      'mensaje' => 'El juego ha sido eliminado',
-      'id' => $game->id,
+      'mensaje' => 'El juego-genero ha sido eliminado',
+      'id' => $gamegender->id,
     ], 200);
   }
 }

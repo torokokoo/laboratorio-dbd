@@ -82,7 +82,7 @@ class ComunaController extends Controller
   public function show($id)
   {
     $comuna = Comuna::find($id);
-    if (empty($comuna)) {
+    if (empty($comuna) or $comuna->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa comuna',
       ]);
@@ -131,7 +131,7 @@ class ComunaController extends Controller
     }
 
     $comuna = Comuna::find($id);
-    if (empty($comuna)) {
+    if (empty($comuna) or $comuna->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa comuna',
       ]);
