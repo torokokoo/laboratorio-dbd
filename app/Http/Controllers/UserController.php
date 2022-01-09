@@ -52,6 +52,7 @@ class UserController extends Controller
         'password' => 'required|min:8',
         'birthday' => 'required|date',
         'home_address_id' => 'required|exists:home_addresses,id',
+        'currency_id' => 'required|exists:currencies,id'
       ],
       [
         'name.required' => 'Debes ingresar un nombre',
@@ -65,6 +66,7 @@ class UserController extends Controller
         'birthday.required' => 'Debes ingresar una fecha de nacimiento',
         'birthday.date' => 'La fecha tiene que ser valida',
         'home_address_id.exists' => 'El ID home address no existe',
+        'currency_id.exists' => 'El ID de la moneda no existe',
       ]
     );
 
@@ -133,6 +135,7 @@ class UserController extends Controller
         'password' => 'required|min:8',
         'birthday' => 'required|date',
         'home_address_id' => 'required|exists:home_addresses,id',
+        'currency_id' => 'required|exists:currencies,id'
       ],
       [
         'name.required' => 'Debes ingresar un nombre',
@@ -146,6 +149,8 @@ class UserController extends Controller
         'birthday.required' => 'Debes ingresar una fecha de nacimiento',
         'birthday.date' => 'La fecha tiene que ser valida',
         'home_address_id.exists' => 'El ID home address no existe',
+        'currency_id.exists' => 'El ID de la moneda no existe',
+
       ]
     );
 

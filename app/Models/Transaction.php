@@ -9,11 +9,6 @@ class Transaction extends Model
 {
   use HasFactory;
 
-  public function transactionCurrency()
-  {
-    return $this->hasMany('App\Models\TransactionCurrency');
-  }
-
 
   public function user()
   {
