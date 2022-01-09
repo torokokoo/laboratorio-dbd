@@ -16,7 +16,7 @@ class GameGenderController extends Controller
    */
   public function index()
   {
-    $gamegenders = GameGender::all();
+    $gamegenders = GameGender::where('delete', false)->get();
     if ($gamegenders->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentra juego-genero'

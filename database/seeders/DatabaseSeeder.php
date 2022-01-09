@@ -33,13 +33,10 @@ class DatabaseSeeder extends Seeder
     \App\Models\UserFollower::factory(10)->create();
     \App\Models\UserRole::factory(10)->create();
     \App\Models\Transaction::factory(10)->create();
-    \App\Models\TransactionCurrency::factory(10)->create();
     \App\Models\Comment::factory(10)->create();
     \App\Models\Like::factory(10)->create();
     \App\Models\Library::factory(10)->create();
     \App\Models\WishList::factory(10)->create();
     \App\Models\WishListGame::factory(10)->create();
-
-    
   }
 }

@@ -16,7 +16,7 @@ class WishListController extends Controller
    */
   public function index()
   {
-    $wishlists = WishList::all();
+    $wishlists = WishList::where('delete', false)->get();
     if ($wishlists->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentran listas de deseos'
@@ -78,7 +78,7 @@ class WishListController extends Controller
   public function show($id)
   {
     $wishlist = WishList::find($id);
-    if (empty($wishlist) or $wishlist->delete == true) {
+    if (empty($wishlist) or $wishlist->delete) {
       return response("404 Not Found", 404);
     }
     return response($wishlist, 200);
@@ -120,7 +120,7 @@ class WishListController extends Controller
       return response($validator->errors());
     }
     $wishlist = WishList::find($id);
-    if (empty($wishlist) or $wishlist->delete == true) {
+    if (empty($wishlist) or $wishlist->delete) {
       return response("404 Not Found", 404);
     }
     $wishlist->privacy = $request->privacy;
@@ -144,7 +144,7 @@ class WishListController extends Controller
   public function destroy($id)
   {
     $wishlist = WishList::find($id);
-    if (empty($wishlist) or $wishlist->delete == true) {
+    if (empty($wishlist) or $wishlist->delete) {
       return response("404 Not Found", 404);
     }
     $wishlist->delete = true;
@@ -160,7 +160,7 @@ class WishListController extends Controller
   public function hard_destroy($id)
   {
     $wishlist = WishList::find($id);
-    if (empty($wishlist)) {
+    if (empty($wishlist) or $wishlist->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $wishlist->delete();

@@ -16,7 +16,7 @@ class GenderController extends Controller
    */
   public function index()
   {
-    $genders = Gender::all();
+    $genders = Gender::where('delete', false)->get();
     if ($genders->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentra '

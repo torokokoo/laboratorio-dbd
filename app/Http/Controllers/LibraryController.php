@@ -16,7 +16,7 @@ class LibraryController extends Controller
    */
   public function index()
   {
-    $libraries = Library::all();
+    $libraries = Library::where('delete', false)->get();
     if ($libraries->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentran librerias'

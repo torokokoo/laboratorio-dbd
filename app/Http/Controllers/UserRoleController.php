@@ -16,13 +16,13 @@ class UserRoleController extends Controller
    */
   public function index()
   {
-    $userroles = UserRole::all();
-    if ($userroles->isEmpty()) {
+    $userrole = UserRole::where('delete', false)->get();
+    if ($userrole->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentra un rol de usuario'
       ]);
     }
-    return response($userroles, 200);
+    return response($userrole, 200);
   }
 
   /**
@@ -75,7 +75,7 @@ class UserRoleController extends Controller
   public function show($id)
   {
     $userrole = UserRole::find($id);
-    if (empty($userrole)) {
+    if (empty($userrole) or $userrole->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado un rol de usuario',
       ]);
@@ -120,7 +120,7 @@ class UserRoleController extends Controller
       return response($validator->errors());
     }
     $userRole = UserRole::find($id);
-    if (empty($userRole) or $userRole->delete == true) {
+    if (empty($userRole) or $userRole->delete) {
       return response("404 Not Found", 404);
     }
 
@@ -145,7 +145,7 @@ class UserRoleController extends Controller
   public function destroy($id)
   {
     $userrole = Userrole::find($id);
-    if (empty($userrole) or $userrole->delete == true) {
+    if (empty($userrole) or $userrole->delete) {
       return response("404 Not Found", 404);
     }
     $userrole->delete = true;

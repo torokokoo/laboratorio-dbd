@@ -17,7 +17,7 @@ class CurrencyController extends Controller
   public function index()
   {
 
-    $currencies = Currency::all();
+    $currencies = Currency::where('delete', false)->get();
     if ($currencies->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentra '
@@ -146,7 +146,7 @@ class CurrencyController extends Controller
   public function destroy($id)
   {
     $currency = Currency::find($id);
-    if (empty($currency) or $currency->delete == true) {
+    if (empty($currency) or $currency->delete) {
       return response("404 Not Found", 404);
     }
     $currency->delete = true;
@@ -162,7 +162,7 @@ class CurrencyController extends Controller
   public function hard_destroy($id)
   {
     $currency = Currency::find($id);
-    if (empty($currency)) {
+    if (empty($currency) or $currency->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $currency->delete();

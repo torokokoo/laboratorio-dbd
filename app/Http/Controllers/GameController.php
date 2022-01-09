@@ -16,7 +16,7 @@ class GameController extends Controller
    */
   public function index()
   {
-    $games = Game::all();
+    $games = Game::where('delete', false)->get();
     if ($games->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentran juegos'

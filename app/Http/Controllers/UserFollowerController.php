@@ -16,7 +16,7 @@ class UserFollowerController extends Controller
    */
   public function index()
   {
-    $userFollowers = UserFollower::all();
+    $userFollowers = UserFollower::where('delete', false)->get();
     if ($userFollowers->isEmpty()) {
       return response()->json([
         'respuesta' => 'No hay nada en la relacion user-follower'
@@ -82,7 +82,7 @@ class UserFollowerController extends Controller
   public function show($id)
   {
     $userFollower = UserFollower::find($id);
-    if (empty($userFollower)) {
+    if (empty($userFollower) or $userFollower->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa relacion user-follower',
       ]);
@@ -130,7 +130,7 @@ class UserFollowerController extends Controller
     }
 
     $userFollower = UserFollower::find($id);
-    if (empty($userFollower)) {
+    if (empty($userFollower) or $userFollower->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa relacion user-follower',
       ]);
@@ -158,25 +158,25 @@ class UserFollowerController extends Controller
   public function destroy($id)
   {
     $userFollower = UserFollower::find($id);
-        if (empty($userFollower) or $userFollower->delete == true) {
-          return response("404 Not Found", 404);
-        }
-        $userFollower->delete = true;
-        $userFollower->save();
-        return response()->json(
-          [
-            'respuesta' => 'Se borrado el usuario-seguidor',
-            'id' => $userFollower->id
-          ],
-          200
-       + );
-      }
+    if (empty($userFollower) or $userFollower->delete) {
+      return response("404 Not Found", 404);
+    }
+    $userFollower->delete = true;
+    $userFollower->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado el usuario-seguidor',
+        'id' => $userFollower->id
+      ],
+      200
+    );
+  }
   public function hard_destroy($id)
   {
     $userFollower = UserFollower::find($id);
-      if (empty($userFollower)) {
-        return response()->json(['respuesta' => 'El id ingresado no existe']);
-      }
+    if (empty($userFollower) or $userFollower->delete) {
+      return response()->json(['respuesta' => 'El id ingresado no existe']);
+    }
     $userFollower->delete();
     return response()->json([
       'respuesta' => 'El usuario-seguidor ha sido eliminado',

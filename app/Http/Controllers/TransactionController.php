@@ -16,7 +16,7 @@ class TransactionController extends Controller
    */
   public function index()
   {
-    $Transactions = Transaction::all();
+    $Transactions = Transaction::where('delete', false)->get();
     if ($Transactions->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentra '
@@ -47,13 +47,13 @@ class TransactionController extends Controller
       $request->all(),
       [
         'user_id' => 'required|exists:users,id',
+        'date' => 'required',
         'game_id' => 'required|exists:games,id',
-        'currency_id' => 'required|exists:currencies,id',
       ],
       [
         'user_id.exists' => 'El ID usuario no existe',
+        'date.required' => 'La date es obligatoria',
         'gamer_id.exists' => 'El ID juego no existe',
-        'currency_id.exists' => 'El ID moneda no existe',
 
       ]
     );
@@ -62,8 +62,8 @@ class TransactionController extends Controller
     }
     $newTransaction = new Transaction();
     $newTransaction->user_id = $request->user_id;
+    $newTransaction->date = $request->date;
     $newTransaction->game_id = $request->game_id;
-    $newTransaction->currency_id = $request->currency_id;
     $newTransaction->save();
     return response()->json([
       'respuesta' => 'Se ha creado una nueva transaccion',
@@ -110,27 +110,26 @@ class TransactionController extends Controller
       $request->all(),
       [
         'user_id' => 'required|exists:users,id',
+        'date' => 'required',
         'game_id' => 'required|exists:games,id',
-        'currency_id' => 'required|exists:currencies,id'
       ],
       [
         'user_id.exists' => 'El ID usuario no existe',
+        'date.required' => 'La date es obligatoria',
         'gamer_id.exists' => 'El ID juego no existe',
-        'currency_id.exists' => 'El ID moneda no existe',
-
       ]
     );
     if ($validator->fails()) {
       return response($validator->errors());
     }
     $transaction = Transaction::find($id);
-    if (empty($transaction) or $transaction->delete == true) {
+    if (empty($transaction) or $transaction->delete) {
       return response("404 Not Found", 404);
     }
 
     $transaction->user_id = $request->user_id;
+    $transaction->date = $request->date;
     $transaction->game_id = $request->game_id;
-    $transaction->currency_id = $request->currency_id;
     $transaction->save();
     return response()->json(
       [
@@ -150,7 +149,7 @@ class TransactionController extends Controller
   public function destroy($id)
   {
     $transaction = Transaction::find($id);
-    if (empty($transaction) or $transaction->delete == true) {
+    if (empty($transaction) or $transaction->delete) {
       return response("404 Not Found", 404);
     }
     $transaction->delete = true;
@@ -166,7 +165,7 @@ class TransactionController extends Controller
   public function hard_destroy($id)
   {
     $transaction = Transaction::find($id);
-    if (empty($transaction)) {
+    if (empty($transaction) or $transaction->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $transaction->delete();

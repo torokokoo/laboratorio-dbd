@@ -16,7 +16,7 @@ class RegionController extends Controller
    */
   public function index()
   {
-    $regions = Region::all();
+    $regions = Region::where('delete', false)->get();
     if ($regions->isEmpty()) {
       return response()->json([
         'respuesta' => 'No hay regions'
@@ -82,7 +82,7 @@ class RegionController extends Controller
   public function show($id)
   {
     $region = Region::find($id);
-    if (empty($region)) {
+    if (empty($region) or $region->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa region',
       ]);
@@ -131,7 +131,7 @@ class RegionController extends Controller
     }
 
     $region = Region::find($id);
-    if (empty($region)) {
+    if (empty($region) or $region->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado esa region',
       ]);
@@ -158,6 +158,18 @@ class RegionController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $region = Region::find($id);
+    if (empty($region) or $region->delete) {
+      return response("404 Not Found", 404);
+    }
+    $region->delete = true;
+    $region->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se ha borrado el rol',
+        'id' => $region->id
+      ],
+      200
+    );
   }
 }

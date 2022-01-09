@@ -16,7 +16,7 @@ class AgeRestrictionController extends Controller
    */
   public function index()
   {
-    $AgeRestricions = AgeRestriction::all();
+    $AgeRestricions = AgeRestriction::where('delete', false)->get();
     if ($AgeRestricions->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentra '
@@ -75,7 +75,7 @@ class AgeRestrictionController extends Controller
   public function show($id)
   {
     $AgeRestricion = AgeRestriction::find($id);
-    if (empty($ageRestricion) or $ageRestricion->delete == true) {
+    if (empty($ageRestricion) or $ageRestricion->delete) {
       return response("404 Not Found", 404);
     }
     return response($AgeRestricion, 200);
@@ -117,7 +117,7 @@ class AgeRestrictionController extends Controller
       return response($validator->errors());
     }
     $ageRestricion = AgeRestriction::find($id);
-    if (empty($ageRestricion) or $ageRestricion->delete == true) {
+    if (empty($ageRestricion) or $ageRestricion->delete) {
       return response("404 Not Found", 404);
     }
 
@@ -141,7 +141,7 @@ class AgeRestrictionController extends Controller
   public function destroy($id)
   {
     $ageRestricion = AgeRestriction::find($id);
-    if (empty($ageRestricion) or $ageRestricion->delete == true) {
+    if (empty($ageRestricion) or $ageRestricion->delete) {
       return response("404 Not Found", 404);
     }
     $ageRestricion->delete = true;
@@ -157,7 +157,7 @@ class AgeRestrictionController extends Controller
   public function hard_destroy($id)
   {
     $ageRestricion = AgeRestriction::find($id);
-    if (empty($ageRestricion)) {
+    if (empty($ageRestricion) or $ageRestricion->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $ageRestricion->delete();

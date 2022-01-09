@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comuna;
@@ -15,7 +16,7 @@ class ComunaController extends Controller
    */
   public function index()
   {
-    $comunas = Comuna::all();
+    $comunas = Comuna::where('delete', false)->get();
     if ($comunas->isEmpty()) {
       return response()->json([
         'respuesta' => 'No hay comunas'
@@ -158,7 +159,7 @@ class ComunaController extends Controller
   public function destroy($id)
   {
     $comuna = Comuna::find($id);
-    if (empty($comuna) or $comuna->delete == true) {
+    if (empty($comuna) or $comuna->delete) {
       return response("404 Not Found", 404);
     }
     $comuna->delete = true;
@@ -169,12 +170,12 @@ class ComunaController extends Controller
         'id' => $comuna->id
       ],
       200
-   + );
+    );
   }
   public function hard_destroy($id)
   {
     $comuna = Comuna::find($id);
-    if (empty($comuna)) {
+    if (empty($comuna) or $comuna->delete) {
       return response()->json(['respuesta' => 'El id ingresado no existe']);
     }
     $comuna->delete();

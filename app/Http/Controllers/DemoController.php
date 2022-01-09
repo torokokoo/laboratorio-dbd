@@ -17,7 +17,7 @@ class DemoController extends Controller
    */
   public function index()
   {
-    $demos = Demo::all();
+    $demos = Demo::where('delete', false)->get();
     if ($demos->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentra '
@@ -77,7 +77,7 @@ class DemoController extends Controller
   public function show($id)
   {
     $demo = Demo::find($id);
-    if (empty($demo) or $demo->delete == true) {
+    if (empty($demo) or $demo->delete) {
       return response("404 Not Found", 404);
     }
     return response($demo, 200);

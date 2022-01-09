@@ -16,7 +16,7 @@ class CommentController extends Controller
    */
   public function index()
   {
-    $comments = Comment::all();
+    $comments = Comment::where('delete', false)->get();
     if ($comments->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentran comentarios'
@@ -87,7 +87,7 @@ class CommentController extends Controller
   public function show($id)
   {
     $comment = Comment::find($id);
-    if (empty($comment) or $comment->delete == true) {
+    if (empty($comment) or $comment->delete) {
       return response("404 Not Found", 404);
     }
     return response($comment, 200);
@@ -136,7 +136,7 @@ class CommentController extends Controller
       return response($validator->errors());
     }
     $comment = Comment::find($id);
-    if (empty($comment) or $comment->delete == true) {
+    if (empty($comment) or $comment->delete) {
       return response("404 Not Found", 404);
     }
     $comment->date = $request->date;
@@ -162,7 +162,7 @@ class CommentController extends Controller
   public function destroy($id)
   {
     $comment = Comment::find($id);
-    if (empty($comment) or $comment->delete == true) {
+    if (empty($comment) or $comment->delete) {
       return response("404 Not Found", 404);
     }
     $comment->delete = true;
@@ -178,7 +178,7 @@ class CommentController extends Controller
   public function hard_destroy($id)
   {
     $comment = Comment::find($id);
-    if (empty($comment)) {
+    if (empty($comment) or $comment->delete) {
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $comment->delete();

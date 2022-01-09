@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\HomeAddress;
@@ -15,7 +16,7 @@ class HomeAddressController extends Controller
    */
   public function index()
   {
-    $homeAddresses = HomeAddress::all();
+    $homeAddresses = HomeAddress::where('delete', false)->get();
     if ($homeAddresses->isEmpty()) {
       return response()->json([
         'respuesta' => 'No hay homeAddresses'
@@ -165,29 +166,29 @@ class HomeAddressController extends Controller
   public function destroy($id)
   {
     $homeAddress = HomeAddress::find($id);
-        if (empty($homeAddress) or $homeAddress->delete == true) {
-          return response("404 Not Found", 404);
-        }
-        $homeAddress->delete = true;
-        $homeAddress->save();
-        return response()->json(
-          [
-            'respuesta' => 'Se borrado el homeAddress',
-            'id' => $homeAddress->id
-          ],
-          200
-       + );
-      }
-      public function hard_destroy($id)
-      {
-        $homeAddress = HomeAddress::find($id);
-        if (empty($homeAddress)) {
-          return response()->json(['respuesta' => 'El id ingresado no existe']);
-        }
-        $homeAddress->delete();
-        return response()->json([
-          'respuesta' => 'El homeAddress ha sido eliminado',
-          'id' => $homeAddress->id,
-        ], 200);
+    if (empty($homeAddress) or $homeAddress->delete == true) {
+      return response("404 Not Found", 404);
+    }
+    $homeAddress->delete = true;
+    $homeAddress->save();
+    return response()->json(
+      [
+        'respuesta' => 'Se borrado el homeAddress',
+        'id' => $homeAddress->id
+      ],
+      200
+    );
+  }
+  public function hard_destroy($id)
+  {
+    $homeAddress = HomeAddress::find($id);
+    if (empty($homeAddress)) {
+      return response()->json(['respuesta' => 'El id ingresado no existe']);
+    }
+    $homeAddress->delete();
+    return response()->json([
+      'respuesta' => 'El homeAddress ha sido eliminado',
+      'id' => $homeAddress->id,
+    ], 200);
   }
 }

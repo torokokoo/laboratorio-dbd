@@ -16,7 +16,7 @@ class UserController extends Controller
    */
   public function index()
   {
-    $users = User::all();
+    $users = User::where('delete', false)->get();
     if ($users->isEmpty()) {
       return response()->json([
         'respuesta' => 'No hay users'
@@ -77,7 +77,7 @@ class UserController extends Controller
     $newUser->email = $request->email;
     $newUser->password = $request->password;
     $newUser->birthday = $request->birthday;
-    $newUser->balance = 0; 
+    $newUser->balance = 0;
     $newUser->home_address_id = $request->home_address_id;
     $newUser->save();
     return response()->json([
@@ -96,7 +96,7 @@ class UserController extends Controller
   public function show($id)
   {
     $user = User::find($id);
-    if (empty($user)) {
+    if (empty($user) or $user->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado ese user',
       ]);
@@ -154,7 +154,7 @@ class UserController extends Controller
     }
 
     $user = User::find($id);
-    if (empty($user)) {
+    if (empty($user) or $user->delete) {
       return response()->json([
         'respuesta' => 'No se ha encontrado ese user',
       ]);
@@ -164,7 +164,7 @@ class UserController extends Controller
     $user->email = $request->email;
     $user->password = $request->password;
     $user->birthday = $request->birthday;
-    $user->balance = 0; 
+    $user->balance = 0;
     $user->home_address_id = $request->home_address_id;
     $user->save();
 
@@ -186,7 +186,7 @@ class UserController extends Controller
   public function destroy($id)
   {
     $user = User::find($id);
-    if (empty($user) or $user->delete == true) {
+    if (empty($user) or $user->delete) {
       return response("404 Not Found", 404);
     }
     $user->delete = true;
@@ -197,12 +197,12 @@ class UserController extends Controller
         'id' => $user->id
       ],
       200
-   + );
+    );
   }
   public function hard_destroy($id)
   {
     $user = User::find($id);
-    if (empty($user)) {
+    if (empty($user) or $user->delete) {
       return response()->json(['respuesta' => 'El id ingresado no existe']);
     }
     $user->delete();

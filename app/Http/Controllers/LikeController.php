@@ -16,7 +16,7 @@ class LikeController extends Controller
    */
   public function index()
   {
-    $likes = Like::all();
+    $likes = Like::where('delete', false)->get();
     if ($likes->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentran likes'
