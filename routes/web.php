@@ -17,6 +17,14 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('/login', function () {
+  return view('login');
+});
+
+Route::get('/register', function () {
+  return view('register');
+});
+
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');
 Route::post('/age_restricion/create', 'AgeRestrictionController@store');
