@@ -67,36 +67,36 @@
 
 	<div class="container">
 		<main class="form-signin">
-		<form>
+		<form method="POST" action="">
 		<h1 class="h3 mb-3 fw-normal">Registrarse</h1>
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="floatingUsername" placeholder="name@example.com">
+		<input type="text" class="form-control" id="name" name="name" placeholder="name@example.com">
 		<label for="floatingUsername">Nombre de usuario</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+		<input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
 		<label for="floatingInput">Correo Electronico</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+		<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 		<label for="floatingPassword">Contraseña</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+		<input type="password" class="form-control" id="passwordC" name="passwordC" placeholder="Password">
 		<label for="floatingPassword">Confirmar Contraseña</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="birthday" placeholder="Password">
+		<input type="text" class="form-control" id="birthday" name="birthday" placeholder="Password">
 		<label for="floatingPassword">Fecha de nacimiento</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="floatingAddress" placeholder="Password">
+		<input type="text" class="form-control" id="home_address_id" name="home_address_id" placeholder="Password">
 		<label for="floatingAddress">Direccion</label>
 		</div>
 

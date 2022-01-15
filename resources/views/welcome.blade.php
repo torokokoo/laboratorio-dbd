@@ -10,6 +10,26 @@
 </head>
 <body>
 	@include('subviews.navbar') 
+   <section class="mt-5">
+        <div class="container ">
+            <h4 class="mb-5">Elige un juego</h4>
+            <div class="row text-center mb-4">
+                @foreach ($games as $game)
+                <div class="col-4 d-flex justify-content-center my-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{$game->image}}" class="card-img-top" alt="Imagen de curso">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$game->name}}</h5>
+                            {{-- <p class="card-text">{{$game->description}}</p> --}}
+                            <p class="card-text">{{$game->price}}</p>
+                            <a href="/game/{{ $game->id }}" class="btn btn-primary">Ir al juego</a>
+                        </div>
+                    </div>
+                </div>     
+                @endforeach
+            </div>
+        </div>
+    </section>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

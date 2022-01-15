@@ -67,19 +67,22 @@
 
 	<div class="container">
 		<main class="form-signin">
-		<form>
+		<form method="POST" action="">
+      @csrf
 		<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 		<h1 class="h3 mb-3 fw-normal">Ingresar</h1>
 
 		<div class="form-floating">
-		<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+		<input type="email" class="form-control" id="email" name = "email"placeholder="name@example.com">
 		<label for="floatingInput">Correo Electronico</label>
 		</div>
 		<div class="form-floating">
-		<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+		<input type="password" class="form-control" id="password" name = "password" placeholder="Password">
 		<label for="floatingPassword">Contraseña</label>
 		</div>
-
+    @error('message')
+      <p>ERROR A</p>
+    @enderror
 		<div class="checkbox mb-3">
 		<label>
 			<input type="checkbox" value="remember-me"> Recuerdame

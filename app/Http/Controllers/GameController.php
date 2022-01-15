@@ -22,7 +22,7 @@ class GameController extends Controller
         'respuesta' => 'No se encuentran juegos'
       ]);
     }
-    return response($games, 200);
+    return view('welcome', compact('games'));
   }
 
   /**

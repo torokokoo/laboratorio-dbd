@@ -24,6 +24,14 @@ Route::get('/login', function () {
 Route::get('/register', function () {
   return view('register');
 });
+Route::post('/register', 'RegisterController@store');
+
+Route::post('/login', 'SessionController@login')
+  ->name('login.store');
+
+// Route::get('/logout', [SessionController::class, 'destroy'])
+//   ->middleware('auth')
+//   ->name('login.destroy');
 
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');
@@ -81,7 +89,7 @@ Route::put('/gender/update/{id}', 'GenderController@update');
 Route::delete('/gender/delete/{id}', 'GenderController@destroy');
 Route::delete('/gender/deleteH/{id}', 'GenderController@hard_destroy');
 
-Route::get('/games', 'GameController@index');
+Route::get('/', 'GameController@index');
 Route::get('/game/{id}', 'GameController@show');
 Route::post('/game/create', 'GameController@store');
 Route::put('/game/update/{id}', 'GameController@update');
