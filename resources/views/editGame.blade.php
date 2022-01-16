@@ -70,11 +70,11 @@
 		<form action="" method="post" >
       @csrf
         @method('put')
-		<h1 class="h3 mb-3 fw-normal">Edición</h1>
+		<h1 class="h3 mb-3 fw-normal">Edición de Juego</h1>
 
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('name') is-invalid @enderror" id="name" name="name" placeholder="name@example.com">
-		<label for="floatingUsername">Nombre de usuario</label>
+		<label for="floatingUsername">Nombre del juego</label>
 		</div>
     @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -82,7 +82,7 @@
 
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('description') is-invalid @enderror" id="description" name="description" placeholder="name@example.com">
-		<label for="floatingUsername">Correo Electronico</label>
+		<label for="floatingUsername">Descripcion</label>
 		</div>
     @error('description')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -90,7 +90,7 @@
 
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('price') is-invalid @enderror" id="price" name="price" placeholder="name@example.com">
-		<label for="floatingUsername">Contraseña</label>
+		<label for="floatingUsername">Precio</label>
 		</div>
     @error('price')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -98,7 +98,7 @@
 
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('storage') is-invalid @enderror" id="storage" name="storage" placeholder="name@example.com">
-		<label for="floatingUsername">Direccion</label>
+		<label for="floatingUsername">Almacenamiento</label>
 		</div>
     @error('storage')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -106,7 +106,7 @@
 
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('age_restriction_id') is-invalid @enderror" id="age_restriction_id" name="age_restriction_id" placeholder="name@example.com">
-		<label for="floatingUsername">age_restriction_id</label>
+		<label for="floatingUsername">Restriccion de edad</label>
 		</div>
     @error('age_restriction_id')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -114,7 +114,7 @@
 
     		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('url_id') is-invalid @enderror" id="url_id" name="url_id" placeholder="name@example.com">
-		<label for="floatingUsername">Fecha de nacimiento</label>
+		<label for="floatingUsername">Url id</label>
 		</div>
     @error('url_id')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -122,7 +122,7 @@
 
         		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('demo_id') is-invalid @enderror" id="demo_id" name="demo_id" placeholder="name@example.com">
-		<label for="floatingUsername">Fecha de nacimiento</label>
+		<label for="floatingUsername">Demo id</label>
 		</div>
     @error('demo_id')
         <div class="alert alert-danger">{{ $message }}</div>

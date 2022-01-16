@@ -110,9 +110,9 @@ class GameController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit(Game $game)
   {
-    //
+    return view('editGame', compact('game'));
   }
 
   /**
@@ -151,7 +151,7 @@ class GameController extends Controller
       ]
     );
     if ($validator->fails()) {
-      return response($validator->errors());
+      return $validator->validate();
     }
     $game = Game::find($id);
     if (empty($game) or $game->delete) {
@@ -165,13 +165,7 @@ class GameController extends Controller
     $game->url_id = $request->url_id;
     $game->demo_id = $request->demo_id;
     $game->save();
-    return response()->json(
-      [
-        'respuesta' => 'Se ha modificado el juego',
-        'id' => $game->id
-      ],
-      200
-    );
+    return redirect()->route('/', $game);
   }
 
   /**
