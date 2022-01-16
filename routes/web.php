@@ -12,35 +12,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Vista principal de usuario logeado
 Route::get('/', function () {
   return view('welcome');
 });
+// Login - Register
+Route::get('/register', 'RegisterController@view'); // Vista Register
+Route::post('/register', 'RegisterController@store'); // Registro de usuario
 
-Route::get('/login', function () {
-  return view('login');
-})->name('login');
+Route::get('/login', 'SessionController@view'); // Vista Login (PENDIENTE)
+Route::post('/login', 'SessionController@login');
+Route::get('/logout', [SessionController::class, 'destroy'])
+  ->middleware('auth')
+  ->name('login.destroy');
 
-Route::get('/home', function () {
-  return view('home');
-})->name('home');
-
-Route::get('/store', function () {
-  return view('store');
-})->name('store');
-
-Route::get('/register', function () {
-  return view('register');
-})->name('register');
-
-Route::post('/register', 'RegisterController@store');
-
-Route::post('/login', 'SessionController@login')
-  ->name('login.store');
-
-// Route::get('/logout', [SessionController::class, 'destroy'])
-//   ->middleware('auth')
-//   ->name('login.destroy');
+// Edicion de datos del usuario
+Route::get('user/{user}/editAdmin', 'UserController@editAdmin');  // Vista editar datos de usuario (Admin)
+Route::put('user/{user}/edit', 'UserController@update'); // Editar datos de usuario (Usuario)
+Route::get('user/{user}/edit', 'UserController@edit'); // Vista editar datos de usuario (Usuario)
+Route::put('user/{user}/editAdmin', 'UserController@update'); // Editar datos de usuario (Admin) 
 
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');
@@ -101,7 +91,7 @@ Route::delete('/gender/deleteH/{id}', 'GenderController@hard_destroy');
 Route::get('/', 'GameController@index');
 Route::get('/game/{id}', 'GameController@show');
 Route::post('/game/create', 'GameController@store');
-Route::put('/game/update/{id}', 'GameController@update');
+Route::put('/game/update/{id}/edit', 'GameController@update');
 Route::delete('/game/delete/{id}', 'GameController@destroy');
 Route::delete('/game/deleteH/{id}', 'GameController@hard_destroy');
 
@@ -174,7 +164,6 @@ Route::post('/transaction/create', 'TransactionController@store');
 Route::put('/transaction/update/{id}', 'TransactionController@update');
 Route::delete('/transaction/delete/{id}', 'TransactionController@destroy');
 Route::delete('/transaction/deleteH/{id}', 'TransactionController@hard_destroy');
-
 
 Route::get('/urls', 'UrlController@index');
 Route::get('/url/{id}', 'UrlController@show');

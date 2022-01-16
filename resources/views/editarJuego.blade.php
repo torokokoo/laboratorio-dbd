@@ -51,13 +51,13 @@
 		z-index: 2;
 		}
 
-		.form-signin input[type="email"] {
+		.form-signin input[type="description"] {
 		margin-bottom: -1px;
 		border-bottom-right-radius: 0;
 		border-bottom-left-radius: 0;
 		}
 
-		.form-signin input[type="password"] {
+		.form-signin input[type="price"] {
 		margin-bottom: 10px;
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
@@ -67,63 +67,66 @@
 
 	<div class="container">
 		<main class="form-signin">
-		<form method="POST" action="">
-		<h1 class="h3 mb-3 fw-normal">Edición juego</h1>
+		<form action="" method="post" >
+      @csrf
+        @method('put')
+		<h1 class="h3 mb-3 fw-normal">Edición</h1>
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="name" name="name" placeholder="nombre del juego">
-		<label for="floatingUsername">Nombre de juego</label>
+		<input type="text" class="form-control"  class="@error('name') is-invalid @enderror" id="name" name="name" placeholder="name@example.com">
+		<label for="floatingUsername">Nombre de usuario</label>
 		</div>
+    @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
 		<div class="form-floating">
-		<input type="email" class="form-control" id="description" name="description" placeholder="descripción">
-		<label for="floatingInput">descripción</label>
+		<input type="text" class="form-control"  class="@error('description') is-invalid @enderror" id="description" name="description" placeholder="name@example.com">
+		<label for="floatingUsername">Correo Electronico</label>
 		</div>
+    @error('description')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
 		<div class="form-floating">
-		<input type="password" class="form-control" id="price" name="price" placeholder="precio">
-		<label for="floatingPassword">precio</label>
+		<input type="text" class="form-control"  class="@error('price') is-invalid @enderror" id="price" name="price" placeholder="name@example.com">
+		<label for="floatingUsername">Contraseña</label>
 		</div>
+    @error('price')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
 		<div class="form-floating">
-		<input type="password" class="form-control" id="storage" name="storage" placeholder="storage">
-		<label for="floatingPassword">Almacenamiento</label>
+		<input type="text" class="form-control"  class="@error('storage') is-invalid @enderror" id="storage" name="storage" placeholder="name@example.com">
+		<label for="floatingUsername">Direccion</label>
 		</div>
+    @error('storage')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="classification" name="classification" placeholder="Clasificación">
-		<label for="floatingPassword">Clasificación</label>
+		<input type="text" class="form-control"  class="@error('age_restriction_id') is-invalid @enderror" id="age_restriction_id" name="age_restriction_id" placeholder="name@example.com">
+		<label for="floatingUsername">age_restriction_id</label>
 		</div>
+    @error('age_restriction_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
-		<div class="form-floating">
-		<input type="text" class="form-control" id="assessment" name="assessment" placeholder="valoración">
-		<label for="floatingAddress">Valoración</label>
+    		<div class="form-floating">
+		<input type="text" class="form-control"  class="@error('url_id') is-invalid @enderror" id="url_id" name="url_id" placeholder="name@example.com">
+		<label for="floatingUsername">Fecha de nacimiento</label>
 		</div>
+    @error('url_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
-        <div class="form-floating">
-		<input type="text" class="form-control" id="game_country_id" name="game_country_id" placeholder="Pais_juego">
-		<label for="floatingAddress">Pais_juego</label>
+        		<div class="form-floating">
+		<input type="text" class="form-control"  class="@error('demo_id') is-invalid @enderror" id="demo_id" name="demo_id" placeholder="name@example.com">
+		<label for="floatingUsername">Fecha de nacimiento</label>
 		</div>
-
-        <div class="form-floating">
-		<input type="text" class="form-control" id="age_restriction_id" name="age_restriction_id" placeholder="edad de restricción">
-		<label for="floatingAddress">Edad de restricción</label>
-		</div>
-
-    <div class="form-floating">
-		<input type="text" class="form-control" id="gender_id" name="gender_id" placeholder="género">
-		<label for="floatingAddress">Género</label>
-		</div>
-
-    <div class="form-floating">
-		<input type="text" class="form-control" id="url_id" name="url_id" placeholder="Url">
-		<label for="floatingAddress">Url</label>
-		</div>
-
-    <div class="form-floating">
-		<input type="text" class="form-control" id="demo_id" name="demo_id" placeholder="demo">
-		<label for="floatingAddress">Demo</label>
-		</div>
+    @error('demo_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 
 		<div class="mt-3">
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
@@ -134,11 +137,6 @@
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>	
-</html>
-
-    
-
-
-    
+</html> 
   </body>
 </html>

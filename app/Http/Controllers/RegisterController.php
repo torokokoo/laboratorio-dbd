@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+  public function view()
+  {
+    return view('register');
+  }
 
   public function create()
   {
@@ -42,7 +46,7 @@ class RegisterController extends Controller
     );
 
     if ($validator->fails()) {
-      return response($validator->errors());
+      return $validator->validate();
     }
 
     $newUser = new User();

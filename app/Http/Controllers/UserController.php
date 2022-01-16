@@ -113,11 +113,14 @@ class UserController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function editAdmin(User $user)
   {
-    //
+    return view('editUserAdmin', compact('user'));
   }
-
+  public function edit(User $user)
+  {
+    return view('editUser', compact('user'));
+  }
   /**
    * Update the specified resource in storage.
    *
@@ -135,6 +138,7 @@ class UserController extends Controller
         'password' => 'required|min:8',
         'birthday' => 'required|date',
         'home_address_id' => 'required|exists:home_addresses,id',
+        'balance' => 'required',
         'currency_id' => 'required|exists:currencies,id'
       ],
       [
@@ -149,13 +153,14 @@ class UserController extends Controller
         'birthday.required' => 'Debes ingresar una fecha de nacimiento',
         'birthday.date' => 'La fecha tiene que ser valida',
         'home_address_id.exists' => 'El ID home address no existe',
+        'balance' => 'Debe ingresar una cantidad',
         'currency_id.exists' => 'El ID de la moneda no existe',
 
       ]
     );
 
     if ($validator->fails()) {
-      return response($validator->errors());
+      return $validator->validate();
     }
 
     $user = User::find($id);
@@ -172,14 +177,7 @@ class UserController extends Controller
     $user->balance = 0;
     $user->home_address_id = $request->home_address_id;
     $user->save();
-
-    return response()->json(
-      [
-        'respuesta' => 'Se ha modificado el user',
-        'id' => $user->id
-      ],
-      200
-    );
+    return redirect()->route('/', $user);
   }
 
   /**

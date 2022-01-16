@@ -9,7 +9,12 @@
 	<title>Mist</title>
 </head>
 <body>
-	@include('subviews.navbar') 
+  	<style>
+      .ranking{
+        margin: 50px;
+      }
+	</style>
+	@include('subviews.navbar')
    <section class="mt-5">
         <div class="container ">
             <h4 class="mb-5">Elige un juego</h4>
@@ -29,6 +34,40 @@
                 @endforeach
             </div>
         </div>
+        <section class = "ranking">
+<h2>Juegos mas vendidos</h2>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+        </section>
+        
     </section>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
