@@ -68,61 +68,46 @@
 	<div class="container">
 		<main class="form-signin">
 		<form method="POST" action="">
-		<h1 class="h3 mb-3 fw-normal">Edición juego</h1>
+		<h1 class="h3 mb-3 fw-normal">Edición</h1>
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="name" name="name" placeholder="nombre del juego">
-		<label for="floatingUsername">Nombre de juego</label>
+		<input type="text" class="form-control" id="name" name="name" placeholder="name@example.com">
+		<label for="floatingUsername">Nombre de usuario</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="email" class="form-control" id="description" name="description" placeholder="descripción">
-		<label for="floatingInput">descripción</label>
+		<input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+		<label for="floatingInput">Correo Electronico</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="password" class="form-control" id="price" name="price" placeholder="precio">
-		<label for="floatingPassword">precio</label>
+		<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+		<label for="floatingPassword">Contraseña</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="password" class="form-control" id="storage" name="storage" placeholder="storage">
-		<label for="floatingPassword">Almacenamiento</label>
+		<input type="password" class="form-control" id="passwordC" name="passwordC" placeholder="Password">
+		<label for="floatingPassword">Confirmar Contraseña</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="classification" name="classification" placeholder="Clasificación">
-		<label for="floatingPassword">Clasificación</label>
+		<input type="text" class="form-control" id="birthday" name="birthday" placeholder="Password">
+		<label for="floatingPassword">Fecha de nacimiento</label>
 		</div>
 
 		<div class="form-floating">
-		<input type="text" class="form-control" id="assessment" name="assessment" placeholder="valoración">
-		<label for="floatingAddress">Valoración</label>
+		<input type="text" class="form-control" id="home_address_id" name="home_address_id" placeholder="Password">
+		<label for="floatingAddress">Direccion</label>
 		</div>
 
         <div class="form-floating">
-		<input type="text" class="form-control" id="game_country_id" name="game_country_id" placeholder="Pais_juego">
-		<label for="floatingAddress">Pais_juego</label>
+		<input type="text" class="form-control" id="home_address_id" name="home_address_id" placeholder="Password">
+		<label for="floatingAddress">Saldo</label>
 		</div>
 
         <div class="form-floating">
-		<input type="text" class="form-control" id="age_restriction_id" name="age_restriction_id" placeholder="edad de restricción">
-		<label for="floatingAddress">Edad de restricción</label>
-		</div>
-
-    <div class="form-floating">
-		<input type="text" class="form-control" id="gender_id" name="gender_id" placeholder="género">
-		<label for="floatingAddress">Género</label>
-		</div>
-
-    <div class="form-floating">
-		<input type="text" class="form-control" id="url_id" name="url_id" placeholder="Url">
-		<label for="floatingAddress">Url</label>
-		</div>
-
-    <div class="form-floating">
-		<input type="text" class="form-control" id="demo_id" name="demo_id" placeholder="demo">
-		<label for="floatingAddress">Demo</label>
+		<input type="text" class="form-control" id="balance" name="balance" placeholder="balance">
+		<label for="floatingAddress">Moneda</label>
 		</div>
 
 		<div class="mt-3">
