@@ -19,11 +19,20 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
   return view('login');
-});
+})->name('login');
+
+Route::get('/home', function () {
+  return view('home');
+})->name('home');
+
+Route::get('/store', function () {
+  return view('store');
+})->name('store');
 
 Route::get('/register', function () {
   return view('register');
-});
+})->name('register');
+
 Route::post('/register', 'RegisterController@store');
 
 Route::post('/login', 'SessionController@login')
@@ -166,12 +175,6 @@ Route::put('/transaction/update/{id}', 'TransactionController@update');
 Route::delete('/transaction/delete/{id}', 'TransactionController@destroy');
 Route::delete('/transaction/deleteH/{id}', 'TransactionController@hard_destroy');
 
-Route::get('/transaction_currencies', 'TransactionCurrencyController@index');
-Route::get('/transaction_currency/{id}', 'TransactionCurrencyController@show');
-Route::post('/transaction_currency/create', 'TransactionCurrencyController@store');
-Route::put('/transaction_currency/update/{id}', 'TransactionCurrencyController@update');
-Route::delete('/transaction_currency/delete/{id}', 'TransactionCurrencyController@destroy');
-Route::delete('/transaction_currency/deleteH/{id}', 'TransactionCurrencyController@hard_destroy');
 
 Route::get('/urls', 'UrlController@index');
 Route::get('/url/{id}', 'UrlController@show');
