@@ -32,7 +32,7 @@ class GameController extends Controller
    */
   public function create()
   {
-    //
+    return view('subirJuego');
   }
 
   /**
@@ -50,6 +50,7 @@ class GameController extends Controller
         'description' => 'required|min:2|max:1000',
         'price' => 'required|min:2|max:1000',
         'storage' => 'required',
+        'image' => 'required',
         'age_restriction_id' => 'required|exists:age_restrictions,id',
         'url_id' => 'required|exists:urls,id',
         'demo_id' => 'required|exists:demos,id'
@@ -64,6 +65,7 @@ class GameController extends Controller
         'description.max' => 'La descripcion excede el maximo de caracteres',
         'price.required' => 'Debes ingresar un precio',
         'storage.required' => 'Debes ingresar un almacenamiento requerido',
+        'image.required' => 'Debes ingresar un link de una imagen',
         'age_restriction_id.required' => 'El ID de la restriccion de edad no existe',
         'url_id.required' => 'El ID del URL no es valido',
         'demo_id.required' => 'El ID de la demo no es valido',
@@ -79,14 +81,16 @@ class GameController extends Controller
     $newGame->description = $request->description;
     $newGame->price = $request->price;
     $newGame->storage = $request->storage;
+    $newGame->image = $request->image;
     $newGame->age_restriction_id = $request->age_restriction_id;
     $newGame->url_id = $request->url_id;
     $newGame->demo_id = $request->demo_id;
     $newGame->save();
-    return response()->json([
+    /*return response()->json([
       'respuesta' => 'Se ha creado un nuevo juego',
       'id' => $newGame->id
-    ], 201);
+    ], 201); */
+    return redirect()->to('/');
   }
 
   /**
@@ -131,6 +135,7 @@ class GameController extends Controller
         'description' => 'required|min:2|max:1000',
         'price' => 'required',
         'storage' => 'required',
+        'image' => 'required',
         'age_restriction_id' => 'required|exists:age_restrictions,id',
         'url_id' => 'required|exists:urls,id',
         'demo_id' => 'required|exists:demos,id'
@@ -145,6 +150,7 @@ class GameController extends Controller
         'description.max' => 'La descripcion excede el maximo de caracteres',
         'price.required' => 'Debes ingresar un precio',
         'storage.required' => 'Debes ingresar un almacenamiento requerido',
+        'image.required' => 'Debes ingresar un link de una imagen',
         'age_restriction_id.required' => 'El ID de la restriccion de edad no existe',
         'url_id.required' => 'El ID del URL no es valido',
         'demo_id.required' => 'El ID de la demo no es valido',
@@ -161,6 +167,7 @@ class GameController extends Controller
     $game->description = $request->description;
     $game->price = $request->price;
     $game->storage = $request->storage;
+    $game->image = $request->image;
     $game->age_restriction_id = $request->age_restriction_id;
     $game->url_id = $request->url_id;
     $game->demo_id = $request->demo_id;

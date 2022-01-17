@@ -22,7 +22,7 @@ class UserController extends Controller
         'respuesta' => 'No hay users'
       ]);
     }
-    return response($users, 200);
+    return view('users', compact('users'));
   }
 
   /**
@@ -104,7 +104,7 @@ class UserController extends Controller
       ]);
     }
 
-    return response($user, 200);
+    return view('userProfile',compact('user'));
   }
 
   /**

@@ -26,8 +26,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$game->name}}</h5>
                             {{-- <p class="card-text">{{$game->description}}</p> --}}
-                            <p class="card-text">{{$game->price}}</p>
-                            <a href="/game/{{ $game->id }}" class="btn btn-primary">Ir al juego</a>
+                            <p class="card-text">${{$game->price}}</p>
+                            <a href="/game/{{ $game->id }}" class="btn btn-primary">Ver juego</a>
                         </div>
                     </div>
                 </div>     

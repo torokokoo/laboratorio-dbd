@@ -23,6 +23,9 @@ Route::get('/login', 'SessionController@view'); // Vista Login (PENDIENTE)
 Route::post('/login', 'SessionController@login');
 Route::get('/logout', 'SessionController@logout');
 
+Route::get('/game/create', 'GameController@create');
+Route::post('/game/create', 'GameController@store');
+
 // Edicion de datos del usuario
 Route::get('user/{user}/editAdmin', 'UserController@editAdmin');  // Vista editar datos de usuario (Admin)
 Route::put('user/{user}/edit', 'UserController@update');          // Editar datos de usuario (Usuario)
@@ -91,7 +94,6 @@ Route::delete('/gender/deleteH/{id}', 'GenderController@hard_destroy');
 
 Route::get('/', 'GameController@index');
 Route::get('/game/{id}', 'GameController@show');
-Route::post('/game/create', 'GameController@store');
 Route::put('/game/update/{id}/edit', 'GameController@update');
 Route::delete('/game/delete/{id}', 'GameController@destroy');
 Route::delete('/game/deleteH/{id}', 'GameController@hard_destroy');
