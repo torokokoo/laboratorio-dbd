@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function countryGame(){
-        return $this->hasMany('App\Models\CountryGame');
-    }
+  public function countryGame()
+  {
+    return $this->hasMany('App\Models\CountryGame');
+  }
 
-    public function region(){
-        return $this->hasMany('App\Models\Region');
-    }
+  public function region()
+  {
+    return $this->hasMany('App\Models\Region');
+  }
 }

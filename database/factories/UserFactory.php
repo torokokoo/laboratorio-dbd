@@ -23,6 +23,7 @@ class UserFactory extends Factory
       'birthday' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
       'balance' => $this->faker->numberBetween($min = 0, $max = 100000000),
       'currency_id' => Currency::all()->random()->id,
+      'country_id' => Currency::all()->random()->id,
       'home_address_id' => HomeAddress::all()->random()->id
     ];
   }

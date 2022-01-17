@@ -104,16 +104,21 @@
     @enderror
 
     		<div class="form-floating">
-		<input type="text" class="form-control"  class="@error('birthday') is-invalid @enderror" id="birthday" name="birthday" placeholder="name@example.com">
+		<input lass="form-control" type="date" class="form-control"  class="@error('birthday') is-invalid @enderror" id="birthday" name="birthday" placeholder="name@example.com">
 		<label for="floatingUsername">Fecha de Nacimiento</label>
+
 		</div>
     @error('birthday')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
     		<div class="form-floating">
-		<input type="text" class="form-control"  class="@error('home_address_id') is-invalid @enderror" id="home_address_id" name="home_address_id" placeholder="name@example.com">
-		<label for="floatingUsername">Direccion</label>
+		
+    <select name="country_id" id="country_id" class="form-select mb-4" aria-label="Seleccione una asignatura asociada:">
+        @foreach ($countries as $country)
+          <option  value="{{$country->id}}" selected="">{{$country->name}}</option>
+        @endforeach
+      </select>
 		</div>
     @error('home_address_id')
         <div class="alert alert-danger">{{ $message }}</div>

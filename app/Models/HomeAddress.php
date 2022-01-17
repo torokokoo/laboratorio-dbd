@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class HomeAddress extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function comuna(){
-        return $this->belongsTo('App\Models\Comuna');
-    }
+  public function comuna()
+  {
+    return $this->belongsTo('App\Models\Comuna');
+  }
 
-    public function user(){
-        return $this->hasMany('App\Models\User');
-    }
+  public function user()
+  {
+    return $this->hasMany('App\Models\User');
+  }
 }

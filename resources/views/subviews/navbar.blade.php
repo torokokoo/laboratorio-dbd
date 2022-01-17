@@ -21,12 +21,17 @@
 				<li>
 					<a class="nav-link" href="/register"><span class="bi-person-fill"></span> Registrarse</a>
 				</li>
-                                            @if(isset($_COOKIE['Logeado'])){
-                                       <li>
-			                              		<a class="nav-link" href="/registerw"><span class="bi-person-fill"></span> Biblioteca</a>
-			                              	</li>
-                                     }
-                                     @endif
+        {{-- Se muestra las ventanas de user y logout si el usuario esta logeado --}}
+        @if(isset($_COOKIE['id'])){
+        <li>
+	      	<a class="nav-link" href="/user/{{$_COOKIE['id']}}"><span class="bi-person-fill"></span>{{$_COOKIE['user']}}</a>  
+
+      	</li>
+        <li>
+	      	<a class="nav-link" href="/logout"><span class="bi-person-fill"></span>Logout</a>
+      	</li>
+        }
+        @endif
 		</div>
 </div>
 </nav> 

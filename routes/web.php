@@ -19,12 +19,9 @@ Route::get('/', function () {
 // Login - Register
 Route::get('/register', 'RegisterController@view'); // Vista Register
 Route::post('/register', 'RegisterController@store'); // Registro de usuario
-
 Route::get('/login', 'SessionController@view'); // Vista Login (PENDIENTE)
 Route::post('/login', 'SessionController@login');
-Route::get('/logout', [SessionController::class, 'destroy'])
-  ->middleware('auth')
-  ->name('login.destroy');
+Route::get('/logout', 'SessionController@logout');
 
 // Edicion de datos del usuario
 Route::get('user/{user}/editAdmin', 'UserController@editAdmin');  // Vista editar datos de usuario (Admin)

@@ -63,7 +63,7 @@
 		<main class="form-signin">
 		<form method="POST" action="">
       @csrf
-		<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+		<img class="mb-4" src="https://i.ytimg.com/vi/P8VUrQwENm8/maxresdefault.jpg" alt="" width="72" height="57">
 		<h1 class="h3 mb-3 fw-normal">Ingresar</h1>
 
 		<div class="form-floating">
@@ -82,7 +82,6 @@
     @error('password')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-    
 		<div class="checkbox mb-3">
 		<label>
 			<input type="checkbox" value="remember-me"> Recuerdame
