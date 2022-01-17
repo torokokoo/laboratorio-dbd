@@ -21,9 +21,6 @@
 				<li>
 					<a class="nav-link" href="/register"><span class="bi-person-fill"></span> Registrarse</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href=""><span class="bi-box-arrow-right"></span> Salir</a>
-				</li>
 		</div>
 </div>
-</nav>   
+</nav> 

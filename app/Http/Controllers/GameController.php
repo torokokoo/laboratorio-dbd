@@ -101,7 +101,7 @@ class GameController extends Controller
     if (empty($game) or $game->delete) {
       return response("404 Not Found", 404);
     }
-    return response($game, 200);
+    return view('game',compact('game'));
   }
 
   /**
@@ -165,7 +165,7 @@ class GameController extends Controller
     $game->url_id = $request->url_id;
     $game->demo_id = $request->demo_id;
     $game->save();
-    return redirect()->route('/', $game);
+    return redirect()->to('/');
   }
 
   /**
