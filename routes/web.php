@@ -28,13 +28,13 @@ Route::get('/logout', [SessionController::class, 'destroy'])
 
 // Edicion de datos del usuario
 Route::get('user/{user}/editAdmin', 'UserController@editAdmin');  // Vista editar datos de usuario (Admin)
-Route::put('user/{user}/edit', 'UserController@update'); // Editar datos de usuario (Usuario)
-Route::get('user/{user}/edit', 'UserController@edit'); // Vista editar datos de usuario (Usuario)
-Route::put('user/{user}/editAdmin', 'UserController@update'); // Editar datos de usuario (Admin) 
+Route::put('user/{user}/edit', 'UserController@update');          // Editar datos de usuario (Usuario)
+Route::get('user/{user}/edit', 'UserController@edit');            // Vista editar datos de usuario (Usuario)
+Route::put('user/{user}/editAdmin', 'UserController@update');     // Editar datos de usuario (Admin) 
 
 // Edicion de datos del juego
-Route::get('game/{game}/edit', 'GameController@edit');  // Vista editar datos de juego (Admin)
-Route::put('game/{game}/edit', 'GameController@update'); // Editar datos de juego (Admin)
+Route::get('game/{game}/edit', 'GameController@edit');            // Vista editar datos de juego (Admin)
+Route::put('game/{game}/edit', 'GameController@update');          // Editar datos de juego (Admin)
 
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');
