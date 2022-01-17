@@ -25,18 +25,18 @@
 				@if(isset($_COOKIE['id'])){
 				<li>
 					<a class="nav-link" href="/user/{{$_COOKIE['id']}}"><span
-							class="bi-person-fill"></span>{{$_COOKIE['user']}}</a>
+							class="bi-person-fill"></span> {{$_COOKIE['user']}}</a>
 
 				</li>
 				<li>
-					<a class="nav-link" href="/library/{{$_COOKIE['id']}}"><span class="bi-person-fill"></span>Mi Biblioteca</a>
+					<a class="nav-link" href="/library/{{$_COOKIE['id']}}"><span class="bi-collection"></span> Mi Biblioteca</a>
 				</li>
 				<li>
-					<a class="nav-link" href="#"><span class="bi-person-fill"></span>Mi Lista De Deseos</a>
+					<a class="nav-link" href="#"><span class="bi-card-checklist"></span> Mi Lista De Deseos</a>
 				</li>
 
 				<li>
-					<a class="nav-link" href="/logout"><span class="bi-person-fill"></span>Logout</a>
+					<a class="nav-link" href="/logout"><span class="bi-box-arrow-right"></span> Logout</a>
 				</li>
 				}@else
 				<li class="nav-item">
