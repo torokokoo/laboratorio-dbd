@@ -27,14 +27,17 @@
                             <h5 class="card-title">{{$game->name}}</h5>
                             <p class="card-text">${{$game->price}}</p>
                             <a href="/game/{{ $game->id }}" class="btn btn-primary">Ver juego</a>
+                            @if(isset($_COOKIE['role']))
                             @if($_COOKIE['role']=='Admin')
                             <a href="/game/{{ $game->id }}/edit" class="btn btn-primary">Editar juego</a>
+                            @endif
                             @endif
                         </div>
                     </div>
                 </div>     
                 @endforeach
                 {{-- APARTADO PARA CREAR JUEGO --}}
+                @if(isset($_COOKIE['role']))
                 @if($_COOKIE['role']=='Developer')
                 <div class="col-4 d-flex justify-content-center my-3">
                     <div class="card" style="width: 18rem;">
@@ -48,6 +51,7 @@
                         </div>
                     </div>
                 </div>   
+              @endif
               @endif
             </div>
         </div>

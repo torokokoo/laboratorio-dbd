@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\User;
 use App\Models\UserRole;
 use Exception;
 use Illuminate\Http\Request;
 
-class SessionController extends Authenticatable
+class SessionController
 {
   public function view()
   {
@@ -23,17 +22,16 @@ class SessionController extends Authenticatable
       if ($user->password == $request->password) {
         $id = $user->id;
         $user = User::find($id);
-        // try {
-
-        //   $rol = UserRole::where('user_id', $id)->first();
-        //   $role = Role::find($rol->id);
-        // } catch (Exception $e) {
-        //   $rol = UserRole::first();
-        //   $role = Role::find($rol->id);
-        // }
-        // setcookie("role", $role->name);
+        try {
+          $rol = UserRole::where('user_id', $id)->first();
+          $role = Role::find($rol->id);
+          setcookie("role", $role->name);
+        } catch (Exception $e) {
+          $rol = UserRole::first();
+          $role = Role::find($rol->id);
+          setcookie("role", $role->name);
+        }
         setcookie("id", $id);
-
         setcookie("user", $user->name);
 
         return
@@ -52,6 +50,7 @@ class SessionController extends Authenticatable
     // unset($_COOKIE['username']);
     setcookie("id", "", time() - 3600);
     setcookie("user", "", time() - 3600);
+    setcookie("role", "", time() - 3600);
     return redirect()->to('/login');
   }
 }

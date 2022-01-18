@@ -24,11 +24,12 @@
 					<a class="nav-link" href="/user/{{$_COOKIE['id']}}"><span
 							class="bi-person-fill"></span> {{$_COOKIE['user']}}</a>
 				</li>
+        @if(isset($_COOKIE['role']))
         @if($_COOKIE['role']=='Admin'){
         	<li>
 					<a class="nav-link"><span class="bi-person-fill"></span> Acmin</a>
 				</li>
-        }@else{
+        }@elseif($_COOKIE['role']=='Developer'){
           <li>
 					<a class="nav-link"><span class="bi-person-fill"></span>Developer</a>
 				</li>
@@ -45,13 +46,19 @@
 					<a class="nav-link" href="/logout"><span class="bi-box-arrow-right"></span> Logout</a>
 				</li>
 				}@else
-				<li class="nav-item">
+
+
+				@endif
+        @else
+        <li class="nav-item">
 					<a class="nav-link" href="/login"><span class="bi-box-arrow-in-right"></span> Iniciar Sesión</a>
-				</li>
-				<li>
+				</li> 
+              				<li>
 					<a class="nav-link" href="/register"><span class="bi-person-fill"></span> Registrarse</a>
 				</li>
-				@endif
+        @endif
+  
+
 		</div>
 	</div>
 </nav>
