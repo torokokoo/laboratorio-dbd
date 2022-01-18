@@ -9,9 +9,6 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="/">Home</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link" href="#">Tienda</a>
 				</li>
 				@if(isset($_COOKIE['id'])){
@@ -26,8 +23,17 @@
 				<li>
 					<a class="nav-link" href="/user/{{$_COOKIE['id']}}"><span
 							class="bi-person-fill"></span> {{$_COOKIE['user']}}</a>
-
 				</li>
+        @if($_COOKIE['role']=='Admin'){
+        	<li>
+					<a class="nav-link"><span class="bi-person-fill"></span> Acmin</a>
+				</li>
+        }@else{
+          <li>
+					<a class="nav-link"><span class="bi-person-fill"></span>Developer</a>
+				</li>
+        }
+        @endif
 				<li>
 					<a class="nav-link" href="/library/{{$_COOKIE['id']}}"><span class="bi-collection"></span> Mi Biblioteca</a>
 				</li>
@@ -40,7 +46,7 @@
 				</li>
 				}@else
 				<li class="nav-item">
-					<a class="nav-link" href="/login"><span class="bi-box-arrow-in-right"></span> Ingresar</a>
+					<a class="nav-link" href="/login"><span class="bi-box-arrow-in-right"></span> Iniciar Sesión</a>
 				</li>
 				<li>
 					<a class="nav-link" href="/register"><span class="bi-person-fill"></span> Registrarse</a>

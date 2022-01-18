@@ -56,19 +56,23 @@
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
 		}
+    img{
+      width: 300px;
+      height: 200px;
+    }
 	</style>
 		@include('subviews.navbar')
-
+<section>
 	<div class="container">
 		<main class="form-signin">
 		<form method="POST" action="">
       @csrf
 		<img class="mb-4" src="https://i.ytimg.com/vi/P8VUrQwENm8/maxresdefault.jpg" alt="" width="72" height="57">
-		<h1 class="h3 mb-3 fw-normal">Ingresar</h1>
+		<h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
 
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com">
-		<label for="floatingUsername">Correo Electronico</label>
+		<label for="floatingUsername">Correo Electrónico</label>
 		</div>
     @error('email')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -88,12 +92,11 @@
 		</label>
 		</div>
 		<button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-		<p class="mt-5 mb-3 text-muted">&copy; DEBEDE 2021-2022</p>
+		<p class="mt-5 mb-3 text-muted">&copy; Dbd 2021-2022</p>
 		</form>
 		</main>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </section>
 </body>	
-</html>
-  </body>
 </html>

@@ -12,12 +12,17 @@
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
 </head>
 <body id="body">
+    <style>
+    section{
+      padding: 50px;
+    }
+  </style>
     @include('subviews.navbar')
-
-    <h1 class = "m-2" style="color: var(black); ">{{$game->name}}</h1>
-    <h6 class = "m-2" style="color: var(black); "> Descripción: {{$game->description}} </h6>
-    <h6 class = "m-2" style="color: var(black); "> Almacenamiento: {{$game->storage}} MB </h6>
-    <h6 class = "m-2" style="color: var(black); "> Precio: ${{$game->price}} </h6>
+<section>
+    <h1 style="color: var(black); ">{{$game->name}}</h1>
+    <h6 style="color: var(black); "> Descripción: {{$game->description}} </h6>
+    <h6 style="color: var(black); "> Almacenamiento: {{$game->storage}} MB </h6>
+    <h6 style="color: var(black); "> Precio: ${{$game->price}} </h6>
     <img src="{{$game->image}}" class="rounded mx-auto d-block" alt="Imagen de juego">
     <br> <br>
     <div class="d-flex justify-content-center">
@@ -33,6 +38,7 @@
     <button type="button" class="btn btn-danger">No Me Gusta</button>
     <h2> <br> <br> COMENTARIOS</h2>
     <hr />
+    </section>
 </body>
 
 </html>

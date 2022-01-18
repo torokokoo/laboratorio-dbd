@@ -11,9 +11,15 @@
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
     <title>Users</title>
 </head>
+<style>
+  section{
+    padding: 20px;
+  }
+</style>
 <body>
 @include('subviews.navbar')
-<H1>USUARIOS REGISTRADOS EN LA PLATAFORMA</H1>
+<section>
+<H1>Usarios Registrados</H1>
 <div class="container mt-5">
         <table class="table table-dark table-striped">
             <thead>
@@ -30,15 +36,17 @@
                   <th scope="row">{{$user->id}}</th>
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
+                  
                   <td>
                     <a class="btn btn-outline-warning" href="/user/{{$user->id}}" role = "button">Ver más información</a>
                   </td>
                 </tr>
                 @endforeach
+
               </tbody>
         </table>
     </div>
-    
+    </section>
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -81,7 +81,7 @@
     
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com">
-		<label for="floatingUsername">Correo Electronico</label>
+		<label for="floatingUsername">Correo Electrónico</label>
 		</div>
     @error('email')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -127,7 +127,7 @@
 		<div class="mt-3">
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
 		</div>
-		<p class="mt-5 mb-3 text-muted">&copy; DEBEDE 2021-2022</p>
+		<p class="mt-5 mb-3 text-muted">&copy; Dbd 2021-2022</p>
 		</form>
 		</main>
 	</div>

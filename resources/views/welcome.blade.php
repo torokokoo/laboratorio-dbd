@@ -25,13 +25,30 @@
                         <img src="{{$game->image}}" class="card-img-top" alt="Imagen de curso">
                         <div class="card-body">
                             <h5 class="card-title">{{$game->name}}</h5>
-                            {{-- <p class="card-text">{{$game->description}}</p> --}}
                             <p class="card-text">${{$game->price}}</p>
                             <a href="/game/{{ $game->id }}" class="btn btn-primary">Ver juego</a>
+                            @if($_COOKIE['role']=='Admin')
+                            <a href="/game/{{ $game->id }}/edit" class="btn btn-primary">Editar juego</a>
+                            @endif
                         </div>
                     </div>
                 </div>     
                 @endforeach
+                {{-- APARTADO PARA CREAR JUEGO --}}
+                @if($_COOKIE['role']=='Developer')
+                <div class="col-4 d-flex justify-content-center my-3">
+                    <div class="card" style="width: 18rem;">
+                      {{-- PONER IMAGEN DE CREAR JUEGO TIPO " + " --}}
+                        <img src="{{$game->image}}" class="card-img-top" alt="Imagen de curso"> 
+                        <div class="card-body">
+                            <h5 class="card-title">Crear Juego</h5>
+ 
+                            <a href="/game/create" class="btn btn-primary">Crear juego</a>
+
+                        </div>
+                    </div>
+                </div>   
+              @endif
             </div>
         </div>
         <section class = "ranking">

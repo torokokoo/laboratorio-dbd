@@ -28,9 +28,11 @@ Route::post('/game/create', 'GameController@store');
 
 // Edicion de datos del usuario
 Route::get('user/{user}/editAdmin', 'UserController@editAdmin');  // Vista editar datos de usuario (Admin)
+Route::get('usersC', 'UserController@indexCrud');  // Vista editar datos de usuario (Admin)
 Route::put('user/{user}/edit', 'UserController@update');          // Editar datos de usuario (Usuario)
 Route::get('user/{user}/edit', 'UserController@edit');            // Vista editar datos de usuario (Usuario)
 Route::put('user/{user}/editAdmin', 'UserController@update');     // Editar datos de usuario (Admin) 
+
 
 // Edicion de datos del juego
 Route::get('game/{game}/edit', 'GameController@edit');            // Vista editar datos de juego (Admin)
@@ -160,6 +162,13 @@ Route::post('/role/create', 'RoleController@store');
 Route::put('/role/update/{id}', 'RoleController@update');
 Route::delete('/role/delete/{id}', 'RoleController@destroy');
 Route::delete('/role/deleteH/{id}', 'RoleController@hard_destroy');
+
+Route::get('/user_roles', 'UserRoleController@index');
+Route::get('user_role/{id}', 'UserRoleController@show');
+// Route::post('/role/create', 'RoleController@store');
+// Route::put('/role/update/{id}', 'RoleController@update');
+// Route::delete('/role/delete/{id}', 'RoleController@destroy');
+// Route::delete('/role/deleteH/{id}', 'RoleController@hard_destroy');
 
 Route::get('/transactions', 'TransactionController@index');
 Route::get('/transaction/{id}', 'TransactionController@show');

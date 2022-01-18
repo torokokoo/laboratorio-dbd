@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -24,7 +27,16 @@ class UserController extends Controller
     }
     return view('users', compact('users'));
   }
-
+  public function indexCrud()
+  {
+    $users = User::where('delete', false)->get();
+    if ($users->isEmpty()) {
+      return response()->json([
+        'respuesta' => 'No hay users'
+      ]);
+    }
+    return response($users, 200);
+  }
   /**
    * Show the form for creating a new resource.
    *
@@ -98,13 +110,7 @@ class UserController extends Controller
   public function show($id)
   {
     $user = User::find($id);
-    if (empty($user) or $user->delete) {
-      return response()->json([
-        'respuesta' => 'No se ha encontrado ese user',
-      ]);
-    }
-
-    return view('userProfile',compact('user'));
+    return view('userProfile', compact('user'));
   }
 
   /**

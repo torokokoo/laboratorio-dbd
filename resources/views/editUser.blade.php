@@ -123,7 +123,7 @@
 		<div class="mt-3">
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Aceptar cambios</button>
 		</div>
-		<p class="mt-5 mb-3 text-muted">&copy; DEBEDE 2021-2022</p>
+		<p class="mt-5 mb-3 text-muted">&copy; Dbd 2021-2022</p>
 		</form>
 		</main>
 	</div>
