@@ -19,7 +19,7 @@
 <body>
 @include('subviews.navbar')
 <section>
-<h1>Usarios Registrados</h  1>
+<h1>Usarios Registrados</h1>
 <div class="container mt-5">
         <table class="table table-dark table-striped">
             <thead>

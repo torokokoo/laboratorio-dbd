@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
-use App\Models\UserRole;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
