@@ -24,7 +24,8 @@ class CreateGamesTable extends Migration
       $table->foreign('age_restriction_id')->references('id')->on('age_restrictions');
       $table->unsignedBigInteger('url_id')->nullable();
       $table->foreign('url_id')->references('id')->on('urls');
-      $table->unsignedBigInteger('demo_id')->nullable();
+      $table->unsignedBigInteger('demo_id')->nullable()->default(0);
+      $table->unsignedBigInteger('soldUnits')->nullable();
       $table->foreign('demo_id')->references('id')->on('demos');
       $table->boolean('delete')->default(false);
       $table->timestamps();

@@ -70,6 +70,8 @@
 		<form action="" method="post" >
       @csrf
         @method('put')
+        {{-- Condicional para que el usuario solamente pueda actualizar su informacion propia --}}
+        @if(($_COOKIE['id'])==$user->id or ($_COOKIE['role'])=='Admin')    
 		<h1 class="h3 mb-3 fw-normal">Edición de usuario</h1>
 
 		<div class="form-floating">
@@ -125,6 +127,9 @@
 		</div>
 		<p class="mt-5 mb-3 text-muted">&copy; Dbd 2021-2022</p>
 		</form>
+    @else
+    <h2>401 No Autorizado</h2>
+    @endif
 		</main>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

@@ -16,6 +16,10 @@
     section{
       padding: 10px;
     }
+    a{
+      text-decoration: none;
+      color: white;
+    }
   </style>
   @include('subviews.navbar')
   <section>
@@ -35,6 +39,7 @@
       <h6 style="color: var(--bs-light);">{{$_COOKIE['role']}}</h6>
       <button type="button" class="btn btn-primary">Seguir</button>
       <button type="button" class="btn btn-success">Enviar Mensaje</button>
+      <button type="button" class="btn btn-success"><a href="/user/{{$_COOKIE['id']}}/edit">Editar Perfil</a> </button>
     </div>
 
   </section>

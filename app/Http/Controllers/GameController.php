@@ -24,7 +24,17 @@ class GameController extends Controller
     }
     return view('welcome', compact('games'));
   }
-
+  public function indexC()
+  {
+    $games = Game::where('delete', false)->get();
+    if ($games->isEmpty()) {
+      return response()->json([
+        'respuesta' => 'No se encuentran juegos'
+      ]);
+    }
+    return
+      response($games, 200);
+  }
   /**
    * Show the form for creating a new resource.
    *
@@ -33,6 +43,12 @@ class GameController extends Controller
   public function create()
   {
     return view('subirJuego');
+  }
+
+  public function topSales()
+  {
+    $games = Game::all()->sortByDesc('soldUnits');
+    return view('ranking', compact('games'));
   }
 
   /**
@@ -105,7 +121,7 @@ class GameController extends Controller
     if (empty($game) or $game->delete) {
       return response("404 Not Found", 404);
     }
-    return view('game',compact('game'));
+    return view('game', compact('game'));
   }
 
   /**
