@@ -64,7 +64,11 @@
 		}
 	</style>
 		@include('subviews.navbar')
-
+    	@if(isset($_COOKIE['id']))
+        <div class="alert alert-warning" role="alert">
+        Ya logeado
+        </div>
+      @else
 	<div class="container">
 		<main class="form-signin">
 		<form method="POST" action="">
@@ -112,18 +116,16 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
-    		<div class="form-floating">
-		
+    		<div class="form-floating">	
     <select name="country_id" id="country_id" class="form-select mb-4" aria-label="Seleccione una asignatura asociada:">
         @foreach ($countries as $country)
           <option  value="{{$country->id}}" selected="">{{$country->name}}</option>
         @endforeach
       </select>
 		</div>
-    @error('home_address_id')
+    @error('country_id')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
-
 		<div class="mt-3">
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
 		</div>
@@ -133,6 +135,7 @@
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>	
+@endif
 </html>
   </body>
 </html>

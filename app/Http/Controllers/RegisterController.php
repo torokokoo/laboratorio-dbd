@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -27,11 +28,10 @@ class RegisterController extends Controller
       $request->all(),
       [
         'name' => 'required|min:2|max:50',
-        'email' => 'required|email|max:50',
+        'email' => 'required|email|unique:users',
         'password' => 'required|min:8',
         'birthday' => 'required|date',
         'country_id' => 'required',
-        //'home_address_id' => 'required|exists:home_addresses,id',
       ],
       [
         'name.required' => 'Debes ingresar un nombre',
@@ -45,7 +45,7 @@ class RegisterController extends Controller
         'birthday.required' => 'Debes ingresar una fecha de nacimiento',
         'birthday.date' => 'La fecha tiene que ser valida',
         'country_id.exists' => 'Debe ingresar pais',
-        //'home_address_id.exists' => 'El ID home address no existe',
+        'email.unique' => 'El correo ya existe'
       ]
     );
 
@@ -54,11 +54,14 @@ class RegisterController extends Controller
     }
 
     $newUser = new User();
+    $role = Role::where('name', 'Client')->first();
     $newUser->name = $request->name;
     $newUser->email = $request->email;
     $newUser->password = $request->password;
     $newUser->birthday = $request->birthday;
+    $newUser->role_id = $role->id;
     $newUser->country_id = $request->country_id;
+    $newUser->currency_id = 1;
     $newUser->save();
     return redirect()->to('/login');
   }

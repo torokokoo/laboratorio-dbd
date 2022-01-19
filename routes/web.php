@@ -29,8 +29,8 @@ Route::post('/game/create', 'GameController@store');
 // Edicion de datos del usuario
 Route::get('user/{user}/editAdmin', 'UserController@editAdmin');  // Vista editar datos de usuario (Admin)
 Route::get('usersC', 'UserController@indexCrud');  // Vista editar datos de usuario (Admin)
-Route::put('user/{user}/edit', 'UserController@update');          // Editar datos de usuario (Usuario)
 Route::get('user/{user}/edit', 'UserController@edit');            // Vista editar datos de usuario (Usuario)
+Route::put('user/{user}/edit', 'UserController@update');          // Editar datos de usuario (Usuario)
 Route::put('user/{user}/editAdmin', 'UserController@update');     // Editar datos de usuario (Admin) 
 
 Route::get('gamesC', 'GameController@indexC');  // Vista editar datos de usuario (Admin)
@@ -38,7 +38,7 @@ Route::get('gamesC', 'GameController@indexC');  // Vista editar datos de usuario
 // Edicion de datos del juego
 Route::get('game/{game}/edit', 'GameController@edit');            // Vista editar datos de juego (Admin)
 Route::put('game/{game}/edit', 'GameController@update');          // Editar datos de juego (Admin)
-Route::get('games/ranking', '<GameController></GameController>@topSales');          // Editar datos de juego (Admin)
+Route::get('games/ranking', 'GameController@topSales');          // Editar datos de juego (Admin)
 
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');

@@ -62,6 +62,11 @@
     }
 	</style>
 		@include('subviews.navbar')
+    	@if(isset($_COOKIE['id']))
+        <div class="alert alert-warning" role="alert">
+        Ya logeado
+        </div>
+      @else
 <section>
 	<div class="container">
 		<main class="form-signin">
@@ -74,16 +79,14 @@
 		<input type="text" class="form-control"  class="@error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com">
 		<label for="floatingUsername">Correo Electrónico</label>
 		</div>
-    @error('email')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-
-
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('password') is-invalid @enderror" id="password" name="password" placeholder="name@example.com">
 		<label for="floatingUsername">Contraseña</label>
 		</div>
-    @error('password')
+    @error('email')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+        @error('password')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 		<div class="checkbox mb-3">
@@ -98,5 +101,6 @@
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </section>
+  @endif
 </body>	
 </html>

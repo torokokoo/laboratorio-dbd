@@ -14,19 +14,14 @@
         <li class="nav-item">
 					<a class="nav-link" href="/games/ranking">Top Ventas</a>
 				</li>
-				@if(isset($_COOKIE['id'])){
-          	@if(isset($_COOKIE['role']))
-            @if($_COOKIE['role']=='Admin')
 				<li class="nav-item">
 					<a class="nav-link" href="/users">Usuarios</a>
 				</li>
-        @endif
-        @endif
-			}@endif
+
 			</ul>
 			<ul class="nav navbar-nav ml-auto">
 				{{-- Se muestra las ventanas de user y logout si el usuario esta logeado --}}
-				@if(isset($_COOKIE['id'])){
+				@if(isset($_COOKIE['id']))
 				<li>
 					<a class="nav-link" href="/user/{{$_COOKIE['id']}}"><span
 							class="bi-person-fill"></span> {{$_COOKIE['user']}}</a>

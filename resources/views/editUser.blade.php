@@ -74,7 +74,6 @@
         @if(isset($_COOKIE['id']) and isset($_COOKIE['role']))
         @if(($_COOKIE['id'])==$user->id or ($_COOKIE['role'])=='Admin')    
 		<h1 class="h3 mb-3 fw-normal">Edición de usuario</h1>
-
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('name') is-invalid @enderror" id="name" name="name" placeholder="name@example.com">
 		<label for="floatingUsername">Nombre de usuario</label>
@@ -99,25 +98,31 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
-		<div class="form-floating">
-		<input type="text" class="form-control"  class="@error('home_address_id') is-invalid @enderror" id="home_address_id" name="home_address_id" placeholder="name@example.com">
-		<label for="floatingUsername">Direccion</label>
-		</div>
-    @error('home_address_id')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-
     		<div class="form-floating">
-		<input type="text" class="form-control"  class="@error('birthday') is-invalid @enderror" id="birthday" name="birthday" placeholder="name@example.com">
-		<label for="floatingUsername">Fecha de nacimiento</label>
+		<input lass="form-control" type="date" class="form-control"  class="@error('birthday') is-invalid @enderror" id="birthday" name="birthday" placeholder="name@example.com">
+		<label for="floatingUsername">Fecha de Nacimiento</label>
 		</div>
     @error('birthday')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
-		<div class="form-floating">
-		<input type="text" class="form-control"  class="@error('currency_id') is-invalid @enderror" id="currency_id" name="currency_id" placeholder="name@example.com">
-		<label for="floatingUsername">Moneda</label>
+    		<div class="form-floating">	
+    <select name="country_id" id="country_id" class="form-select mb-4" aria-label="Seleccione una asignatura asociada:">
+        @foreach ($countries as $country)
+          <option  value="{{$country->id}}" selected="">{{$country->name}}</option>
+        @endforeach
+      </select>
+		</div>
+    @error('country_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
+        <div class="form-floating">	
+    <select name="currency_id" id="currency_id" class="form-select mb-4" aria-label="Seleccione una asignatura asociada:">
+        @foreach ($currencies as $currency)
+          <option  value="{{$currency->id}}" selected="">{{$currency->name}}</option>
+        @endforeach
+      </select>
 		</div>
     @error('currency_id')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -129,10 +134,14 @@
 		<p class="mt-5 mb-3 text-muted">&copy; Dbd 2021-2022</p>
 		</form>
     @else
-    <h2>401 No Autorizado</h2>
+<div class="alert alert-danger" role="alert">
+  No autorizado
+</div>
     @endif
     @else
-    <h2>401 No Autorizado</h2>
+<div class="alert alert-danger" role="alert">
+  No autorizado
+</div>
     @endif
 		</main>
 	</div>

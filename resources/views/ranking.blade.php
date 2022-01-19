@@ -40,11 +40,9 @@
     @endforeach
   </tbody>
 </table>
-        </section>
+  </section>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-
 <body>
-  
 </body>
 </html>

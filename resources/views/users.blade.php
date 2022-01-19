@@ -15,9 +15,13 @@
   section{
     padding: 20px;
   }
+  h2{
+    margin-left: 700px;
+  }
 </style>
 <body>
 @include('subviews.navbar')
+@if(isset($_COOKIE['id']))
 <section>
 <h1>Usarios Registrados</h1>
 <div class="container mt-5">
@@ -36,7 +40,6 @@
                   <th scope="row">{{$user->id}}</th>
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
-                  
                   <td>
                     <a class="btn btn-outline-warning" href="/user/{{$user->id}}" role = "button">Ver más información</a>
                   </td>
@@ -47,7 +50,9 @@
         </table>
     </div>
     </section>
-
+    @else
+    <h2>401 No Autorizado</h2>
+    @endif
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

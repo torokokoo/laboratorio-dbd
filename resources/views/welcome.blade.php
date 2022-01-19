@@ -19,10 +19,10 @@
         <div class="container ">
             <h4 class="mb-5">Elige un juego</h4>
                 @if(isset($_COOKIE['role']))
-                @if($_COOKIE['role']=='Developer')
+                @if(($_COOKIE['role']=='Developer') or ($_COOKIE['role']=='Admin'))
                 <div class="col-4 d-flex justify-content-center my-3">
                     <div class="card" style="width: 7rem;">
-                        <img src="https://icons-for-free.com/iconfiles/png/512/circle+more+plus+icon-1320183136549593898.png" class="card-img-top" alt="Imagen de curso"> 
+                        <img src="https://icons-for-free.com/iconfiles/png/512/circle+more+plus+icon-1320183136549593898.png" class="card-img-top" alt="Imagen de juego"> 
                             <h6 class="card-title">Crear Juego</h6>
                             <a href="/game/create" class="btn btn-primary">Crear juego</a>
                     </div>
@@ -33,7 +33,7 @@
                 @foreach ($games as $game)
                 <div class="col-4 d-flex justify-content-center my-3">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{$game->image}}" class="card-img-top" alt="Imagen de curso">
+                        <img src="{{$game->image}}" class="card-img-top" alt="Imagen de juego">
                         <div class="card-body">
                             <h5 class="card-title">{{$game->name}}</h5>
                             <p class="card-text">${{$game->price}}</p>

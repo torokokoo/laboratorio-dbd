@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
+use App\Models\Currency;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Validator;
+
+use function PHPUnit\Framework\returnSelf;
 
 class UserController extends Controller
 {
@@ -82,7 +86,7 @@ class UserController extends Controller
     );
 
     if ($validator->fails()) {
-      return response($validator->errors());
+      return $validator->validate();
     }
 
     $newUser = new User();
@@ -108,10 +112,18 @@ class UserController extends Controller
    */
   public function show($id)
   {
-    $user = User::find($id);
-    $role = Role::find($user->role_id);
-    $rol = $role->name;
-    return view('userProfile', compact('user', 'rol'));
+    try {
+      $user = User::find($id);
+      $curr = Currency::find($user->currency_id);
+      $role = Role::find($user->role_id);
+      $count = Country::find($user->country_id);
+      $rol = $role->name;
+      $cur = $curr->name;
+      $country = $count->name;
+      return view('userProfile', compact('user', 'country', 'rol', 'cur'));
+    } catch (Exception $e) {
+      return 404;
+    }
   }
 
   /**
@@ -126,7 +138,9 @@ class UserController extends Controller
   }
   public function edit(User $user)
   {
-    return view('editUser', compact('user'));
+    $countries = Country::All();
+    $currencies = Currency::All();
+    return view('editUser', compact('user', 'countries', 'currencies'));
   }
   /**
    * Update the specified resource in storage.
@@ -141,12 +155,11 @@ class UserController extends Controller
       $request->all(),
       [
         'name' => 'required|min:2|max:50',
-        'email' => 'required|email|max:50',
+        'email' => 'required|email|max:50|unique:users',
         'password' => 'required|min:8',
         'birthday' => 'required|date',
-        'home_address_id' => 'required|exists:home_addresses,id',
-        'balance' => 'required',
-        'currency_id' => 'required|exists:currencies,id'
+        'country_id' => 'required',
+        'currency_id' => 'required',
       ],
       [
         'name.required' => 'Debes ingresar un nombre',
@@ -155,36 +168,34 @@ class UserController extends Controller
         'email.required' => 'Debes ingresar un email',
         'email.email' => 'Debes ingresar un email valido',
         'email.max' => 'El email excede el numero de caracteres',
+        'email.unique' => 'El email ya esta registrado',
         'password.required' => 'Debes ingresar una password',
         'password.min' => 'La password debe tener un largo minimo de 8',
         'birthday.required' => 'Debes ingresar una fecha de nacimiento',
         'birthday.date' => 'La fecha tiene que ser valida',
-        'home_address_id.exists' => 'El ID home address no existe',
-        'balance' => 'Debe ingresar una cantidad',
-        'currency_id.exists' => 'El ID de la moneda no existe',
+        'country_id.required' => 'Debe ingresar un pais',
+        'currency_id.required' => 'Debe ingresar una moneda',
 
       ]
     );
-
     if ($validator->fails()) {
       return $validator->validate();
     }
 
     $user = User::find($id);
     if (empty($user) or $user->delete) {
-      return response()->json([
-        'respuesta' => 'No se ha encontrado ese user',
-      ]);
+      return response("404 Not Found", 404);
     }
 
     $user->name = $request->name;
     $user->email = $request->email;
     $user->password = $request->password;
     $user->birthday = $request->birthday;
-    $user->balance = 0;
-    $user->home_address_id = $request->home_address_id;
+    $user->country_id = $request->country_id;
+    $user->currency_id = $request->currency_id;
     $user->save();
-    return redirect()->route('/', $user);
+    return redirect()->to('/users');
+    //return redirect()->route('/', $user);
   }
 
   /**
