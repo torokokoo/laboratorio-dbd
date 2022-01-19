@@ -112,6 +112,13 @@
 	@error('image')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+	<div class="form-floating">
+		<input type="text" class="form-control"  class="@error('video') is-invalid @enderror" id="video" name="video" placeholder="name@example.com">
+		<label for="floatingUsername">Video</label>
+		</div>
+	@error('video')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 		<div class="form-floating">
 		<input type="text" class="form-control"  class="@error('age_restriction_id') is-invalid @enderror" id="age_restriction_id" name="age_restriction_id" placeholder="name@example.com">
 		<label for="floatingUsername">Restriccion de edad</label>

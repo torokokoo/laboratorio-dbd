@@ -14,9 +14,11 @@
         <li class="nav-item">
 					<a class="nav-link" href="/games/ranking">Top Ventas</a>
 				</li>
+				@if(isset($_COOKIE['id']))
 				<li class="nav-item">
 					<a class="nav-link" href="/users">Usuarios</a>
 				</li>
+				@endif
 
 			</ul>
 			<ul class="nav navbar-nav ml-auto">
@@ -29,7 +31,7 @@
         @if(isset($_COOKIE['role']))
         @if($_COOKIE['role']=='Admin'){
         	<li>
-					<a class="nav-link"><span class="bi-person-fill"></span> Acmin</a>
+					<a class="nav-link"><span class="bi-person-fill"></span> Admin</a>
 				</li>
         }@elseif($_COOKIE['role']=='Developer'){
           <li>

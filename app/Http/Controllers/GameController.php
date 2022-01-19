@@ -100,6 +100,7 @@ class GameController extends Controller
     $newGame->price = $request->price;
     $newGame->storage = $request->storage;
     $newGame->image = $request->image;
+    $newGame->video = $request->video;
     $newGame->age_restriction_id = $request->age_restriction_id;
     $newGame->url_id = $request->url_id;
     $newGame->demo_id = $request->demo_id;
@@ -188,6 +189,7 @@ class GameController extends Controller
     $game->price = $request->price;
     $game->storage = $request->storage;
     $game->image = $request->image;
+    $game->video = $request->video;
     $game->age_restriction_id = $request->age_restriction_id;
     $game->url_id = $request->url_id;
     $game->demo_id = $request->demo_id;

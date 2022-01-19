@@ -41,8 +41,8 @@
       <button type="button" class="btn btn-success">Enviar Mensaje</button>
     	@if(isset($_COOKIE['id']))
       @if(isset($_COOKIE['role']))
-      @if($_COOKIE['role']=='Admin')
-      <button type="button" class="btn btn-success"><a href="/user/{{$_COOKIE['id']}}/edit">Editar Perfil</a> </button>
+      @if(($_COOKIE['role']=='Admin') or ($_COOKIE['id']== $user->id))
+      <button type="button" class="btn btn-danger"><a href="/user/{{$_COOKIE['id']}}/edit">Editar Perfil</a> </button>
       @endif
       @endif
       @endif
