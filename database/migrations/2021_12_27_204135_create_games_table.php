@@ -20,6 +20,7 @@ class CreateGamesTable extends Migration
       $table->float('price', 4, 2)->default(0);
       $table->float('storage', 4, 2)->default(0);
       $table->text('image');
+      $table->text('video');
       $table->unsignedBigInteger('age_restriction_id')->nullable();
       $table->foreign('age_restriction_id')->references('id')->on('age_restrictions');
       $table->unsignedBigInteger('url_id')->nullable();

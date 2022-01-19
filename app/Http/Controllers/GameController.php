@@ -67,6 +67,7 @@ class GameController extends Controller
         'price' => 'required|min:2|max:1000',
         'storage' => 'required',
         'image' => 'required',
+        'video' => 'required',
         'age_restriction_id' => 'required|exists:age_restrictions,id',
         'url_id' => 'required|exists:urls,id',
         'demo_id' => 'required|exists:demos,id'
@@ -82,6 +83,7 @@ class GameController extends Controller
         'price.required' => 'Debes ingresar un precio',
         'storage.required' => 'Debes ingresar un almacenamiento requerido',
         'image.required' => 'Debes ingresar un link de una imagen',
+        'video.required' => 'Debes ingresar un link de un video',
         'age_restriction_id.required' => 'El ID de la restriccion de edad no existe',
         'url_id.required' => 'El ID del URL no es valido',
         'demo_id.required' => 'El ID de la demo no es valido',
@@ -152,6 +154,7 @@ class GameController extends Controller
         'price' => 'required',
         'storage' => 'required',
         'image' => 'required',
+        'video' => 'required',
         'age_restriction_id' => 'required|exists:age_restrictions,id',
         'url_id' => 'required|exists:urls,id',
         'demo_id' => 'required|exists:demos,id'
@@ -167,6 +170,7 @@ class GameController extends Controller
         'price.required' => 'Debes ingresar un precio',
         'storage.required' => 'Debes ingresar un almacenamiento requerido',
         'image.required' => 'Debes ingresar un link de una imagen',
+        'video.required' => 'Debes ingresar un link de un video',
         'age_restriction_id.required' => 'El ID de la restriccion de edad no existe',
         'url_id.required' => 'El ID del URL no es valido',
         'demo_id.required' => 'El ID de la demo no es valido',
