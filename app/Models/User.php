@@ -31,9 +31,9 @@ class User extends Model
     return $this->hasMany(UserFollower::class);
   }
 
-  public function userrole()
+  public function role()
   {
-    return $this->hasMany(UserRole::class);
+    return $this->hasOne('App\Models\Role');
   }
   public function library()
   {

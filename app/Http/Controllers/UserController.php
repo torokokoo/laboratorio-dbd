@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
@@ -108,7 +109,9 @@ class UserController extends Controller
   public function show($id)
   {
     $user = User::find($id);
-    return view('userProfile', compact('user'));
+    $role = Role::find($user->role_id);
+    $rol = $role->name;
+    return view('userProfile', compact('user', 'rol'));
   }
 
   /**

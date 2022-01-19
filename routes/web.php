@@ -38,7 +38,7 @@ Route::get('gamesC', 'GameController@indexC');  // Vista editar datos de usuario
 // Edicion de datos del juego
 Route::get('game/{game}/edit', 'GameController@edit');            // Vista editar datos de juego (Admin)
 Route::put('game/{game}/edit', 'GameController@update');          // Editar datos de juego (Admin)
-Route::get('games/ranking', 'GameController@topSales');          // Editar datos de juego (Admin)
+Route::get('games/ranking', '<GameController></GameController>@topSales');          // Editar datos de juego (Admin)
 
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');
@@ -165,13 +165,6 @@ Route::put('/role/update/{id}', 'RoleController@update');
 Route::delete('/role/delete/{id}', 'RoleController@destroy');
 Route::delete('/role/deleteH/{id}', 'RoleController@hard_destroy');
 
-Route::get('/user_roles', 'UserRoleController@index');
-Route::get('user_role/{id}', 'UserRoleController@show');
-// Route::post('/role/create', 'RoleController@store');
-// Route::put('/role/update/{id}', 'RoleController@update');
-// Route::delete('/role/delete/{id}', 'RoleController@destroy');
-// Route::delete('/role/deleteH/{id}', 'RoleController@hard_destroy');
-
 Route::get('/transactions', 'TransactionController@index');
 Route::get('/transaction/{id}', 'TransactionController@show');
 Route::post('/transaction/create', 'TransactionController@store');
@@ -192,13 +185,6 @@ Route::post('/user/create', 'UserController@store');
 Route::put('/user/update/{id}', 'UserController@update');
 Route::delete('/user/delete/{id}', 'UserController@destroy');
 Route::delete('/user/deleteH/{id}', 'UserController@hard_destroy');
-
-Route::get('/user_roles_genders', 'UserRoleController@index');
-Route::get('/user_role/{id}', 'UserRoleController@show');
-Route::post('/user_role/create', 'UserRoleController@store');
-Route::put('/user_role/update/{id}', 'UserRoleController@update');
-Route::delete('/user_role/delete/{id}', 'UserRoleController@destroy');
-Route::delete('/user_role/deleteH/{id}', 'UserRoleController@hard_destroy');
 
 Route::get('/user_followers', 'UserFollowerController@index');
 Route::get('/user_follower/{id}', 'UserFollowerController@show');

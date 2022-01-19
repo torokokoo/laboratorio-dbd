@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
       $table->foreign('country_id')->references('id')->on('countries');
       $table->unsignedBigInteger('currency_id')->nullable();
       $table->foreign('currency_id')->references('id')->on('currencies');
+      $table->unsignedBigInteger('role_id')->nullable();
+      $table->foreign('role_id')->references('id')->on('roles');
       $table->boolean('delete')->default(false);
       $table->timestamps();
     });

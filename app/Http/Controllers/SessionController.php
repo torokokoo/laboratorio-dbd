@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Models\UserRole;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,30 +16,16 @@ class SessionController
   // Se logea al usuario
   public function login(Request $request)
   {
-    $user = User::where('email', $request->email,)->first();
-    try {
-      if ($user->password == $request->password) {
-        $id = $user->id;
-        $user = User::find($id);
-        try {
-          $rol = UserRole::where('user_id', $id)->first();
-          $role = Role::find($rol->id);
-          setcookie("role", $role->name);
-        } catch (Exception $e) {
-          $rol = UserRole::first();
-          $role = Role::find($rol->id);
-          setcookie("role", $role->name);
-        }
-        setcookie("id", $id);
-        setcookie("user", $user->name);
-
-        return
-          redirect()->to('/');
-      } else {
-        return redirect()->to('/login'); // Añadir mensaje de error en vez de redireccionamiento
-      }
-    } catch (Exception $e) {
-      return redirect()->to('/login');
+    $user = User::where('email', $request->email)->first();
+    if ($user->password == $request->password) {
+      $id = $user->id;
+      $rol = Role::find($user->role_id);
+      setcookie("role", $rol->name);
+      setcookie("id", $id);
+      setcookie("user", $user->name);
+      return redirect()->to('/');
+    } else {
+      return redirect()->to('/login'); // Añadir mensaje de error en vez de redireccionamiento
     }
   }
   // Se deslogea al usuario
