@@ -16,13 +16,16 @@
     section{
       padding: 50px;
     }
+    img{
+      width: 500px;
+    }
   </style>
     @include('subviews.navbar')
 <section>
     <h1 style="color: var(black); ">{{$game->name}}</h1>
     <h6 style="color: var(black); "> Descripción: {{$game->description}} </h6>
-    <h6 style="color: var(black); "> Almacenamiento: {{$game->storage}} MB </h6>
-    <h6 style="color: var(black); "> Precio: ${{$game->price}} </h6>
+    <h5 style="color: var(black); "> Almacenamiento: {{$game->storage}} GB </h6>
+    <h5 style="color: var(black); "> Precio: ${{$game->price}} </h6>
     <img src="{{$game->image}}" class="rounded mx-auto d-block" alt="Imagen de juego">
     <br> <br>
     <div class="d-flex justify-content-center">

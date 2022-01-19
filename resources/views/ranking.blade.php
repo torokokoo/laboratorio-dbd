@@ -35,7 +35,7 @@
       <td><img src="{{$game->image}}" alt=""></td>
       <td>{{$game->name}}</td>
       <td>{{$game->soldUnits}}</td>
-      <td>{{$game->storage}}</td>
+      <td>{{$game->storage}} GB</td>
     </tr>
     @endforeach
   </tbody>
