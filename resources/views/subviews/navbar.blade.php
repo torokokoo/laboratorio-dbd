@@ -29,15 +29,15 @@
 							class="bi-person-fill"></span> {{$_COOKIE['user']}}</a>
 				</li>
         @if(isset($_COOKIE['role']))
-        @if($_COOKIE['role']=='Admin'){
+        @if($_COOKIE['role']=='Admin')
         	<li>
 					<a class="nav-link"><span class="bi-person-fill"></span> Admin</a>
 				</li>
-        }@elseif($_COOKIE['role']=='Developer'){
+        @elseif($_COOKIE['role']=='Developer')
           <li>
 					<a class="nav-link"><span class="bi-person-fill"></span>Developer</a>
 				</li>
-        }
+        
         @endif
 				<li>
 					<a class="nav-link" href="/library/{{$_COOKIE['id']}}"><span class="bi-collection"></span> Mi Biblioteca</a>
@@ -49,7 +49,7 @@
 				<li>
 					<a class="nav-link" href="/logout"><span class="bi-box-arrow-right"></span> Logout</a>
 				</li>
-				}@else
+				@else
 
 
 				@endif

@@ -8,10 +8,10 @@ use App\Models\Currency;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserFollower;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 
-use function PHPUnit\Framework\returnSelf;
 
 class UserController extends Controller
 {
@@ -112,20 +112,33 @@ class UserController extends Controller
    */
   public function show($id)
   {
+
     try {
       $user = User::find($id);
+      $a = [];
+      $followers = UserFollower::where('user2_id', $user->id)->orwhere('user1_id', $user->id)->get();
+      foreach ($followers as $fol) {
+        array_push($a, $fol->id);
+      }
+      $users = User::whereIn('id', $a)->get();
+      $size = count($users);
+
       $curr = Currency::find($user->currency_id);
       $role = Role::find($user->role_id);
       $count = Country::find($user->country_id);
       $rol = $role->name;
       $cur = $curr->name;
       $country = $count->name;
-      return view('userProfile', compact('user', 'country', 'rol', 'cur'));
+      return view('userProfile', compact('user', 'country', 'rol', 'cur', 'users', 'size'));
     } catch (Exception $e) {
       return 404;
     }
   }
+  public function followers(User $user)
+  {
 
+    return view('followers', compact('user',));
+  }
   /**
    * Show the form for editing the specified resource.
    *
