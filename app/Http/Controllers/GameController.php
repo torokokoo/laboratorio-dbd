@@ -107,7 +107,7 @@ class GameController extends Controller
     );
 
     if ($validator->fails()) {
-      return response($validator->errors());
+      return $validator->validate();
     }
 
     $newGame = new Game();
