@@ -30,10 +30,16 @@
     <br> <br>
     <div class="d-flex justify-content-center">
         <div class="embed-responsive embed-responsive-16by9">
+            @if($video) 
             <iframe width="560" height="315" src="{{$game->video}}"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
+            @else
+            <div class="alert alert-warning" role="alert">
+              No tienes la edad suficiente para visualizar este video!
+            </div>
+            @endif
         </div>
     </div>
     <a href="/buy/{{$game->id}}"><button type="button" class="btn btn-primary">Comprar</button></a>

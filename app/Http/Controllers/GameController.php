@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\AgeRestriction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -127,7 +128,20 @@ class GameController extends Controller
     if (empty($game) or $game->delete) {
       return response("404 Not Found", 404);
     }
-    return view('game', compact('game'));
+
+    $age_restriction = AgeRestriction::find($game->age_restriction_id);
+    if (isset($_COOKIE['id'])){
+      $user = User::find($_COOKIE['id']);
+      $today = date('Y-m-d');
+      $diff = date_diff(date_create($user->birthday), date_create($today));
+      $age = $diff->format('%y');
+
+      if ($age < $age_restriction->age_restriction && $_COOKIE['role'] == 'Client'){
+        return view('game', compact('game'))->with('video', false);
+      }
+    }
+
+    return view('game', compact('game'))->with('video', true);
   }
 
   /**
