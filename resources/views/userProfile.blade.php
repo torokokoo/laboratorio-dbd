@@ -16,6 +16,9 @@
     section{
       padding: 10px;
     }
+    *{
+      color: white;
+    }
     a{
       text-decoration: none;
       color: white;
@@ -24,9 +27,8 @@
   @include('subviews.navbar')
   <section>
     <div class="col-4 mx-auto" style="background: rgb(40,40,51);border-radius: 4px;transform-origin: center;padding: 20px; margin-top: 40px" just>
-      <h1 style="color: var(--bs-light); ">Información de usuario</h1>
-      <h4 style="color: var(--bs-light)">Nombre de usuario</h4>
-      <h6 style="color: var(--bs-light); ">{{$user->name}}</h6>
+      <h1 style="color: var(--bs-light); ">{{$user->name}}</h1>
+      <h4 style="color: var(--bs-light)">{{$size}} Seguidores</h4>
       <h4 style="color: var(--bs-light)">Correo Electronico</h4>
       <h6 style="color: var(--bs-light);">{{$user->email}}</h6>
       <h4 style="color: var(--bs-light)">Fecha de nacimiento</h4>
@@ -42,11 +44,21 @@
     	@if(isset($_COOKIE['id']))
       @if(isset($_COOKIE['role']))
       @if(($_COOKIE['role']=='Admin') or ($_COOKIE['id']== $user->id))
-      <button type="button" class="btn btn-danger"><a href="/user/{{$_COOKIE['id']}}/edit">Editar Perfil</a> </button>
+      <button type="button" class="btn btn-danger"><a href="/user/{{$_COOKIE['id']}}/edit">Editar Perfil</a></button>
       @endif
       @endif
       @endif
     </div>
+    <div class="col-4 mx-auto" style="background: rgb(40,40,51);border-radius: 4px;transform-origin: center;padding: 20px; margin-top: 40px">
+  <div class="card-body">
+    <h5 class="card-title">Seguidores {{$user->name}}</h5>
+    <ul class="list-group">
+      @foreach($users as $userr)
+        <li class="list-group-item">{{$userr->name}}</li>
+      @endforeach 
+</ul>
+  </div>
+</div>
   </section>
 </body>
 </html>
