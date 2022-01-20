@@ -16,7 +16,8 @@ class CreateWishListsTable extends Migration
         Schema::create('wish_lists', function (Blueprint $table) {
             $table->id();
 
-            $table->string('privacy',50);
+            $table->string('name', 250);
+            $table->enum('privacy', ['public', 'private']);
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');

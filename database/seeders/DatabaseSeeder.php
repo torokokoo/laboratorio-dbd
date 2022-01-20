@@ -35,7 +35,11 @@ class DatabaseSeeder extends Seeder
     \App\Models\Comment::factory(10)->create();
     \App\Models\Like::factory(10)->create();
     \App\Models\Library::factory(10)->create();
-    \App\Models\WishList::factory(10)->create();
-    \App\Models\WishListGame::factory(10)->create();
+    /** Los seeders de Wishlist funcionan perfectamente
+    * pero lo optimo es que cada usuario cree su lista de deseos 
+    * para mostrar su funcionamiento
+    * \App\Models\WishList::factory(10)->create();
+    * \App\Models\WishListGame::factory(10)->create();
+    */
   }
 }

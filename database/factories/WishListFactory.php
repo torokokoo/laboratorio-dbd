@@ -16,7 +16,7 @@ class WishListFactory extends Factory
   public function definition()
   {
     return [
-      'privacy' => $this->faker->name,
+      'privacy' => $this->faker->randomElement(['public', 'private']),
       'user_id' => User::all()->random()->id
     ];
   }

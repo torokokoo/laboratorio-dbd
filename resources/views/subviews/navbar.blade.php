@@ -43,7 +43,7 @@
 					<a class="nav-link" href="/library/{{$_COOKIE['id']}}"><span class="bi-collection"></span> Mi Biblioteca</a>
 				</li>
 				<li>
-					<a class="nav-link" href="#"><span class="bi-card-checklist"></span> Mi Lista De Deseos</a>
+					<a class="nav-link" href="/wishlists/{{$_COOKIE['id']}}"><span class="bi-card-checklist"></span> Mi Lista De Deseos</a>
 				</li>
 
 				<li>

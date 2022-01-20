@@ -44,6 +44,17 @@ Route::get('games/ranking', 'GameController@topSales');          // Editar datos
 Route::get('buy/{id}', 'TransactionController@summary');
 Route::post('buy/{id}', 'TransactionController@buyGame');
 
+// Lista de deseos
+Route::get('/wishlist', 'WishListController@index');
+Route::get('/wishlists/{id}', 'WishListController@show');
+Route::get('/wishlist/{id}', 'WishListController@showById');
+Route::get('/wishlist/delete/{wishlist}/{relation}', 'WishListController@game_hard_destroy');
+Route::get('/wishlist/add/{id}', 'WishListController@addGameRender');
+Route::post('/wishlist/add/{id}', 'WishListController@addGame');
+Route::get('/wishlist/create/{id}', 'WishListController@create');
+Route::get('/wishlist/delete/{id}', 'WishListController@hard_destroy');
+Route::post('/wishlist/create/{id}', 'WishListController@store');
+
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');
 Route::post('/age_restricion/create', 'AgeRestrictionController@store');
@@ -204,9 +215,3 @@ Route::put('/wishlist_game/update/{id}', 'WishListGameController@update');
 Route::delete('/wishlist_game/delete/{id}', 'WishListGameController@destroy');
 Route::delete('/wishlist_game/deleteH/{id}', 'WishListGameController@hard_destroy');
 
-Route::get('/wishlists', 'WishListController@index');
-Route::get('/wishlist/{id}', 'WishListController@show');
-Route::post('/wishlist/create', 'WishListController@store');
-Route::put('/wishlist/update/{id}', 'WishListController@update');
-Route::delete('/wishlist/delete/{id}', 'WishListController@destroy');
-Route::delete('/wishlist/deleteH/{id}', 'WishListController@hard_destroy');

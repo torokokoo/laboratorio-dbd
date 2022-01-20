@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\WishList;
+use App\Models\WishListGame;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,9 +32,9 @@ class WishListController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
-  {
-    //
+  public function create() {
+    $games = Game::all();
+    return view('createWishlist', compact('games'));
   }
 
   /**
@@ -41,17 +43,17 @@ class WishListController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(Request $request, $id)
   {
     $validator = Validator::make(
       $request->all(),
       [
+        'name' => 'required',
         'privacy' => 'required|min:2|max:50',
-        'user_id' => 'required|exists:users,id'
       ],
       [
+        'name.required' => 'Debes ingresar un nombre valido',
         'privacy.required' => 'Debes ingresar una privacidad valida',
-        'user_id.exists' => 'El ID del usuario no es valido',
       ]
     );
 
@@ -60,13 +62,12 @@ class WishListController extends Controller
     }
 
     $newWishList = new WishList();
+    $newWishList->name = $request->name;
     $newWishList->privacy = $request->privacy;
-    $newWishList->user_id = $request->user_id;
+    $newWishList->user_id = $_COOKIE['id'];
     $newWishList->save();
-    return response()->json([
-      'respuesta' => 'Se ha creado una nueva lista de deseos',
-      'id' => $newWishList->id
-    ], 201);
+
+    return redirect(sprintf('/wishlists/%s', $_COOKIE['id']));
   }
 
   /**
@@ -77,11 +78,36 @@ class WishListController extends Controller
    */
   public function show($id)
   {
-    $wishlist = WishList::find($id);
-    if (empty($wishlist) or $wishlist->delete) {
-      return response("404 Not Found", 404);
+    $wishlists = WishList::where('user_id', $id)->get();
+    return view('wishlists', compact('wishlists'));
+  }
+
+  public function showById($id)
+  {
+    $wishlists = WishListGame::where('wishlist_id', $id)->get();
+    
+    $ids = [];
+    foreach ($wishlists as $item) {
+      array_push($ids, $item->game_id);
     }
-    return response($wishlist, 200);
+
+    $games = Game::whereIn('id', $ids)->get();
+    return view('wishlist', compact('games'))->with('id', $id);
+  }
+
+  public function addGameRender($id) {
+    $games = Game::all();
+    return view('addGameWishlist', compact('games'));
+  }
+
+  public function addGame(Request $request, $id) {
+    $wishListGame = new WishListGame();
+    $wishListGame->game_id = $request->game_id;
+    $wishListGame->wishlist_id = $id;
+    $wishListGame->save();
+
+    return redirect('/');
+
   }
 
   /**
@@ -164,9 +190,19 @@ class WishListController extends Controller
       return response()->json(['mensaje' => 'El id ingresado no existe']);
     }
     $wishlist->delete();
-    return response()->json([
-      'mensaje' => 'La lista de deseos ha sido eliminado',
-      'id' => $wishlist->id,
-    ], 200);
+    return redirect(sprintf('/wishlists/%s', $_COOKIE['id']));
+  }
+
+  public function game_hard_destroy($wishlist, $relation)
+  {
+    $wishlist = WishListGame::where([
+      ['wishlist_id', '=', $wishlist],
+      ['game_id', '=', $relation],
+    ]);
+    if (empty($wishlist) or $wishlist->delete) {
+      return response()->json(['mensaje' => 'El id ingresado no existe']);
+    }
+    $wishlist->delete();
+    return redirect(sprintf('/wishlist/%s', $wishlist));
   }
 }
