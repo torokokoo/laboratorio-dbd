@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\AgeRestriction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,15 +15,17 @@ class GameController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
-    $games = Game::where('delete', false)->get();
+    $name = $request->get('buscarpor');
+    $games = Game::where('name', 'like', "%$name%")->where('delete', false)->get();
+    $age_restrictions = AgeRestriction::where('delete', false)->get();
     if ($games->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentran juegos'
       ]);
     }
-    return view('welcome', compact('games'));
+    return view('welcome',['games' => $games, 'buscarpor' => $name], compact('games','age_restrictions'));
   }
   public function indexC()
   {
