@@ -20,19 +20,22 @@
     @include('subviews.navbar')
     <section class="mt-5">
         <div class="container ">
+            <p> Si desea filtrar por nombre, escriba el nombre del juego (Ej: Mortal Kombat) </p>
             <form class="d-flex">
                 <input name="buscarpor" class="form-control mr-sm-2" type="search"
                     placeholder="Ingrese un nombre de juego" aria-label="Search">
                 <button class="btn btn-primary" type="submit">Filtrar</button>
             </form>
             <br>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                @foreach ($age_restrictions as $age_restriction)
-                <option value="{{$age_restriction->id}}">{{$age_restriction->age_restriction}}</option>
-                @endforeach
-                <li class="divider"></li>
-                <li><a tabindex="-1" href="#">Separated link</a></li>
-            </ul>
+            <p> Si desea filtrar por precio, ingrese el minimo y maximo para filtrar con ese rango (EJ: 100 200)</p>
+            <form class="d-flex">
+                <input name="buscarporminp" class="form-control mr-sm-2" type="search" placeholder="Ingrese precio minimo" aria-label="Search">
+                <input name="buscarpormaxp" class="form-control mr-sm-2" type="search" placeholder="Ingrese precio maximo" aria-label="Search">
+                <div class="pull-left" style="margin-right:5px">
+                <button class="btn btn-info" type="submit">Filtrar</button>
+                </div>
+            </form>
+            <br>
             <h4 class="mb-5">Elige un juego</h4>
             @if(isset($_COOKIE['role']))
             @if(($_COOKIE['role']=='Developer') or ($_COOKIE['role']=='Admin'))

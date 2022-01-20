@@ -19,14 +19,26 @@ class GameController extends Controller
   public function index(Request $request)
   {
     $name = $request->get('buscarpor');
-    $games = Game::where('name', 'like', "%$name%")->where('delete', false)->get();
-    $age_restrictions = AgeRestriction::where('delete', false)->get();
+    $minprice = $request->get('buscarporminp');
+    $maxprice = $request->get('buscarpormaxp');    
+    //$age_restrictions = AgeRestriction::where('delete', false)->get(); // No se logro que funcionara u.u
+    $games = Game::where('delete', false)->get();
+    if($request){
+      if ($minprice and $maxprice) {
+        $games = Game::where('price', '>', "$minprice")->where('price', '<', "$maxprice")->where('delete', false)->get();
+        return view('welcome', ['games' => $games, 'buscarporminp' => $minprice, 'buscarpormaxp' => $maxprice], compact('games'));
+      }
+      if($name){
+        $games = Game::where('name', 'like', "%$name%")->where('delete', false)->get();
+        return view('welcome',['games' => $games, 'buscarpor' => $name], compact('games'));
+      }
+    }
     if ($games->isEmpty()) {
       return response()->json([
         'respuesta' => 'No se encuentran juegos'
       ]);
     }
-    return view('welcome',['games' => $games, 'buscarpor' => $name], compact('games','age_restrictions'));
+    return view('welcome',compact('games'));
   }
   public function indexC()
   {
