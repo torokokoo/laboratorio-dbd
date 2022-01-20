@@ -92,7 +92,7 @@
     @enderror
 
 		<div class="form-floating">
-		<input type="text" class="form-control"  class="@error('password') is-invalid @enderror" id="password" name="password" placeholder="name@example.com">
+		<input type="password" class="form-control"  class="@error('password') is-invalid @enderror" id="password" name="password" placeholder="name@example.com">
 		<label for="floatingUsername">Contraseña</label>
 		</div>
     @error('password')
@@ -100,7 +100,7 @@
     @enderror
 
 		<div class="form-floating">
-		<input type="text" class="form-control"  class="@error('passwordC') is-invalid @enderror" id="passwordC" name="passwordC" placeholder="name@example.com">
+		<input type="password" class="form-control"  class="@error('passwordC') is-invalid @enderror" id="passwordC" name="passwordC" placeholder="name@example.com">
 		<label for="floatingUsername">Confirmar Contraseña</label>
 		</div>
     @error('passwordC')
