@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\Library;
+use App\Models\Game;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
@@ -173,5 +176,54 @@ class TransactionController extends Controller
       'mensaje' => 'La transaccion ha sido eliminada',
       'id' => $transaction->id,
     ], 200);
+  }
+
+  public function buyGame($id) {
+    ## Se crea una nueva transaccion
+    $game_id = $id;
+    $user_id = $_COOKIE['id'];
+
+    $validator = Validator::make(
+      compact('game_id', 'user_id'),
+      [
+        'user_id' => 'required|exists:users,id',
+        'game_id' => 'required|exists:games,id',
+      ],
+      [
+        'user_id.exists' => 'El ID usuario no existe',
+        'gamer_id.exists' => 'El ID juego no existe',
+
+      ]
+    );
+    if ($validator->fails()) {
+      return response($validator->errors());
+    }
+
+    $newTransaction = new Transaction();
+    $newTransaction->user_id = $user_id;
+    $newTransaction->date = date('Y-m-d');
+    $newTransaction->game_id = $game_id;
+    $newTransaction->save();
+
+    $newLibrary = new Library();
+    $newLibrary->user_id = $user_id;
+    $newLibrary->game_id = $game_id;
+    $newLibrary->save();
+
+    $game = Game::find($id);
+    $game->soldUnits += 1;
+    $game->save();
+
+    return redirect(sprintf('/library/%s', $_COOKIE['id']));
+  }
+
+  public function summary($id) {
+    $game = Game::find($id);
+    $user = User::find($_COOKIE['id']);
+    if (empty($user)) {
+      return redirect('/');
+    }
+
+    return view('summary', compact(['game', 'user']));
   }
 }

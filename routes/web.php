@@ -40,6 +40,10 @@ Route::get('game/{game}/edit', 'GameController@edit');            // Vista edita
 Route::put('game/{game}/edit', 'GameController@update');          // Editar datos de juego (Admin)
 Route::get('games/ranking', 'GameController@topSales');          // Editar datos de juego (Admin)
 
+// Pasarela de compras
+Route::get('buy/{id}', 'TransactionController@summary');
+Route::post('buy/{id}', 'TransactionController@buyGame');
+
 Route::get('/age_restricions', 'AgeRestrictionController@index');
 Route::get('/age_restricion/{id}', 'AgeRestrictionController@show');
 Route::post('/age_restricion/create', 'AgeRestrictionController@store');

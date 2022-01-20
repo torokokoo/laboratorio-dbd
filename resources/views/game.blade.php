@@ -36,7 +36,7 @@
                 allowfullscreen></iframe>
         </div>
     </div>
-    <button type="button"  class="btn btn-primary">Comprar</button>
+    <a href="/buy/{{$game->id}}"><button type="button" class="btn btn-primary">Comprar</button></a>
     <button type="button" class="btn btn-success">Me Gusta</button>
     <button type="button" class="btn btn-danger">No Me Gusta</button>
     <h2> <br> <br> COMENTARIOS</h2>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Library;
+use App\Models\Game;
 use Illuminate\Support\Facades\Validator;
 
 class LibraryController extends Controller
@@ -78,10 +79,19 @@ class LibraryController extends Controller
    */
   public function show($id)
   {
-    $library = Library::find($id);
-    if (empty($library) or $library->delete) {
+    $library = Library::where('user_id', $id)->get();
+    if (empty($library)) {
       return response("404 Not Found", 404);
     }
+
+    # Aqui me encantaria usar un map, pero en PHP es demasiado complicado xD
+    $ids = [];
+    foreach ($library as $item) {
+      array_push($ids, $item->game_id);
+    }
+
+    $games = Game::whereIn('id', $ids)->get();
+    return view('library', compact('games'));
     return response($library, 200);
   }
 
