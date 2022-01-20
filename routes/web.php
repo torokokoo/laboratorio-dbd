@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Vista principal de usuario logeado
-Route::get('/', function () {
-  return view('welcome');
-});
+//Route::get('/', function () {
+//  return view('welcome');
+//});
 // Login - Register
 Route::get('/register', 'RegisterController@view'); // Vista Register
 Route::post('/register', 'RegisterController@store'); // Registro de usuario
