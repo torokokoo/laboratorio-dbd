@@ -42,9 +42,13 @@
             @endif
         </div>
     </div>
+    @if(isset($_COOKIE['id']))
     <a href="/buy/{{$game->id}}"><button type="button" class="btn btn-primary">Comprar</button></a>
     <button type="button" class="btn btn-success">Me Gusta</button>
     <button type="button" class="btn btn-danger">No Me Gusta</button>
+    @else
+    <h5> Registrate o ingresa para comprar este juego!</h5>
+    @endif
     <h2> <br> <br> COMENTARIOS</h2>
     <hr />
     </section>
