@@ -21,8 +21,8 @@
     <section class="mt-5">
         <div class="container ">
             <form class="d-flex">
-                <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Ingrese un nombre de juego"
-                    aria-label="Search">
+                <input name="buscarpor" class="form-control mr-sm-2" type="search"
+                    placeholder="Ingrese un nombre de juego" aria-label="Search">
                 <button class="btn btn-primary" type="submit">Filtrar</button>
             </form>
             <br>
@@ -68,6 +68,7 @@
             </div>
         </div>
     </section>
+    <p class="mt-5 mb-3 text-muted">&copy; DEBEDE 2021-2022</p>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

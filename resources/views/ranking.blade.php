@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport">
@@ -42,7 +42,8 @@
 </table>
   </section>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Ranking</title>
+  <p class="mt-5 mb-3 text-muted">&copy; DEBEDE 2021-2022</p>
 <body>
 </body>
 </html>

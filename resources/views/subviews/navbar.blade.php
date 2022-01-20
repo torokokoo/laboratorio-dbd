@@ -11,7 +11,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/">Tienda</a>
 				</li>
-        <li class="nav-item">
+				<li class="nav-item">
 					<a class="nav-link" href="/games/ranking">Top Ventas</a>
 				</li>
 				@if(isset($_COOKIE['id']))
@@ -25,25 +25,27 @@
 				{{-- Se muestra las ventanas de user y logout si el usuario esta logeado --}}
 				@if(isset($_COOKIE['id']))
 				<li>
-					<a class="nav-link" href="/user/{{$_COOKIE['id']}}"><span
-							class="bi-person-fill"></span> {{$_COOKIE['user']}}</a>
+					<a class="nav-link" href="/user/{{$_COOKIE['id']}}"><span class="bi-person-fill"></span>
+						{{$_COOKIE['user']}}</a>
 				</li>
-        @if(isset($_COOKIE['role']))
-        @if($_COOKIE['role']=='Admin')
-        	<li>
+				@if(isset($_COOKIE['role']))
+				@if($_COOKIE['role']=='Admin')
+				<li>
 					<a class="nav-link"><span class="bi-person-fill"></span> Admin</a>
 				</li>
-        @elseif($_COOKIE['role']=='Developer')
-          <li>
+				@elseif($_COOKIE['role']=='Developer')
+				<li>
 					<a class="nav-link"><span class="bi-person-fill"></span>Developer</a>
 				</li>
-        
-        @endif
+
+				@endif
 				<li>
-					<a class="nav-link" href="/library/{{$_COOKIE['id']}}"><span class="bi-collection"></span> Mi Biblioteca</a>
+					<a class="nav-link" href="/library/{{$_COOKIE['id']}}"><span class="bi-collection"></span> Mi
+						Biblioteca</a>
 				</li>
 				<li>
-					<a class="nav-link" href="/wishlists/{{$_COOKIE['id']}}"><span class="bi-card-checklist"></span> Mi Lista De Deseos</a>
+					<a class="nav-link" href="/wishlists/{{$_COOKIE['id']}}"><span class="bi-card-checklist"></span> Mi
+						Lista De Deseos</a>
 				</li>
 
 				<li>
@@ -53,15 +55,15 @@
 
 
 				@endif
-        @else
-        <li class="nav-item">
+				@else
+				<li class="nav-item">
 					<a class="nav-link" href="/login"><span class="bi-box-arrow-in-right"></span> Iniciar Sesión</a>
-				</li> 
-              				<li>
+				</li>
+				<li>
 					<a class="nav-link" href="/register"><span class="bi-person-fill"></span> Registrarse</a>
 				</li>
-        @endif
-  
+				@endif
+
 
 		</div>
 	</div>
